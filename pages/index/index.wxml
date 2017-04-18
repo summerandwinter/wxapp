@@ -10,8 +10,10 @@
      </block>
     </view>
   </view>
-  <view class="item" wx:for="{{movies}}">
-    <image class="item-photo" src="{{item.photo}}" background-size="cover"></image>
-    <text class="item-word">{{item.word}}</text>
+  <view class="content">
+    <view class="item" wx:for="{{movies}}">
+      <image class="item-photo" src="{{item.photo}}" background-size="cover"></image>
+      <text class="item-word">{{item.word}}</text>
+    </view>
   </view>
 </view>

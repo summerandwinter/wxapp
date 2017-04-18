@@ -1,0 +1,94 @@
+/**book.wxss**/
+.nav {
+  position: fixed;
+  display:flex;
+  flex-direction: row;
+  left: 0;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}
+.nav-item{
+  width: 120rpx;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: #fff;
+  font-size: 36rpx;
+  
+}
+.tab{
+  color: #888888;
+  height: 100rpx;
+  background-color: #fff;
+  line-height: 100rpx;
+}
+.tab.selected{
+  color: #000000;
+}
+.tab.selected::after{
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6rpx;
+  background-color: #000000
+}
+.content{
+  margin-top: 0rpx;
+}
+.item {
+  min-height: 500rpx;
+  width: 100%;
+  display:table; 
+  color: #353535;
+  position: relative;
+}
+
+.item:nth-child(odd) {
+  color: #ffffff;
+  background-color: #353535;
+}
+.item:nth-child(even) {
+  background-color: #ffffff; 
+}
+
+.item-word {
+  vertical-align:middle;    
+  display:table-cell;  
+  font-size: 40rpx;
+  line-height: 70rpx;
+  padding: 100rpx 40rpx;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.meta{
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+  text-align: center
+}
+.item:nth-child(even) .title{
+  color: #808080;
+}
+.item:nth-child(even) .author{
+  color: #a9a9a9;
+}
+.item:nth-child(odd) .title{
+  color: #a9a9a9;
+}
+.item:nth-child(odd) .author{
+  color: #808080;
+}

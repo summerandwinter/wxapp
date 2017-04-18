@@ -1,10 +1,16 @@
-<!--index.wxml-->
+<!--music.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}{{userInfo.nickName}}</text>
+  <view class="content">
+    <view class="item" wx:for="{{musics}}">
+      <view class="item-bg" style="background-image: url('{{item.photo}}');">
+        <view class="bg-cover"></view>
+      </view>
+      <text class="item-word">{{item.word}}</text>
+      <view class="meta">
+        <text class="title">{{item.song}}</text>
+        <text class="dot">·</text>
+        <text class="author">{{item.author}}</text>
+      </view>
+    </view>
   </view>
 </view>

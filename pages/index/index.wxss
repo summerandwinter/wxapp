@@ -1,0 +1,46 @@
+/**index.wxss**/
+.nav {
+  position: fixed;
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  background: #fff;
+}
+.nav-item{
+  width: 120rpx;
+  position: relative;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: #fff;
+  font-size: 36rpx;
+}
+.tab{
+  color: #888888;
+  padding-bottom: 30rpx;
+}
+.tab.selected{
+  color: #000000;
+  border-bottom: 6rpx #000 solid;
+}
+.item {
+  background-color: #fff;
+  margin-bottom: 40rpx;
+}
+
+.item-photo {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item-word {
+  display: block;
+  color: #353535;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  width: 96%;
+  margin: 10rpx auto;
+  padding-bottom: 20rpx;
+}

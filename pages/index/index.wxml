@@ -1,0 +1,17 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="nav">
+    <view class="nav-item" wx:for="{{cates}}" >
+     <block wx:if="{{index == 0}}">
+     <view class="tab selected">{{item}}</view>
+     </block>
+     <block wx:else>
+     <view class="tab">{{item}}</view>
+     </block>
+    </view>
+  </view>
+  <view class="item" wx:for="{{movies}}">
+    <image class="item-photo" src="{{item.photo}}" background-size="cover"></image>
+    <text class="item-word">{{item.word}}</text>
+  </view>
+</view>

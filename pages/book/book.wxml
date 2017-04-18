@@ -4,8 +4,9 @@
     <view class="item" wx:for="{{books}}">
       <text class="item-word">{{item.word}}</text>
       <view class="meta">
-        <text class="title">《{{item.book}}》</text>
-        <text class="author">--{{item.author}}</text>
+        <text class="title">{{item.book}}</text>
+        <text class="dot">·</text>
+        <text class="author">{{item.author}}</text>
       </view>
     </view>
   </view>

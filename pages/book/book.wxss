@@ -55,6 +55,7 @@
   background-color: #353535;
 }
 .item:nth-child(even) {
+  color: #000000;
   background-color: #ffffff; 
 }
 
@@ -72,23 +73,34 @@
 
 .meta{
   position: absolute;
-  left: 0;
+  right: 20rpx;
   bottom: 0;
   width: 100%;
-  height: 50rpx;
-  line-height: 50rpx;
+  height: 40rpx;
+  line-height: 40rpx;
   font-size: 24rpx;
-  text-align: center
+  text-align: right;
+}
+.dot{
+  color: #ffffff;
+  font-size: 24rpx;
+  padding: 0 6rpx;
 }
 .item:nth-child(even) .title{
-  color: #808080;
+  color: #000;
+}
+.item:nth-child(even) .dot{
+  color: #000;
 }
 .item:nth-child(even) .author{
-  color: #a9a9a9;
+  color: #000;
 }
 .item:nth-child(odd) .title{
-  color: #a9a9a9;
+  color: #ffffff;
 }
 .item:nth-child(odd) .author{
-  color: #808080;
+  color: #ffffff;
+}
+.item:nth-child(odd) .dot{
+  color: #ffffff;
 }

@@ -57,7 +57,7 @@
 .dot{
   color: #ffffff;
   font-size: 24rpx;
-  padding: 0 4rpx;
+  padding: 0 6rpx;
 }
 .title{
   color: #ffffff;

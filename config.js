@@ -5,7 +5,7 @@
 // 此处主机域名是腾讯云解决方案分配的域名
 // 小程序后台服务解决方案：https://www.qcloud.com/solution/la
 
-var host = "summerandwinter.github.io"
+var host = "sanyecao.github.io"
 
 var config = {
 
@@ -18,11 +18,11 @@ var config = {
     // 测试的请求地址，用于测试会话
     requestUrl: `https://${host}/testRequest`,
 
-    getMovieListUrl: `https://${host}/lab/wxapp/movies.json`,
+    getMovieListUrl: `https://${host}/movies.json`,
 
-    getBookListUrl: `https://${host}/lab/wxapp/books.json`,
+    getBookListUrl: `https://${host}/books.json`,
 
-    getMusicListUrl: `https://${host}/lab/wxapp/musics.json`,
+    getMusicListUrl: `https://${host}/musics.json`,
 
     // 用code换取openId
     openIdUrl: `https://${host}/openid`,

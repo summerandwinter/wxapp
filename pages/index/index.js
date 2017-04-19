@@ -9,7 +9,7 @@ Page({
       hidden: false
     },
     userInfo: {},
-    cates: ["台词", "感悟", "人物"],
+    cates: [{ "id": "1", "name": "台词" }, { "id": "2", "name": "感悟" }, { "id": "3", "name": "人物" }],
     movies: {
       list: [],
       hasMore: true,

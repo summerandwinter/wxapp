@@ -1,12 +1,12 @@
 <!--index.wxml-->
 <view class="container">
   <view class="nav">
-    <view class="nav-item" wx:for="{{cates}}" >
+    <view class="nav-item" wx:for="{{cates}}"  wx:key="id">
      <block wx:if="{{index == 0}}">
-     <view class="tab selected">{{item}}</view>
+     <view class="tab selected">{{item.name}}</view>
      </block>
      <block wx:else>
-     <view class="tab">{{item}}</view>
+     <view class="tab">{{item.name}}</view>
      </block>
     </view>
   </view>
@@ -22,7 +22,7 @@
     </view>  
   </view>
   <scroll-view scroll-y="true" class="content" hidden="{{movies.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
-    <view class="item" wx:for="{{movies.list}}">
+    <view class="item" wx:for="{{movies.list}}" wx:key="{{id}}">
       <image class="item-photo" src="{{item.photo}}" background-size="cover"></image>
       <text class="item-word">{{item.word}}</text>
     </view>

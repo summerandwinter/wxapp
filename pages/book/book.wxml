@@ -12,7 +12,7 @@
     </view>  
   </view>
   <scroll-view class="content"  scroll-y="true" class="content" hidden="{{musics.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
-    <view class="item" wx:for="{{books.list}}">
+    <view class="item" wx:for="{{books.list}}" wx:key="{{id}}">
       <text class="item-word">{{item.word}}</text>
       <view class="meta">
         <text class="title">{{item.book}}</text>

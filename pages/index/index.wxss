@@ -65,8 +65,8 @@
 .item-word {
   display: block;
   color: #353535;
-  font-size: 40rpx;
-  line-height: 60rpx;
+  font-size: 14pt;
+  line-height: 20pt;
   width: 96%;
   margin: 10rpx auto;
   padding-bottom: 20rpx;

@@ -1,49 +1,78 @@
 //index.js
 //获取应用实例
 var util = require('../../utils/util.js');
+const getMovieListUrl = require('../../config').getMovieListUrl;
 var app = getApp()
 Page({
   data: {
-    motto: '欢迎回来，',
+    loading: {
+      hidden: false
+    },
     userInfo: {},
-    cates: ["台词","感悟","人物"],
-    movies: [
-      {photo: "https://img3.doubanio.com/view/photo/photo/public/p2418051422.jpg",word: "别人稍一注意你，你就敞开心扉，你觉得这是坦率，其实这是孤独"},
-      {photo: "https://img1.doubanio.com/view/photo/photo/public/p2423105699.jpg",word: "中年以后的男人，时常会觉得孤独，因为他一睁开眼睛，周围都是要依靠他的人，却没有他可以依靠的人。"},
-      {photo: "https://img3.doubanio.com/view/photo/photo/public/p2454410343.jpg",word: "告别时都爱强装洒脱，告别后都在强忍想念，躲得了对酒当歌的夜，躲不了四下无人的街"},
-      {photo: "https://img5.doubanio.com/view/photo/photo/public/p2428896196.jpg",word: "没有人喜欢孤独，只是不喜欢失望"}
-      ]
+    cates: ["台词", "感悟", "人物"],
+    movies: {
+      list: [],
+      hasMore: true,
+      hasRefesh: true,
+      page: 1,
+      count: 20,
+      hidden: true
+    }
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  upper: function (e) {
+    console.log(e);
+  },
+  lower: function (e) {
+    console.log(e);
+  },
+  scroll: function (e) {
+    console.log(e)
   },
   onLoad: function () {
     console.log('生命周期:index-load')
     util.sayHello('summer');
-    var that = this
+    var that = this;
+    wx.request({
+      url: getMovieListUrl,
+      data: {
+        noncestr: Date.now()
+      },
+      success: function (result) {
+        if (result.statusCode == 200) {
+          that.setData({
+            'loading.hidden': true,
+            'movies.list': that.data.movies.list.concat(result.data.data),
+            'movies.hidden': false
+          })
+
+        }
+        console.log('request success', result)
+      },
+
+      fail: function ({errMsg}) {
+        console.log('request fail', errMsg)
+      }
+    })
+    //模拟数据加载
+
     //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
+    app.getUserInfo(function (userInfo) {
       //更新数据
       console.log(userInfo);
-      that.setData({
-        userInfo:userInfo
-      })
+
     })
   },
-  onReady: function() {
+  onReady: function () {
     console.log('生命周期:index-ready');
   },
-  onShow: function() {
-    
+  onShow: function () {
+
     console.log('生命周期:index-show');
   },
-  onHide: function() {
+  onHide: function () {
     console.log('生命周期:index-hide');
   },
-  onUnload: function() {
+  onUnload: function () {
     console.log('生命周期:index-unload');
   }
 })

@@ -1,7 +1,18 @@
 <!--book.wxml-->
 <view class="container">
-  <view class="content">
-    <view class="item" wx:for="{{books}}">
+<view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+     <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>  
+  </view>
+  <scroll-view class="content"  scroll-y="true" class="content" hidden="{{musics.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
+    <view class="item" wx:for="{{books.list}}">
       <text class="item-word">{{item.word}}</text>
       <view class="meta">
         <text class="title">{{item.book}}</text>
@@ -9,5 +20,5 @@
         <text class="author">{{item.author}}</text>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

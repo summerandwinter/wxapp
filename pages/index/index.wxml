@@ -10,10 +10,21 @@
      </block>
     </view>
   </view>
-  <view class="content">
-    <view class="item" wx:for="{{movies}}">
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+     <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>  
+  </view>
+  <scroll-view scroll-y="true" class="content" hidden="{{movies.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
+    <view class="item" wx:for="{{movies.list}}">
       <image class="item-photo" src="{{item.photo}}" background-size="cover"></image>
       <text class="item-word">{{item.word}}</text>
     </view>
-  </view>
+  </scroll-view>
 </view>

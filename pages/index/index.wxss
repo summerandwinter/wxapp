@@ -1,5 +1,4 @@
 /**index.wxss**/
-
 .nav {
   position: fixed;
   display: flex;
@@ -41,11 +40,12 @@
   height: 6rpx;
   background-color: #000;
 }
-
+.content.withNav{
+  top: 100rpx;
+}
 .content {
   position: absolute;
   left: 0;
-  top: 100rpx;
   height: 100%;
   background: #eee;
 }
@@ -64,7 +64,7 @@
 
 .item-word {
   display: block;
-  color: #353535;
+  color: #000;
   font-size: 14pt;
   line-height: 20pt;
   width: 96%;

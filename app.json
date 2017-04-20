@@ -14,22 +14,24 @@
   },
   "tabBar": {
     "position": "bottom",
+     "color": "#8a8a8a",
+     "selectedColor": "#2c2c2c",
     "backgroundColor": "#ffffff",
     "borderStyle":"white",
     "list": [{   
       "pagePath": "pages/index/index",
-      "iconPath": "image/icon_component.png",
-      "selectedIconPath": "image/icon_component_HL.png",
+      "iconPath": "image/icon_movie.png",
+      "selectedIconPath": "image/icon_movie_hl.png",
       "text": "影"
     }, {
       "pagePath": "pages/music/music",
-      "iconPath": "image/icon_API.png",
-      "selectedIconPath": "image/icon_API_HL.png",
+      "iconPath": "image/icon_music.png",
+      "selectedIconPath": "image/icon_music_hl.png",
       "text": "音"
     }, {
       "pagePath": "pages/book/book",
-      "iconPath": "image/icon_API.png",
-      "selectedIconPath": "image/icon_API_HL.png",
+      "iconPath": "image/icon_book.png",
+      "selectedIconPath": "image/icon_book_hl.png",
       "text": "书"
     }]
   }

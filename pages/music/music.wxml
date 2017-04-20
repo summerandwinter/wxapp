@@ -12,7 +12,7 @@
     </view>  
   </view>
   <scroll-view class="content"  scroll-y="true" class="content" hidden="{{musics.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
-    <view class="item" wx:for="{{musics.list}}" wx:key="id">
+    <view class="item" wx:for="{{musics.list}}" wx:key="objectId">
       <view class="item-bg" style="background-image: url('{{item.photo}}');">
         <view class="bg-cover"></view>
       </view>

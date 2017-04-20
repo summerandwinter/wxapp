@@ -62,11 +62,11 @@
 .item-word {
   vertical-align:middle;    
   display:table-cell;  
-  font-size: 40rpx;
-  line-height: 70rpx;
+  font-size: 14pt;
+  line-height: 25pt;
   padding: 100rpx 40rpx;
   position: relative;
-  text-align: center;
+  text-align: left;
   align-items: center;
   justify-content: center;
 }

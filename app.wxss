@@ -33,7 +33,7 @@
 }
 
 .sk-wave .sk-rect {
-  background-color: #a8a8a8;
+  background-color: #707070;
   height: 100%;
   width: 12rpx;
   margin: 0 4rpx;

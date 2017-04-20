@@ -1,6 +1,8 @@
 //index.js
 //获取应用实例
 var util = require('../../utils/util.js');
+const AV = require('../../utils/av-weapp-min.js');
+const Movie = require('../../model/movie');
 const getMovieListUrl = require('../../config').getMovieListUrl;
 var app = getApp()
 Page({
@@ -9,7 +11,7 @@ Page({
       hidden: false
     },
     userInfo: {},
-    cates: [{ "id": "1", "name": "台词" }, { "id": "2", "name": "感悟" }, { "id": "3", "name": "人物" }],
+    cates: [], //{ "id": "1", "name": "台词" }, { "id": "2", "name": "感悟" }, { "id": "3", "name": "人物" }
     movies: {
       list: [],
       hasMore: true,
@@ -18,6 +20,15 @@ Page({
       count: 20,
       hidden: true
     }
+  },
+  tap: function (e) {
+    //点击显示大图效果，用wx.previewImage借口模拟
+    /*
+    wx.previewImage({
+      current: 'https://img5.doubanio.com/view/photo/photo/public/p2428896196.jpg', // 当前显示图片的http链接
+      urls: ['https://img5.doubanio.com/view/photo/photo/public/p2428896196.jpg'] // 需要预览的图片http链接列表
+    })
+    */
   },
   upper: function (e) {
     console.log(e);
@@ -28,9 +39,7 @@ Page({
   scroll: function (e) {
     console.log(e)
   },
-  onLoad: function () {
-    console.log('生命周期:index-load')
-    util.sayHello('summer');
+  loadDataFromGithub: function () {
     var that = this;
     wx.request({
       url: getMovieListUrl,
@@ -53,8 +62,28 @@ Page({
         console.log('request fail', errMsg)
       }
     })
-    //模拟数据加载
+  },
+  loadDataFromLearncloud: function () {
+    var that = this;
+    var query = new AV.Query(Movie);
+    query.find().then(function (results) {
+      that.setData({
+        'loading.hidden': true,
+        'movies.list': that.data.movies.list.concat(results),
+        'movies.hidden': false
+      })
+    }, function (error) {
+    });
 
+  },
+  onLoad: function () {
+    console.log('生命周期:index-load')
+    util.sayHello('summer');
+    var that = this;
+
+    //模拟数据加载
+    //this.loadDataFromGithub();
+    this.loadDataFromLearncloud();
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function (userInfo) {
       //更新数据

@@ -1,6 +1,8 @@
 //music.js
 //获取应用实例
 var util = require('../../utils/util.js');
+const AV = require('../../utils/av-weapp-min.js');
+const Music = require('../../model/music');
 const getMusicListUrl = require('../../config').getMusicListUrl;
 var app = getApp()
 Page({
@@ -29,9 +31,8 @@ Page({
   scroll: function (e) {
     console.log(e)
   },
-  onLoad: function () {
-    console.log('生命周期:music-load')
-   var that = this;
+  loadDataFromGithub: function() {
+    var that = this;
     wx.request({
       url: getMusicListUrl,
       data: {
@@ -53,6 +54,23 @@ Page({
         console.log('request fail', errMsg)
       }
     })
+  },
+  loadDataFromLearncloud: function() {
+    var that = this;
+    var query = new AV.Query(Music);
+    query.find().then(function (results) {
+      that.setData({
+        'loading.hidden': true,
+        'musics.list': that.data.musics.list.concat(results),
+        'musics.hidden': false
+      })
+    }, function (error) {
+    });
+  },
+  onLoad: function () {
+    console.log('生命周期:music-load')
+    var that = this;
+    this.loadDataFromLearncloud();
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){
       //更新数据

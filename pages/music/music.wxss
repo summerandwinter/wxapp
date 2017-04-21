@@ -6,7 +6,6 @@
   min-height: 500rpx;
   width: 100%;
   display:table; 
-  color: #353535;
   position: relative;
   color: #ffffff;
   overflow: hidden;
@@ -23,15 +22,26 @@
     width: 110%;
     margin: -5%;
     background-size: cover;
-    -webkit-filter: blur(5px) brightness(0.6);
-    -moz-filter: blur(5px) brightness(0.6);
+    filter: blur(5px) brightness(0.6);
 }
 .bg-cover {
-    background: rgba(0, 0, 0, .4);
+   
     height: 100%;
     width: 100%;
 }
+.item:nth-child(odd){
+    color: #ffffff;
+}
+.item:nth-child(even){
+    color: #000;
+}
 
+.item:nth-child(odd) .bg-cover{
+     background: rgba(0, 0, 0, .6);
+}
+.item:nth-child(even) .bg-cover{
+     background: rgba(255, 255, 255, .8);
+}
 .item-word {
   vertical-align:middle;    
   display:table-cell;  
@@ -52,16 +62,10 @@
   height: 50rpx;
   line-height: 50rpx;
   font-size: 24rpx;
-  text-align: center
+  text-align: center;
 }
-.dot{
-  color: #ffffff;
+.dot{ 
   font-size: 24rpx;
   padding: 0 6rpx;
 }
-.title{
-  color: #ffffff;
-}
-.author{
-  color: #ffffff;
-}
+

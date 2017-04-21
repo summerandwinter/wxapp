@@ -1,5 +1,6 @@
 //app.js
 const AV = require('./utils/av-weapp-min.js');
+const Movie = require('./model/movie');
 App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
@@ -10,13 +11,7 @@ App({
       appId: '7C7MfP24LboNSLeOnbh112nT-gzGzoHsz',
       appKey: 'QAwTrD7mT1YVP60T8kdX8xwI',
     });
-  /*  var TestObject = AV.Object.extend('TestObject');
-    var testObject = new TestObject();
-    testObject.save({
-      words: 'Hello World!'
-    }).then(function (object) {
-      console.log('LeanCloud Rocks!');
-    })*/
+    
   },
   onShow: function (options) {
     console.log("app show");
@@ -47,6 +42,7 @@ App({
     }
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    slogan: {word: '拾起时光中最美的感动',hidden: false}
   }
 })

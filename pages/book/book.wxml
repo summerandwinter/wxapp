@@ -1,18 +1,19 @@
+
 <!--book.wxml-->
 <view class="container">
-<view class="data-loading" hidden="{{loading.hidden}}">
+  <view class="data-loading" hidden="{{loading.hidden}}">
     <view class="loading-container">
-     <view class="sk-wave">
+      <view class="sk-wave">
         <view class="sk-rect sk-rect1"></view>
         <view class="sk-rect sk-rect2"></view>
         <view class="sk-rect sk-rect3"></view>
         <view class="sk-rect sk-rect4"></view>
         <view class="sk-rect sk-rect5"></view>
       </view>
-    </view>  
+    </view>
   </view>
-  <scroll-view class="content"  scroll-y="true" class="content" hidden="{{musics.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower" scroll-top="100">
-    <view class="item" wx:for="{{books.list}}" wx:key="{{objectId}}">
+  <scroll-view class="content" scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
+    <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}">
       <text class="item-word">{{item.word}}</text>
       <view class="meta">
         <text class="title">{{item.book}}</text>
@@ -20,5 +21,10 @@
         <text class="author">{{item.author}}</text>
       </view>
     </view>
+    <view class="loadmore" hidden="{{!isLoading}}">
+      <view class="loadmore-loading" style=""></view>
+      <view class="loadmore-tips">正在加载</view>
+    </view>
   </scroll-view>
+   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
 </view>

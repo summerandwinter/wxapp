@@ -7,69 +7,113 @@ const getBookListUrl = require('../../config').getBookListUrl;
 var app = getApp()
 Page({
   data: {
+    slogan: app.globalData.slogan,
     loading: {
       hidden: false
     },
     userInfo: {},
     cates: ["台词","感悟","人物"],
-    books: {
+    info: {
       list: [],
       hasMore: true,
       hasRefesh: true,
-      page: 1,
-      count: 20,
+      page: 0,
+      count: 10,
+      total: 0,
       hidden: true
+    },
+    isLoading: false
+  },
+  upper: function (e) {
+    console.log(e);
+  },
+  lower: function (e) {
+    console.log(e);
+    this.loadData();
+  },
+  scroll: function (e) {
+    console.log(e)
+  },
+  loadData: function () {
+    var that = this;
+    if (that.data.info.hasMore) {
+      if (!that.data.isLoading) {
+        that.setData({ 'isLoading': true });
+        wx.showNavigationBarLoading();
+        var cpage = that.data.info.page;
+        var limit = that.data.info.count;
+        var skip = cpage * limit;
+        console.log('loadding skip:' + skip);
+        var query = new AV.Query(Book);
+        query.descending('createdAt');
+        query.limit(limit);
+        query.skip(skip);
+        query.find().then(function (results) {
+          that.setData({
+            'isLoading': false,
+            'info.list': that.data.info.list.concat(results),
+            'info.page': that.data.info.page + 1
+          })
+          if (that.data.info.total < that.data.info.page * limit) {
+            that.setData({ 'info.hasMore': false });
+          }
+           wx.hideNavigationBarLoading();
+        }, function (error) {
+          that.setData({ 'isLoading': false })
+           wx.hideNavigationBarLoading();
+          console.log('get movie list failed!' + error);
+        });
+      }
+
+    } else {
+      console.log('no more data');
     }
   },
-  loadDataFromGithub: function() {
+  initData: function () {
     var that = this;
-    wx.request({
-      url: getBookListUrl,
-      data: {
-        noncestr: Date.now()
-      },
-      success: function (result) {
-        if (result.statusCode == 200) {
+    //获取总数量
+    var coutnQuery = new AV.Query(Book);
+    coutnQuery.count().then(function (count) {
+      that.setData({ 'info.total': count });
+      //总数量小于每页数量
+      if (that.data.info.count > count) {
+        that.setData({ 'info.hasMore': false });
+      }
+      //加载第一页数据
+      if (count > 0) {
+        var cpage = that.data.info.page;
+        var limit = that.data.info.count;
+        var skip = cpage * limit;
+        var query = new AV.Query(Book);
+        console.log('loadding skip:' + skip);
+        query.descending('createdAt');
+        query.limit(limit);// 最多返回 10 条结果
+        query.skip(skip);// 跳过 20 条结果
+        query.find().then(function (results) {
           that.setData({
             'loading.hidden': true,
-            'books.list': that.data.books.list.concat(result.data.data),
-            'books.hidden': false
+            'info.list': that.data.info.list.concat(results),
+            'info.hidden': false,
+            'info.page': that.data.info.page + 1
           })
+        }, function (error) {
+          console.log('get movie list failed!' + error);
+        });
 
-        }
-        console.log('request success', result)
-      },
-
-      fail: function ({errMsg}) {
-        console.log('request fail', errMsg)
+      } else {
+        //做没有数据时的处理
       }
-    })
-  },
-  loadDataFromLearncloud: function() {
-    var that = this;
-    var query = new AV.Query(Book);
-    query.find().then(function (results) {
-      that.setData({
-        'loading.hidden': true,
-        'books.list': that.data.books.list.concat(results),
-        'books.hidden': false
-      })
+
     }, function (error) {
+      console.log('get total count failed!' + error);
     });
+
+
   },
   onLoad: function () {
-    console.log('生命周期:book-load')
-    util.sayHello('summer');
+    console.log('生命周期:book-load');
     var that = this;
-    this.loadDataFromLearncloud();
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      console.log(userInfo);
-      that.setData({
-        userInfo:userInfo
-      })
-    })
+    this.initData();
   },
   onReady: function() {
     console.log('生命周期:book-ready');

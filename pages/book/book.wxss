@@ -39,9 +39,11 @@
   height: 6rpx;
   background-color: #000000
 }
-.content{
-  margin-top: 0rpx;
-  background-color: #eee
+.content {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background: #eee;
 }
 .item {
   min-height: 500rpx;

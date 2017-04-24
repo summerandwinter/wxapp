@@ -39,13 +39,12 @@ Page({
     if (that.data.info.hasMore) {
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
-        wx.showNavigationBarLoading();
         var cpage = that.data.info.page;
         var limit = that.data.info.count;
         var skip = cpage * limit;
         console.log('loadding skip:' + skip);
         var query = new AV.Query(Book);
-        query.descending('createdAt');
+        query.descending('likes');
         query.limit(limit);
         query.skip(skip);
         query.find().then(function (results) {
@@ -57,10 +56,8 @@ Page({
           if (that.data.info.total < that.data.info.page * limit) {
             that.setData({ 'info.hasMore': false });
           }
-           wx.hideNavigationBarLoading();
         }, function (error) {
           that.setData({ 'isLoading': false })
-           wx.hideNavigationBarLoading();
           console.log('get movie list failed!' + error);
         });
       }
@@ -86,7 +83,7 @@ Page({
         var skip = cpage * limit;
         var query = new AV.Query(Book);
         console.log('loadding skip:' + skip);
-        query.descending('createdAt');
+        query.descending('likes');
         query.limit(limit);// 最多返回 10 条结果
         query.skip(skip);// 跳过 20 条结果
         query.find().then(function (results) {

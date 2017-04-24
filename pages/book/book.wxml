@@ -14,11 +14,11 @@
   </view>
   <scroll-view class="content" scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
     <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}">
-      <text class="item-word">{{item.word}}</text>
+      <text class="item-word">{{item.content}}</text>
       <view class="meta">
-        <text class="title">{{item.book}}</text>
-        <text class="dot">·</text>
-        <text class="author">{{item.author}}</text>
+        <text class="title" wx:if="{{item.articleName.length >0 }}">{{item.articleName}}</text>
+        <text class="dot" wx:if="{{item.writerName.length >0 && item.articleName.length >0}}">·</text>
+        <text class="author" wx:if="{{item.writerName.length >0 }}">{{item.writerName}}</text>
       </view>
     </view>
     <view class="loadmore" hidden="{{!isLoading}}">

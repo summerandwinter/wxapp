@@ -39,7 +39,6 @@ Page({
     if (that.data.info.hasMore) {
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
-        wx.showNavigationBarLoading();
         var cpage = that.data.info.page;
         var limit = that.data.info.count;
         var skip = cpage * limit;
@@ -57,10 +56,8 @@ Page({
           if (that.data.info.total < that.data.info.page * limit) {
             that.setData({ 'info.hasMore': false });
           }
-           wx.hideNavigationBarLoading();
         }, function (error) {
           that.setData({ 'isLoading': false });
-           wx.hideNavigationBarLoading();
           console.log('get movie list failed!' + error);
         });
       }

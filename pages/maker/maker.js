@@ -16,8 +16,8 @@ Page({
   chooseImage: function () {
     var that = this
     wx.chooseImage({
-      sourceType: 'album',
-      sizeType: 'compressed',
+      sourceType: ['album'],
+      sizeType: ['compressed'],
       count: 1,
       success: function (res) {
         console.log(res)

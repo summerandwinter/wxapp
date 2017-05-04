@@ -1,5 +1,7 @@
 {
   "pages": [
+    "pages/card/card",
+    "pages/maker/maker",
     "pages/index/index",
     "pages/music/music",
     "pages/book/book"
@@ -20,7 +22,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/card/card",
         "iconPath": "image/icon_movie.png",
         "selectedIconPath": "image/icon_movie_hl.png",
         "text": "影"

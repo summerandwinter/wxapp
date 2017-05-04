@@ -1,0 +1,32 @@
+/**card.wxss**/
+
+.content {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #eee;
+  white-space: nowrap;
+}
+
+.item {
+  background-color: #fff;
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+  position: relative
+}
+
+.item-photo {
+  position: absolute;
+  left: 10%;
+  top: 10%;
+  height: 80%;
+  width: 80%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+

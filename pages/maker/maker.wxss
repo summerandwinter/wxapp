@@ -1,0 +1,67 @@
+/**maker.wxss**/
+.uploader-box {
+  position: relative;
+  margin: 35px auto;
+  width: 77px;
+  height: 77px;
+  border: 1px solid #D9D9D9;
+
+}
+.uploader-box:before,
+.uploader-box:after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #D9D9D9;
+}
+.uploader-box:before {
+  width: 2px;
+  height: 39.5px;
+}
+.uploader-box:after {
+  width: 39.5px;
+  height: 2px;
+}
+.uploader-box:active {
+  border-color: #999999;
+}
+.uploader-box:active:before,
+.uploader-box:active:after {
+  background-color: #999999;
+}
+.uploader-input {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.image-preview{
+  width: 100%;
+  height: 480rpx
+}
+.image{
+  width: 100%;
+  height: 480rpx
+}
+.text{
+  width: 90%;
+  margin:10px auto;
+  min-height: 360rpx;
+}
+.title{
+  width: 90%;
+  margin: 10px auto;
+  text-align: right;
+  color: gray
+}
+button{
+  width: 60%;
+  margin: 40px auto 0;
+}
+

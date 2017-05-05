@@ -4,19 +4,20 @@
   <view class="page-body">
     <form bindsubmit="formSubmit">
       <view class="page-section">
-        <view class="uploader-box" hidden="{{uploader.hidden}}">
-          <view class="uploader-input" bindtap="chooseImage"></view>
+        <view class="uploader-box" hidden="{{uploader.hidden}}" bindtap="chooseImage">
+          <view class="uploader-input"></view>
+          <view class="uploader-tips">添加图片</view>
         </view>
         <view class="image-preview" hidden="{{preview.hidden}}" bindtap="chooseImage">
           <image src="{{imageUrl}}" class="image" mode="aspectFill"></image>
         </view>
       </view>
       <view class="page-section">
-        <textarea name="content" class="text" placeholder="输入卡片文字" auto-height="true" />
+        <input name="name" class="title" placeholder-class="title-placeholder" type="text" placeholder="输入标题（可为空）" />
+        <input name="img_url" type="text" hidden="true" value="{{imageUrl}}" />
       </view>
       <view class="page-section">
-        <input name="name" class="title" type="text" placeholder="输入标题（可为空）" />
-        <input name="img_url" class="title" type="text" hidden="true" value="{{imageUrl}}"/>
+        <textarea name="content" class="text" placeholder-class="text-placeholder" placeholder="输入正文" auto-height="true" />
       </view>
       <view class="page-section">
         <button type="default" formType="submit">生成</button>

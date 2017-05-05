@@ -63,7 +63,6 @@
 }
 
 .item-word {
-  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
   color: #000;
   font-size: 14pt;

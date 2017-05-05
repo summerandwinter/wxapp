@@ -9,6 +9,20 @@ class Card extends AV.Object {
     this.set('id', value);
   }
 
+  get template() {
+    return this.get('template');
+  }
+  set template(value) {
+    this.set('template', value);
+  }
+
+  get username() {
+    return this.get('username');
+  }
+  set username(value) {
+    this.set('username', value);
+  }
+
   get img_url() {
     return this.get('img_url');
   }

@@ -1,10 +1,9 @@
 {
   "pages": [
     "pages/card/card",
-    "pages/maker/maker",
-    "pages/index/index",
-    "pages/music/music",
-    "pages/book/book"
+    "pages/explore/explore",
+    "pages/mine/mine",
+    "pages/maker/maker"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -23,21 +22,21 @@
     "list": [
       {
         "pagePath": "pages/card/card",
-        "iconPath": "image/icon_movie.png",
-        "selectedIconPath": "image/icon_movie_hl.png",
-        "text": "影"
+        "iconPath": "image/icon_card.png",
+        "selectedIconPath": "image/icon_card_hl.png",
+        "text": "词卡"
       },
       {
-        "pagePath": "pages/music/music",
-        "iconPath": "image/icon_music.png",
-        "selectedIconPath": "image/icon_music_hl.png",
-        "text": "音"
+        "pagePath": "pages/explore/explore",
+        "iconPath": "image/icon_eye.png",
+        "selectedIconPath": "image/icon_eye_hl.png",
+        "text": "发现"
       },
       {
-        "pagePath": "pages/book/book",
-        "iconPath": "image/icon_book.png",
-        "selectedIconPath": "image/icon_book_hl.png",
-        "text": "书"
+        "pagePath": "pages/mine/mine",
+        "iconPath": "image/icon_user.png",
+        "selectedIconPath": "image/icon_user_hl.png",
+        "text": "我的"
       }
     ]
   }

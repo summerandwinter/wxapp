@@ -11,7 +11,7 @@
 }
 
 .item {
-  background-color: #fff;
+  background-color: #efefef;
   width: 100%;
   display: inline-block;
   height: 100%;

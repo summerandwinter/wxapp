@@ -1,0 +1,39 @@
+
+<!--explore.wxml-->
+<view class="container">
+  <view class="nav" wx:if="{{cates.length > 0}}">
+    <view class="nav-item" wx:for="{{cates}}" wx:key="id">
+      <block wx:if="{{index == 0}}">
+        <view class="tab selected">{{item.name}}</view>
+      </block>
+      <block wx:else>
+        <view class="tab">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+      <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
+    <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap">
+      <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
+      <text class="item-word">{{item.content}}</text>
+    </view>
+    <view class="loadmore" hidden="{{!isLoading}}">
+      <view class="loadmore-loading" style=""></view>
+      <view class="loadmore-tips">正在加载</view>
+    </view>
+    <view class="loadmore loadmore-line" hidden="{{info.hasMore}}">
+      <view class="loadmore-tips">已经到底了</view>
+    </view>
+  </scroll-view>
+  <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
+</view>

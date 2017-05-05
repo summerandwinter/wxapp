@@ -11,7 +11,7 @@ page {
   min-height: 100%;
   justify-content: space-between;
   font-size: 32rpx;
-  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
 .slogan {

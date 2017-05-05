@@ -11,7 +11,7 @@ Page({
     preview: { hidden: true },
     uploader: { hidden: false },
     slogan: app.globalData.slogan,
-    id: 1
+    tid: 1
   },
   chooseImage: function () {
     var that = this
@@ -37,9 +37,38 @@ Page({
     })
   },
   formSubmit: function (e) {
+    var that = this;
     var data = e.detail.value;
+    if (data.img_url.length < 1) {
+      wx.showModal({
+        title: '提示',
+        content: '需要选择一张图片',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
+    if (data.content.length < 1) {
+      wx.showModal({
+        title: '提示',
+        content: '内容不能为空',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
     wx.showLoading({
-      title: '加载中',
+      title: '制作中',
     })
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     new AV.File('file-name', {
@@ -51,6 +80,8 @@ Page({
       card.set('name', data.name);
       card.set('content', data.content);
       card.set('img_url', file.url());
+      card.set('username', app.globalData.user.usernmae);
+      card.set('template', parseInt(that.data.tid));
       card.save().then(function (card) {
         // 成功保存之后，执行其他逻辑.
         console.log(card)
@@ -71,7 +102,7 @@ Page({
     console.log('生命周期:maker-load')
     var that = this;
     if (option.id) {
-      that.setData({ id: option.id })
+      that.setData({ tid: option.id })
     }
   },
   onReady: function () {

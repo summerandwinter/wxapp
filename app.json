@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/card/card",
+    "pages/detail/detail",
     "pages/explore/explore",
     "pages/mine/mine",
     "pages/maker/maker"

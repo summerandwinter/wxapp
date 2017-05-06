@@ -24,13 +24,11 @@ Page({
     isLoading: false
   },
   tap: function (e) {
-    //点击显示大图效果，用wx.previewImage借口模拟
-    /*
-    wx.previewImage({
-      current: 'https://img5.doubanio.com/view/photo/photo/public/p2428896196.jpg', // 当前显示图片的http链接
-      urls: ['https://img5.doubanio.com/view/photo/photo/public/p2428896196.jpg'] // 需要预览的图片http链接列表
+    var id = e.currentTarget.dataset.id;
+    console.log(id);
+    wx.navigateTo({
+      url: '../detail/detail?id='+id
     })
-    */
   },
   upper: function (e) {
     console.log(e);

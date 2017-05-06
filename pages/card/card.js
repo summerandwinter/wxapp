@@ -50,7 +50,6 @@ Page({
   },
   onLoad: function () {
     console.log('生命周期:card-load')
-    util.sayHello('summer');
     var that = this;
     //数据加载
     this.initData();

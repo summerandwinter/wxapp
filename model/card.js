@@ -37,6 +37,20 @@ class Card extends AV.Object {
     this.set('name', value);
   }
 
+  get likes() {
+    return this.get('likes');
+  }
+  set likes(value) {
+    this.set('likes', value);
+  }
+
+  get liked() {
+    return this.get('liked');
+  }
+  set liked(value) {
+    this.set('liked', value);
+  }
+
   get content() {
     return this.get('content');
   }

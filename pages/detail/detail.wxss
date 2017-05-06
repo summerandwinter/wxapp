@@ -1,4 +1,4 @@
-/**card.wxss**/
+/**detail.wxss**/
 
 .content {
   position: fixed;
@@ -35,16 +35,25 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 60rpx;
+  height: 80rpx;
 }
 
 .iconfont {
-  font-size: 36rpx;
+  display: inline-block;
+  position: relative;
+  font-size: 58rpx;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
 .like-nummber {
-  font-size: 28rpx;
-  margin-left: 8rpx;
+  position: absolute;
+  top: 0rpx;
+  right: -36rpx;
+  font-size: 38rpx;
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
 .toolbar-item {

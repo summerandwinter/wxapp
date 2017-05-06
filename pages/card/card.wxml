@@ -1,3 +1,4 @@
+
 <!--card.wxml-->
 <view class="container">
   <view class="data-loading" hidden="{{loading.hidden}}">
@@ -11,9 +12,9 @@
       </view>
     </view>
   </view>
-  <swiper style="width: 100%" class="content" hidden="{{info.hidden}}" >
+  <swiper style="width: 100%" class="content" hidden="{{info.hidden}}">
     <swiper-item class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.id}}">
-      <image class="item-photo" src="{{item.url}}" mode="aspectFit"></image>   
+      <image class="item-photo" src="{{item.url}}" mode="aspectFit"></image>
     </swiper-item>
   </swiper>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>

@@ -1,0 +1,29 @@
+<!--card.wxml-->
+<view class="container">
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+      <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>
+  </view>
+  <view style="width: 100%" class="content" hidden="{{content.hidden}}" >
+    <view class="item"  bindtap="tap" data-id="{{card.id}}">
+      <image class="item-photo" src="{{preview}}" mode="aspectFit"></image>   
+    </view>
+    <view class="toolbar">
+        <view class="toolbar-item like-container" bindtap="like">
+          <text class="iconfont {{like.class}}"><text class="like-nummber">{{like.number}}</text></text>
+          
+        </view>
+        <view class="toolbar-item share-container" bindtap="options">
+          <text class="iconfont icon-share"></text>
+        </view>
+      </view>
+  </view>
+  <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
+</view>

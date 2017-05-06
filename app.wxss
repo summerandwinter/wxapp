@@ -1,5 +1,24 @@
 /**app.wxss**/
+@font-face {
+  font-family: 'iconfont';  /* project id 295262 */
+  src: url('//at.alicdn.com/t/font_ldb92dc0j91qncdi.eot');
+  src: url('//at.alicdn.com/t/font_ldb92dc0j91qncdi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_ldb92dc0j91qncdi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_ldb92dc0j91qncdi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_ldb92dc0j91qncdi.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+.icon-share:before { content: "\e625"; }
+.icon-like:before { content: "\e63d"; }
+.icon-liked:before { content: "\e668"; }
+.icon-photo:before { content: "\e603"; }
 page {
   background-color: #fff;
 }

@@ -80,18 +80,23 @@ Page({
       card.set('name', data.name);
       card.set('content', data.content);
       card.set('img_url', file.url());
-      card.set('username', app.globalData.user.usernmae);
+      card.set('username', app.globalData.user.username);
       card.set('template', parseInt(that.data.tid));
       card.save().then(function (card) {
         // 成功保存之后，执行其他逻辑.
         console.log(card)
         console.log(card.id);
+        wx.redirectTo({
+          url: '../detail/detail?id=' + card.id
+        })
+        /*
         wx.hideLoading();
         var url = 'http://timesand.leanapp.cn/card/preview/' + card.id + '.png';
         console.log(url)
         wx.previewImage({
           urls: [url] // 需要预览的图片http链接列表
         })
+        */
       }, function (error) {
         // 异常处理
         console.log(error)

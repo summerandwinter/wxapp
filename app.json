@@ -4,6 +4,7 @@
     "pages/detail/detail",
     "pages/explore/explore",
     "pages/mine/mine",
+    "pages/like/like",
     "pages/maker/maker"
   ],
   "window": {

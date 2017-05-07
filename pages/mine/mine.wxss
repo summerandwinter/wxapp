@@ -4,9 +4,11 @@
   position: absolute;
   left: 0;
   height: 100%;
-  background: #fff;
+  background: #eee;
 }
-
+.info{
+  background-color: #fff;
+}
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -26,7 +28,12 @@
 
 .tab {
   width: 100%;
-  margin: 60rpx auto;
+  margin: 60rpx auto 0;
+  padding-bottom: 60rpx;
+}
+
+.work{
+  background-color: #eee;
 }
 
 .flex-wrp {
@@ -35,7 +42,7 @@
 }
 
 .flex-item {
-  width: 250rpx;
+  width: 375rpx;
   text-align: center;
   font-size: 26rpx;
 }

@@ -13,27 +13,25 @@
     </view>
   </view>
   <scroll-view scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
-    <view class="userinfo">
-      <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    </view>
-    <view class="tab">
-      <view class="flex-wrp">
-        <view class="flex-item">
-          <view class="number">{{count.work}}</view>
-          <view class="cate">作品</view>
-        </view>
-        <view class="flex-item">
-          <view class="number">{{count.like}}</view>
-          <view class="cate">喜欢</view>
-        </view>
-        <view class="flex-item">
-          <view class="number">{{count.follower}}</view>
-          <view class="cate">粉丝</view>
+    <view class="info">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      </view>
+      <view class="tab">
+        <view class="flex-wrp">
+          <view class="flex-item">
+            <view class="number">{{count.work}}</view>
+            <view class="cate">作品</view>
+          </view>
+          <view class="flex-item" bindtap="toLike" data-id="{{userInfo.objectId}}">
+            <view class="number">{{count.like}}</view>
+            <view class="cate">喜欢</view>
+          </view>
         </view>
       </view>
     </view>
     <view class="work">
-      <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap">
+      <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.id}}">
         <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
         <text class="item-word">{{item.content}}</text>
       </view>

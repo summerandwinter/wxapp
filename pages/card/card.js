@@ -20,20 +20,22 @@ Page({
   },
   tap: function (e) {
     var id = e.currentTarget.dataset.id;
-    
+
     wx.navigateTo({
-      url: '../maker/maker?id='+id
+      url: '../maker/maker?id=' + id
     })
-    
+
   },
   initData: function () {
     var that = this;
+    /*
     that.setData({
       'loading.hidden': true,
       'info.list': that.data.info.list.concat(that.data.templates),
       'info.hidden': false
     });
-    /*
+    */
+    
     var query = new AV.Query(Template);
     query.descending('createdAt');
     query.find().then(function (results) {
@@ -46,7 +48,8 @@ Page({
     }, function (error) {
       console.log('get template list failed!' + error);
     });
-    */
+    
+    
   },
   onLoad: function () {
     console.log('生命周期:card-load')

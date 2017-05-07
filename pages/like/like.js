@@ -1,23 +1,18 @@
-//mine.js
+//like.js
 //获取应用实例
 var util = require('../../utils/util.js');
 const AV = require('../../utils/av-weapp-min.js');
-const Template = require('../../model/template');
 const Card = require('../../model/card');
-const user = AV.User.current();
+const getCardListUrl = require('../../config').getCardListUrl;
 var app = getApp()
 Page({
   data: {
-    userInfo: null,
     slogan: app.globalData.slogan,
     loading: {
       hidden: false
     },
-    count: {
-      work: 0,
-      like: 0,
-      follower: 0
-    },
+    userInfo: {},
+    cates: [], //{ "id": "1", "name": "台词" }, { "id": "2", "name": "感悟" }, { "id": "3", "name": "人物" }
     info: {
       list: [],
       hasMore: true,
@@ -35,18 +30,16 @@ Page({
     wx.navigateTo({
       url: '../detail/detail?id=' + id
     })
-
   },
-  toLike: function(e){
-    var uid = e.currentTarget.dataset.id;
-    console.log('uid');
-    wx.navigateTo({
-      url: '../like/like?uid='+uid
-    });
+  upper: function (e) {
+    console.log(e);
   },
   lower: function (e) {
     console.log(e);
     this.loadData();
+  },
+  scroll: function (e) {
+    console.log(e)
   },
   loadData: function () {
     var that = this;
@@ -58,7 +51,6 @@ Page({
         var skip = cpage * limit;
         console.log('loadding skip:' + skip);
         var query = new AV.Query(Card);
-        query.equalTo('username', app.globalData.user.username);
         query.descending('createdAt');
         query.limit(limit);
         query.skip(skip);
@@ -73,7 +65,7 @@ Page({
           }
         }, function (error) {
           that.setData({ 'isLoading': false })
-          console.log('get Card list failed!' + error);
+          console.log('get card list failed!' + error);
         });
       }
 
@@ -81,27 +73,14 @@ Page({
       console.log('no more data');
     }
   },
-  initData: function () {
+  initData: function (uid) {
     var that = this;
-    that.setData({ userInfo: app.globalData.user })
-    wx.setNavigationBarTitle({
-      title: app.globalData.user.nickName
-    });
     //获取总数量
-    var queryL = new AV.Query('Like');
-    var userMap = AV.Object.createWithoutData('_User', app.globalData.user.objectId);
-    queryL.equalTo('user', userMap);
-    queryL.count().then(function (count) {
-      console.log('like count ' + count);
-      that.setData({ 'count.like': count });
-    });
-
-    var countQuery = new AV.Query(Card);
-    countQuery.equalTo('username', app.globalData.user.username);
-    console.log(countQuery);
-    countQuery.count().then(function (count) {
-      console.log(count);
-      that.setData({ 'count.work': count });
+    var coutnQuery = new AV.Query('Like');
+    var userMap = new AV.Object.createWithoutData('_User', uid);
+    coutnQuery.equalTo('user', userMap);
+    coutnQuery.include('card');
+    coutnQuery.count().then(function (count) {
       that.setData({ 'info.total': count });
       //总数量小于每页数量
       if (that.data.info.count > count) {
@@ -112,13 +91,17 @@ Page({
         var cpage = that.data.info.page;
         var limit = that.data.info.count;
         var skip = cpage * limit;
-        var query = new AV.Query(Card);
+        var query = new AV.Query('Like');
         console.log('loadding skip:' + skip);
-        query.equalTo('username', app.globalData.user.username);
+
+        query.equalTo('user', userMap);
+        query.include('card');
+        query.include('user');
         query.descending('createdAt');
         query.limit(limit);// 最多返回 10 条结果
         query.skip(skip);// 跳过 20 条结果
         query.find().then(function (results) {
+          console.log(results);
           that.setData({
             'loading.hidden': true,
             'info.list': that.data.info.list.concat(results),
@@ -126,7 +109,7 @@ Page({
             'info.page': that.data.info.page + 1
           })
         }, function (error) {
-          console.log('get Card list failed!' + error);
+          console.log('get card list failed!' + error);
         });
 
       } else {
@@ -137,24 +120,27 @@ Page({
       console.log('get total count failed!' + error);
     });
 
+
   },
-  onLoad: function () {
-    console.log('生命周期:mine-load')
+  onLoad: function (option) {
+    console.log('生命周期:like-load')
+    console.log(option.uid);
+    var uid = option.uid;
     var that = this;
     //数据加载
-    this.initData();
+    this.initData(uid);
   },
   onReady: function () {
-    console.log('生命周期:mine-ready');
+    console.log('生命周期:like-ready');
   },
   onShow: function () {
 
-    console.log('生命周期:mine-show');
+    console.log('生命周期:like-show');
   },
   onHide: function () {
-    console.log('生命周期:mine-hide');
+    console.log('生命周期:like-hide');
   },
   onUnload: function () {
-    console.log('生命周期:mine-unload');
+    console.log('生命周期:like-unload');
   }
 })

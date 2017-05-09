@@ -1,0 +1,80 @@
+/**user.wxss**/
+
+.content {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  background: #eee;
+}
+.info{
+  background-color: #fff;
+}
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.tab {
+  width: 100%;
+  margin: 60rpx auto 0;
+  padding-bottom: 60rpx;
+}
+
+.work{
+  background-color: #eee;
+}
+
+.flex-wrp {
+  margin-top: 60rpx;
+  display: flex;
+}
+
+.flex-item {
+  width: 375rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.number {
+  color: #000;
+  line-height: 40rpx;
+}
+
+.cate {
+  color: #8a8a8a;
+  line-height: 40rpx;
+}
+.item {
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.item-photo {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item-word {
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  color: #000;
+  font-size: 14pt;
+  line-height: 20pt;
+  width: 96%;
+  margin: 10rpx auto;
+  padding-bottom: 20rpx;
+}

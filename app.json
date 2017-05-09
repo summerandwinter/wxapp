@@ -4,13 +4,14 @@
     "pages/detail/detail",
     "pages/explore/explore",
     "pages/mine/mine",
+    "pages/user/user",
     "pages/like/like",
     "pages/maker/maker"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "时光砂砾",
+    "navigationBarTitleText": "拾光笔记",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false

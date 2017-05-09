@@ -1,0 +1,47 @@
+
+<!--user.wxml-->
+<view class="container">
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+      <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>
+  </view>
+  <scroll-view scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
+    <view class="info">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      </view>
+      <view class="tab">
+        <view class="flex-wrp">
+          <view class="flex-item">
+            <view class="number">{{count.work}}</view>
+            <view class="cate">作品</view>
+          </view>
+          <view class="flex-item" bindtap="toLike" data-id="{{userInfo.objectId}}">
+            <view class="number">{{count.like}}</view>
+            <view class="cate">喜欢</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="work">
+      <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.id}}">
+        <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
+        <text class="item-word">{{item.content}}</text>
+      </view>
+      <view class="loadmore" hidden="{{!isLoading}}">
+        <view class="loadmore-loading" style=""></view>
+        <view class="loadmore-tips">正在加载</view>
+      </view>
+      <view class="loadmore loadmore-line" hidden="{{info.hasMore}}">
+        <view class="loadmore-tips">已经到底了</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

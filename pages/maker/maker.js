@@ -105,6 +105,7 @@ Page({
   },
   onLoad: function (option) {
     console.log('生命周期:maker-load')
+    console.log(option.id)
     var that = this;
     if (option.id) {
       that.setData({ tid: option.id })

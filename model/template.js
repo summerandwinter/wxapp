@@ -9,6 +9,13 @@ class Template extends AV.Object {
     this.set('id', value);
   }
 
+  get tid() {
+    return this.get('tid');
+  }
+  set tid(value) {
+    this.set('tid', value);
+  }
+
   get url() {
     return this.get('url');
   }

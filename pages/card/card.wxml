@@ -13,7 +13,7 @@
     </view>
   </view>
   <swiper style="width: 100%" class="content" hidden="{{info.hidden}}">
-    <swiper-item class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.id}}">
+    <swiper-item class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.tid}}">
       <image class="item-photo" src="{{item.url}}" mode="aspectFit"></image>
     </swiper-item>
   </swiper>

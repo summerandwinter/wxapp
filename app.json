@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/card/card",
-    "pages/detail/detail",
     "pages/explore/explore",
+    "pages/card/card",
+    "pages/detail/detail",  
     "pages/mine/mine",
     "pages/user/user",
     "pages/like/like",
@@ -11,7 +11,7 @@
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "天天码图",
+    "navigationBarTitleText": "拾光笔记",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "dark",
     "enablePullDownRefresh": false
@@ -24,17 +24,17 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/card/card",
-        "iconPath": "image/icon_card.png",
-        "selectedIconPath": "image/icon_card_hl.png",
-        "text": "制作"
-      },
-      {
         "pagePath": "pages/explore/explore",
         "iconPath": "image/icon_eye.png",
         "selectedIconPath": "image/icon_eye_hl.png",
         "text": "发现"
       },
+      {
+        "pagePath": "pages/card/card",
+        "iconPath": "image/icon_card.png",
+        "selectedIconPath": "image/icon_card_hl.png",
+        "text": "词卡"
+      },     
       {
         "pagePath": "pages/mine/mine",
         "iconPath": "image/icon_user.png",

@@ -27,7 +27,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     console.log(id);
     wx.navigateTo({
-      url: '../detail/detail?id='+id
+      url: '../detail/detail?id=' + id
     })
   },
   upper: function (e) {
@@ -71,6 +71,18 @@ Page({
     } else {
       console.log('no more data');
     }
+  },
+  initData2: function () {
+    var that = this;
+    that.setData({ 'info.total': 2 });
+    that.setData({ 'info.hasMore': false });
+    var results = [{ "name": "只靠卖方便面红足10年，这家店是泡面控的天堂", "img_url": "http://7xqnv7.com2.z0.glb.qiniucdn.com/usersharemovie_1462775205", "content": "泡面,是世界上最美好，也最罪恶的食物。", "id": "1", "objectId": "1" }, { "name": "日本人蜗居也能住出好品质的6个妙招", "img_url": "http://7xqnv7.com2.z0.glb.qiniucdn.com/usersharemovie_1462775205", "content": "日本人究竟是如何在苛刻的用地环境下，通过优化户型得到最优的居住体验呢？", "id": "2", "objectId": "2" }];
+    that.setData({
+      'loading.hidden': true,
+      'info.list': that.data.info.list.concat(results),
+      'info.hidden': false,
+      'info.page': 2
+    })
   },
   initData: function () {
     var that = this;

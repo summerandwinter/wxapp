@@ -58,6 +58,13 @@ class Card extends AV.Object {
     this.set('content', value);
   }
 
+  get photo() {
+    return this.get('photo');
+  }
+  set photo(value) {
+    this.set('photo', value);
+  }
+
 }
 
 AV.Object.register(Card, 'Card');

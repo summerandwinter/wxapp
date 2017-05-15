@@ -57,19 +57,31 @@
 
 .item-photo {
   width: 100%;
+  height: 410rpx;
   margin: 0;
   padding: 0;
   border: 0;
 }
-
-.item-word {
-  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+.item-title{
+  font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
   color: #000;
-  font-size: 14pt;
-  line-height: 20pt;
-  width: 96%;
-  margin: 10rpx auto;
+  font-size: 46rpx;
+  text-align: center;
+  line-height: 60rpx;
+  width: 598rpx;
+  margin: 76rpx auto 20rpx;
   padding-bottom: 20rpx;
+}
+.item-word {
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #888;
+  width: 640rpx;
+  margin: 0 auto;
+  padding-bottom: 60rpx;
 }
 

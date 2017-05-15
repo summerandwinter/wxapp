@@ -25,6 +25,7 @@
   <scroll-view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
     <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.id}}">
       <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
+      <text class="item-title">{{item.name}}</text>
       <text class="item-word">{{item.content}}</text>
     </view>
     <view class="loadmore" hidden="{{!isLoading}}">

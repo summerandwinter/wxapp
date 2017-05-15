@@ -112,12 +112,16 @@ Page({
 
     });
     var query = new AV.Query('Card');
+    query.include('photo');
     query.get(id).then(function (card) {
       console.log(card)
+      console.log(card.photo.attributes.url);
+      //var preview = 'https://timesand.leanapp.cn/card/preview/' + card.id + '.png';
+      var preview = card.photo.attributes.url;
       // 成功获得实例
       that.setData({
         card,
-        preview: 'https://timesand.leanapp.cn/card/preview/' + card.id + '.png',
+        preview: preview,
         'like.number': card.likes,
         'loading.hidden': true,
         'content.hidden': false

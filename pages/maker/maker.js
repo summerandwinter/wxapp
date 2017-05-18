@@ -76,10 +76,74 @@ Page({
         uri: data.img_url,
       },
     }).save().then(function (file) {
+      console.log(file);
+      var card = {}
+      card.name = data.name;
+      card.content = data.content;
+      card.img_url = file.url();
+      card.file = file.id;
+      card.username = app.globalData.user.username;
+      card.template = parseInt(that.data.tid);
+      AV.Cloud.run('maker', card).then(function (data) {
+        // 调用成功，得到成功的应答 data
+        console.log(data)
+        if(data.code == 200){
+          wx.redirectTo({
+            url: '../detail/detail?id=' + data.data
+          })
+        }
+        
+      }, function (err) {
+        // 处理调用失败
+      });
+    }).catch(console.error);
+  },
+  formSubmit2: function (e) {
+    var that = this;
+    var data = e.detail.value;
+    if (data.img_url.length < 1) {
+      wx.showModal({
+        title: '提示',
+        content: '需要选择一张图片',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
+    if (data.content.length < 1) {
+      wx.showModal({
+        title: '提示',
+        content: '内容不能为空',
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
+    wx.showLoading({
+      title: '制作中',
+    })
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    new AV.File('file-name', {
+      blob: {
+        uri: data.img_url,
+      },
+    }).save().then(function (file) {
+      console.log(file);
       var card = new Card();
       card.set('name', data.name);
       card.set('content', data.content);
       card.set('img_url', file.url());
+      card.set('file', file.id);
       card.set('username', app.globalData.user.username);
       card.set('template', parseInt(that.data.tid));
       card.save().then(function (card) {

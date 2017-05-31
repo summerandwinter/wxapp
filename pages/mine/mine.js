@@ -27,6 +27,7 @@ Page({
       total: 0,
       hidden: true
     },
+    nodata:false,
     isLoading: false
   },
   tap: function (e) {
@@ -130,7 +131,14 @@ Page({
         });
 
       } else {
+        console.log("work count:"+count)
         //做没有数据时的处理
+        that.setData({
+          'loading.hidden': true,
+          'nodata':true,
+          'info.hasMore': true,
+          'info.hidden': false
+        })
       }
 
     }, function (error) {

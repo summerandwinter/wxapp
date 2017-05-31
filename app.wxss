@@ -78,6 +78,29 @@ page {
     background-color: #eee;
     color: #999999;
 }
+.nodata {
+  width: 65%;
+  margin: 10em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
+}
+
+.nodata-tips {
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+}
+.nodata-line {
+    border-top: 1px solid #E5E5E5;
+}
+.nodata-line .nodata-tips {
+    position: relative;
+    top: -0.9em;
+    padding: 0 .55em;
+    background-color: #eee;
+    color: #999999;
+}
 
 @-webkit-keyframes loading {
   0% {

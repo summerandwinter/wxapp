@@ -2,7 +2,8 @@
 const AV = require('./utils/av-weapp-min.js');
 const Movie = require('./model/movie');
 App({
-  onLaunch: function () {
+  onLaunch: function (data) {
+    console.log(data)
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

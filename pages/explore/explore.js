@@ -50,6 +50,7 @@ Page({
         var skip = cpage * limit;
         console.log('loadding skip:' + skip);
         var query = new AV.Query(Card);
+        query.notEqualTo('publish', false);
         query.descending('createdAt');
         query.limit(limit);
         query.skip(skip);
@@ -88,6 +89,7 @@ Page({
     var that = this;
     //获取总数量
     var coutnQuery = new AV.Query(Card);
+    coutnQuery.notEqualTo('publish', false);
     coutnQuery.count().then(function (count) {
       that.setData({ 'info.total': count });
       //总数量小于每页数量
@@ -101,6 +103,7 @@ Page({
         var skip = cpage * limit;
         var query = new AV.Query(Card);
         console.log('loadding skip:' + skip);
+        query.notEqualTo('publish', false);
         query.descending('createdAt');
         query.limit(limit);// 最多返回 10 条结果
         query.skip(skip);// 跳过 20 条结果

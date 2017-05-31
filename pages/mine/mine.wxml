@@ -35,6 +35,9 @@
         <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
         <text class="item-word">{{item.content}}</text>
       </view>
+      <view class="nodata nodata-line" hidden="{{!nodata}}">
+        <view class="nodata-tips">还没有发布作品</view>
+      </view>
       <view class="loadmore" hidden="{{!isLoading}}">
         <view class="loadmore-loading" style=""></view>
         <view class="loadmore-tips">正在加载</view>

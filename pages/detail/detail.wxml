@@ -20,7 +20,7 @@
           <text class="iconfont {{like.class}}"><text class="like-nummber">{{like.number}}</text></text>
           
         </view>
-        <view class="toolbar-item share-container" bindtap="options">
+        <view class="toolbar-item share-container" bindtap="showOptions">
           <text class="iconfont icon-share"></text>
         </view>
       </view>

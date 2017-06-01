@@ -55,7 +55,7 @@ Page({
     }
 
   },
-  options: function (e) {
+  showOptions: function (e) {
     var that = this;
     wx.showActionSheet({
       itemList: ['保存图片', '复制文字'],

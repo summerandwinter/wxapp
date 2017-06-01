@@ -4,6 +4,7 @@ const Movie = require('./model/movie');
 App({
   onLaunch: function (data) {
     console.log(data)
+    
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
@@ -30,6 +31,17 @@ App({
         }
       });
     }).catch(console.error);
+    if(data.scene.toLocaleString.length == 24){
+      wx.navigateTo({
+        url: 'pages/detail/detail?id=' + data.scene.toLocaleString
+      })
+    }
+    console.log(data.query.scene.length);
+    if (data.query.scene.length == 24) {
+      wx.navigateTo({
+        url: 'pages/detail/detail?id=' + data.query.scene
+      })
+    }
 
   },
   onShow: function (options) {

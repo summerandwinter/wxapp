@@ -39,6 +39,7 @@ Page({
   formSubmit: function (e) {
     var that = this;
     var data = e.detail.value;
+    
     if (data.img_url.length < 1) {
       wx.showModal({
         title: '提示',
@@ -53,6 +54,15 @@ Page({
       })
       return;
     }
+     
+    if (data.name.length > 15) {
+      wx.showModal({
+        title: '提示',
+        content: '标题不能超过15个字'
+      })
+      return;
+    }
+
     if (data.content.length < 1) {
       wx.showModal({
         title: '提示',

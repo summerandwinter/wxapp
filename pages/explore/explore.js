@@ -51,7 +51,7 @@ Page({
         console.log('loadding skip:' + skip);
         var query = new AV.Query(Card);
         query.notEqualTo('publish', false);
-        query.descending('createdAt');
+        query.descending('likes');
         query.limit(limit);
         query.skip(skip);
         query.find().then(function (results) {
@@ -104,7 +104,7 @@ Page({
         var query = new AV.Query(Card);
         console.log('loadding skip:' + skip);
         query.notEqualTo('publish', false);
-        query.descending('createdAt');
+        query.descending('likes');
         query.limit(limit);// 最多返回 10 条结果
         query.skip(skip);// 跳过 20 条结果
         query.find().then(function (results) {

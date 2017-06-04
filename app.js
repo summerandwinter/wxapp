@@ -14,30 +14,14 @@ App({
       appKey: 'QAwTrD7mT1YVP60T8kdX8xwI',
     });
     var that = this;
-    AV.User.loginWithWeapp().then(user => {
-      that.globalData.user = user.toJSON();
-      console.log(that.globalData.user);
-      // 获得当前登录用户
-      var user = AV.User.current();
-      // 调用小程序 API，得到用户信息
-      wx.getUserInfo({
-        success: ({userInfo}) => {
-          // 更新当前用户的信息
-          user.set(userInfo).save().then(user => {
-            // 成功，此时可在控制台中看到更新后的用户信息
-            that.globalData.user = user.toJSON();
-            console.log(that.globalData.user)
-          }).catch(console.error);
-        }
-      });
-    }).catch(console.error);
+    that.getUserInfo();
     if(data.scene.toLocaleString.length == 24){
       wx.navigateTo({
         url: 'pages/detail/detail?id=' + data.scene.toLocaleString
       })
     }
-    console.log(data.query.scene.length);
-    if (data.query.scene.length == 24) {
+    //console.log(data.query.scene.length);
+    if (data.query.scene && data.query.scene.length == 24) {
       wx.navigateTo({
         url: 'pages/detail/detail?id=' + data.query.scene
       })
@@ -56,20 +40,32 @@ App({
   },
   getUserInfo: function (cb) {
     var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
+    if (that.globalData.user) {
+      typeof cb == "function" && cb(that.globalData.user)
     } else {
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
+      AV.User.loginWithWeapp().then(user => {
+        that.globalData.user = user.toJSON();
+        console.log('login in')
+        console.log(that.globalData.user);
+        // 获得当前登录用户
+        var user = AV.User.current();
+        // 调用小程序 API，得到用户信息
+        wx.getUserInfo({
+          success: ({userInfo}) => {
+            // 更新当前用户的信息
+            user.set(userInfo).save().then(user => {
+              // 成功，此时可在控制台中看到更新后的用户信息
+              that.globalData.user = user.toJSON();
+              typeof cb == "function" && cb(that.globalData.user)
+              console.log('get user info')
+              console.log(that.globalData.user)
+            }).catch(console.error);
+          },
+          fail:({data})=>{
+            typeof cb == "function" && cb(that.globalData.user)
+          }
+        });
+      }).catch(console.error);
     }
   },
   globalData: {

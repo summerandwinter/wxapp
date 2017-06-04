@@ -49,7 +49,7 @@
 .like-nummber {
   position: absolute;
   top: 0rpx;
-  right: -36rpx;
+  left: 60rpx;
   font-size: 38rpx;
   display: inline-block;
   height: 80rpx;

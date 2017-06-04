@@ -149,8 +149,17 @@ Page({
   onLoad: function () {
     console.log('生命周期:mine-load')
     var that = this;
+    if (app.globalData.user) {
+      console.log('login')
+      that.initData();
+    } else {
+      console.log('no login')
+      app.getUserInfo(function () {
+        that.initData();
+      });
+    }
     //数据加载
-    this.initData();
+    //this.initData();
   },
   onReady: function () {
     console.log('生命周期:mine-ready');

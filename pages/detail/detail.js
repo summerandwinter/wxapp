@@ -139,8 +139,16 @@ Page({
     var that = this;
     if (option.id) {
       that.setData({ id: option.id })
-      //数据加载
-      this.initData(option.id);
+      if (app.globalData.user){
+        console.log('login')
+        that.initData(option.id);
+      }else{
+        console.log('no login')
+        app.getUserInfo(function(){
+          that.initData(option.id);
+        });      
+      }
+      
     }
 
   },

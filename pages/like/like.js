@@ -50,7 +50,12 @@ Page({
         var limit = that.data.info.count;
         var skip = cpage * limit;
         console.log('loadding skip:' + skip);
-        var query = new AV.Query(Card);
+        var uid = that.data.uid;
+        var userMap = new AV.Object.createWithoutData('_User', uid);
+        var query = new AV.Query('Like');
+        query.equalTo('user', userMap);
+        query.include('card');
+        query.include('user');
         query.descending('createdAt');
         query.limit(limit);
         query.skip(skip);
@@ -127,6 +132,7 @@ Page({
     console.log(option.uid);
     var uid = option.uid;
     var that = this;
+    that.setData({'uid':uid})
     //数据加载
     this.initData(uid);
   },

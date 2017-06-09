@@ -39,7 +39,9 @@ Page({
   formSubmit: function (e) {
     var that = this;
     var data = e.detail.value;
-    
+    var formId = e.detail.formId;
+    console.log('formId 为 '+formId);
+    console.log('form发生了submit事件，携带数据为：', data)
     if (data.img_url.length < 1) {
       wx.showModal({
         title: '提示',
@@ -80,20 +82,22 @@ Page({
     wx.showLoading({
       title: '制作中',
     })
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    var card = {}
+    card.name = data.name;
+    card.content = data.content;  
+    card.userid = app.globalData.user.objectId;
+    card.username = app.globalData.user.username;
+    card.formId = formId;
+    card.template = parseInt(that.data.tid);
+    console.log(card)
     new AV.File('file-name', {
       blob: {
         uri: data.img_url,
       },
     }).save().then(function (file) {
       console.log(file);
-      var card = {}
-      card.name = data.name;
-      card.content = data.content;
       card.img_url = file.url();
       card.file = file.id;
-      card.username = app.globalData.user.username;
-      card.template = parseInt(that.data.tid);
       AV.Cloud.run('maker', card).then(function (data) {
         // 调用成功，得到成功的应答 data
         console.log(data)

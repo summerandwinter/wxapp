@@ -2,7 +2,7 @@
 <!--maker.wxml-->
 <view class="container">
   <view class="page-body">
-    <form bindsubmit="formSubmit">
+    <form bindsubmit="formSubmit" report-submit="true">
       <view class="page-section">
         <view class="uploader-box" hidden="{{uploader.hidden}}" bindtap="chooseImage">
           <view class="uploader-input"></view>

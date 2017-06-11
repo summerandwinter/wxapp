@@ -78,6 +78,7 @@
   line-height: 50rpx;
   text-align: center;
   color: #888;
+  word-wrap: break-word;
   width: 640rpx;
   margin: 0 auto;
   padding-bottom: 60rpx;

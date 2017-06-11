@@ -35,25 +35,22 @@ Page({
       'info.hidden': false
     });
     */
-    
-    var query = new AV.Query(Template);
-    query.descending('createdAt');
-    query.find().then(function (results) {
-      that.setData({
-        'loading.hidden': true,
-        'info.list': that.data.info.list.concat(results),
-        'info.hidden': false,
-        'info.page': that.data.info.page + 1
-      })
-    }, function (error) {
-      console.log('get template list failed!' + error);
-    });
-    
+    AV.Cloud.run('templates').then(function(result){
+      if(result.code == 200){
+        that.setData({
+          'loading.hidden': true,
+          'info.list': that.data.info.list.concat(result.data),
+          'info.hidden': false,
+          'info.page': that.data.info.page + 1
+        })
+      }      
+    },function(err){});
     
   },
   onLoad: function () {
     console.log('生命周期:card-load')
     var that = this;
+    util.showShareMenu();
     //数据加载
     this.initData();
   },

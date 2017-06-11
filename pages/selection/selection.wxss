@@ -77,7 +77,6 @@
   font-size: 36rpx;
   line-height: 50rpx;
   text-align: center;
-  word-wrap: break-word;
   color: #888;
   width: 640rpx;
   margin: 0 auto;

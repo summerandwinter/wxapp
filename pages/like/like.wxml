@@ -22,11 +22,26 @@
       </view>
     </view>
   </view>
-  <scroll-view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
-    <view class="item" wx:for="{{info.list}}" wx:key="{{objectId}}" bindtap="tap" data-id="{{item.card.id}}">
-      <image class="item-photo" src="{{item.card.img_url}}" background-size="cover"></image>
-      <text class="item-word">{{item.card.content}}</text>
+  <view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltoupper="upper" bindscrolltolower="lower">
+    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
+      <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
+      <text class="item-title">{{item.name}}</text>
+      <text class="item-word">{{item.content}}</text>
+      <view class="item-meta">
+       <view class="meta-container">
+        <view class="userinfo">
+         <view>
+         <image class="avatar" src="{{item.user.avatarUrl}}"></image>
+         </view>
+         <view class="nickname">{{item.user.nickName}}</view>
+        </view>
+        <view class="time">{{item.time}}</view>
+        </view>
+      </view>
     </view>
+    <view class="nodata nodata-line" hidden="{{!nodata}}">
+        <view class="nodata-tips">还没有喜欢的作品</view>
+      </view>
     <view class="loadmore" hidden="{{!isLoading}}">
       <view class="loadmore-loading" style=""></view>
       <view class="loadmore-tips">正在加载</view>
@@ -34,6 +49,6 @@
     <view class="loadmore loadmore-line" hidden="{{info.hasMore}}">
       <view class="loadmore-tips">已经到底了</view>
     </view>
-  </scroll-view>
+  </view>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
 </view>

@@ -12,16 +12,16 @@ Page({
       hidden: false
     },
     userInfo: {},
-    cates: [], //{ "id": "1", "name": "台词" }, { "id": "2", "name": "感悟" }, { "id": "3", "name": "人物" }
     info: {
       list: [],
       hasMore: true,
       hasRefesh: true,
-      page: 0,
+      page: 1,
       count: 10,
       total: 0,
       hidden: true
     },
+    nodata: false,
     isLoading: false
   },
   tap: function (e) {
@@ -31,10 +31,13 @@ Page({
       url: '../detail/detail?id=' + id
     })
   },
-  upper: function (e) {
+  onPullDownRefresh: function (e) {
     console.log(e);
+    var that = this;
+    wx.stopPullDownRefresh();
+    that.initData();
   },
-  lower: function (e) {
+  onReachBottom: function (e) {
     console.log(e);
     this.loadData();
   },
@@ -43,34 +46,29 @@ Page({
   },
   loadData: function () {
     var that = this;
+    var uid = that.data.uid;
     if (that.data.info.hasMore) {
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
-        var cpage = that.data.info.page;
-        var limit = that.data.info.count;
-        var skip = cpage * limit;
-        console.log('loadding skip:' + skip);
-        var uid = that.data.uid;
-        var userMap = new AV.Object.createWithoutData('_User', uid);
-        var query = new AV.Query('Like');
-        query.equalTo('user', userMap);
-        query.include('card');
-        query.include('user');
-        query.descending('createdAt');
-        query.limit(limit);
-        query.skip(skip);
-        query.find().then(function (results) {
-          that.setData({
-            'isLoading': false,
-            'info.list': that.data.info.list.concat(results),
-            'info.page': that.data.info.page + 1
-          })
-          if (that.data.info.total < that.data.info.page * limit) {
-            that.setData({ 'info.hasMore': false });
+        var page = that.data.info.page;
+        var data = { 'page': page, 'id':uid }
+        AV.Cloud.run('likes', data).then(function (result) {
+          // 调用成功，得到成功的应答 data
+          console.log(result)
+          if (result.code == 200) {
+            that.setData({
+              'isLoading': false,
+              'info.page': page + 1,
+              'info.hasMore': result.hasMore,
+              'info.list': that.data.info.list.concat(result.data),
+              'info.hidden': false
+            })
+          } else {
+            that.setData({ 'isLoading': false });
           }
-        }, function (error) {
-          that.setData({ 'isLoading': false })
-          console.log('get card list failed!' + error);
+        }, function (err) {
+          // 处理调用失败
+          that.setData({ 'isLoading': false });
         });
       }
 
@@ -78,51 +76,55 @@ Page({
       console.log('no more data');
     }
   },
-  initData: function (uid) {
+  initData: function () {
     var that = this;
-    //获取总数量
-    var coutnQuery = new AV.Query('Like');
-    var userMap = new AV.Object.createWithoutData('_User', uid);
-    coutnQuery.equalTo('user', userMap);
-    coutnQuery.include('card');
-    coutnQuery.count().then(function (count) {
-      that.setData({ 'info.total': count });
-      //总数量小于每页数量
-      if (that.data.info.count > count) {
-        that.setData({ 'info.hasMore': false });
-      }
-      //加载第一页数据
-      if (count > 0) {
-        var cpage = that.data.info.page;
-        var limit = that.data.info.count;
-        var skip = cpage * limit;
-        var query = new AV.Query('Like');
-        console.log('loadding skip:' + skip);
-
-        query.equalTo('user', userMap);
-        query.include('card');
-        query.include('user');
-        query.descending('createdAt');
-        query.limit(limit);// 最多返回 10 条结果
-        query.skip(skip);// 跳过 20 条结果
-        query.find().then(function (results) {
-          console.log(results);
+    var uid = that.data.uid;
+    var initParam = {
+      loading: {
+        hidden: false
+      },
+      userInfo: {},
+      info: {
+        list: [],
+        hasMore: true,
+        hasRefesh: true,
+        page: 1,
+        count: 10,
+        total: 0,
+        hidden: true
+      },
+      nodata: false,
+      isLoading: false
+    }
+    that.setData(initParam);
+    var page = that.data.info.page;
+    var data = { 'page': page ,'id':uid}
+    AV.Cloud.run('likes', data).then(function (result) {
+      // 调用成功，得到成功的应答 data
+      console.log(result)
+      if (result.code == 200) {
+        if (result.count == 0) {
           that.setData({
+            'userInfo': app.globalData.user,
             'loading.hidden': true,
-            'info.list': that.data.info.list.concat(results),
+            'nodata': true,
+            'info.hasMore': true,
+            'info.hidden': false
+          })
+        } else {
+          that.setData({
+            'userInfo': app.globalData.user,
+            'loading.hidden': true,
+            'nodata': false,
+            'info.list': that.data.info.list.concat(result.data),
             'info.hidden': false,
+            'info.hasMore': result.hasMore,
             'info.page': that.data.info.page + 1
           })
-        }, function (error) {
-          console.log('get card list failed!' + error);
-        });
-
-      } else {
-        //做没有数据时的处理
+        }
       }
-
-    }, function (error) {
-      console.log('get total count failed!' + error);
+    }, function (err) {
+      // 处理调用失败
     });
 
 
@@ -134,7 +136,7 @@ Page({
     var that = this;
     that.setData({'uid':uid})
     //数据加载
-    this.initData(uid);
+    this.initData();
   },
   onReady: function () {
     console.log('生命周期:like-ready');

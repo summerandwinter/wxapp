@@ -1,5 +1,7 @@
 /**maker.wxss**/
-
+page{
+  background-color: #fff;
+}
 .page-section {
   margin: 0 40rpx;
 }

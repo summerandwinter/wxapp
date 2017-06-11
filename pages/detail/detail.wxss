@@ -46,6 +46,40 @@
   line-height: 80rpx;
 }
 
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+  color: #8a8a8a;
+}
+
+button::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
 .like-nummber {
   position: absolute;
   top: 0rpx;
@@ -55,9 +89,43 @@
   height: 80rpx;
   line-height: 80rpx;
 }
-
+.share-nummber {
+  position: absolute;
+  top: 0rpx;
+  left: 60rpx;
+  font-size: 38rpx;
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+}
 .toolbar-item {
-  width: 375rpx;
+  flex: 1;
   text-align: center;
   color: #8a8a8a;
+}
+
+.notfound {
+  width: 65%;
+  margin: 15em auto;
+  line-height: 1.6em;
+  font-size: 14px;
+  text-align: center;
+}
+
+.notfound-tips {
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.notfound-line {
+  border-top: 1px solid #e5e5e5;
+}
+
+.notfound-line .notfound-tips {
+  position: relative;
+  top: -0.9em;
+  padding: 0 0.55em;
+  background-color: #fff;
+  color: #999;
 }

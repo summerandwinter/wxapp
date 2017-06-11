@@ -20,7 +20,7 @@
         <textarea name="content" class="text" placeholder-class="text-placeholder" placeholder="输入正文" auto-height="true" />
       </view>
       <view class="page-section">
-        <button type="default" formType="submit">生成</button>
+        <button class="iconfont icon-submit" type="default" formType="submit">   生成</button>
       </view>
     </form>
   </view>

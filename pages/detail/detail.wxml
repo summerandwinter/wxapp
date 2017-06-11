@@ -11,19 +11,28 @@
       </view>
     </view>
   </view>
-  <view style="width: 100%" class="content" hidden="{{content.hidden}}" >
-    <view class="item"  bindtap="tap" data-id="{{card.id}}">
-      <image class="item-photo" src="{{preview}}" mode="aspectFit"></image>   
+  <view class="notfound notfound-line" hidden="{{notfound.hidden}}">
+    <view class="notfound-tips">{{notfound.tips}}</view>
+  </view>
+  <view style="width: 100%" class="content" hidden="{{content.hidden}}">
+    <view class="item" bindtap="tap" data-id="{{card.id}}">
+      <image class="item-photo" src="{{card.preview}}" mode="aspectFit"></image>
     </view>
     <view class="toolbar">
-        <view class="toolbar-item like-container" bindtap="like">
-          <text class="iconfont {{like.class}}"><text class="like-nummber">{{like.number}}</text></text>
-          
-        </view>
-        <view class="toolbar-item share-container" bindtap="showOptions">
-          <text class="iconfont icon-share"></text>
-        </view>
+      <view class="toolbar-item like-container" bindtap="like">
+        <text class="iconfont {{like.class}}">
+          <text class="like-nummber">{{card.likes}}</text>
+        </text>
       </view>
+      <view class="toolbar-item share-container" wx:if="{{shareBtn}}" >
+        <button class="iconfont icon-share" open-type="share">
+          <text class="share-nummber">{{card.shares}}</text>
+        </button>
+      </view>
+      <view class="toolbar-item share-container" bindtap="showOptions">
+        <text class="iconfont icon-more"></text>
+      </view>
+    </view>
   </view>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
 </view>

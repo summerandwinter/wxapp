@@ -44,8 +44,6 @@
   top: 100rpx;
 }
 .content {
-  position: absolute;
-  left: 0;
   height: 100%;
   background: #eee;
 }
@@ -57,19 +55,69 @@
 
 .item-photo {
   width: 100%;
+  height: 410rpx;
   margin: 0;
   padding: 0;
   border: 0;
 }
-
-.item-word {
-  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+.item-title{
+  font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
   color: #000;
-  font-size: 14pt;
-  line-height: 20pt;
-  width: 96%;
-  margin: 10rpx auto;
+  font-size: 46rpx;
+  text-align: center;
+  line-height: 60rpx;
+  width: 598rpx;
+  margin: 76rpx auto 20rpx;
   padding-bottom: 20rpx;
 }
-
+.item-word {
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #888;
+  width: 640rpx;
+  margin: 0 auto;
+  padding-bottom: 60rpx;
+}
+.item-meta{
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 640rpx;
+  margin: 0 auto;
+}
+.meta-container{
+  width: 100%;
+  display: flex;
+  padding-bottom: 40rpx; 
+}
+.userinfo{
+  height: 40rpx;
+  flex: 1;
+  display: flex;
+}
+.avatar{
+  width:40rpx;
+  height:40rpx;
+  flex: 1;
+}
+.avatar image{
+  width:40rpx;
+  height:40rpx;
+}
+.nickname{
+  flex: 1;
+  width:100rpx;
+  color: #aaa;
+  padding-left: 20rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 40rpx;
+}
+.time{
+  flex: 1;
+  text-align: right;
+  color: #aaa;
+}

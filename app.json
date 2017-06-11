@@ -1,5 +1,6 @@
 {
-  "pages": [
+  "pages": [   
+    "pages/selection/selection",
     "pages/explore/explore",
     "pages/card/card",
     "pages/detail/detail",  
@@ -14,7 +15,7 @@
     "navigationBarTitleText": "拾光笔记",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "dark",
-    "enablePullDownRefresh": false
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "position": "bottom",
@@ -24,21 +25,27 @@
     "borderStyle": "white",
     "list": [
       {
+        "pagePath": "pages/selection/selection",
+        "iconPath": "image/star.png",
+        "selectedIconPath": "image/star_hl.png",
+        "text": "精选"
+      },
+      {
         "pagePath": "pages/explore/explore",
-        "iconPath": "image/icon_eye.png",
-        "selectedIconPath": "image/icon_eye_hl.png",
+        "iconPath": "image/explore.png",
+        "selectedIconPath": "image/explore_hl.png",
         "text": "发现"
       },
       {
         "pagePath": "pages/card/card",
-        "iconPath": "image/icon_card.png",
-        "selectedIconPath": "image/icon_card_hl.png",
+        "iconPath": "image/make.png",
+        "selectedIconPath": "image/make_hl.png",
         "text": "词卡"
       },     
       {
         "pagePath": "pages/mine/mine",
-        "iconPath": "image/icon_user.png",
-        "selectedIconPath": "image/icon_user_hl.png",
+        "iconPath": "image/profile.png",
+        "selectedIconPath": "image/profile_hl.png",
         "text": "我的"
       }
     ]

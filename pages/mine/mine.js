@@ -14,15 +14,16 @@ Page({
       hidden: false
     },
     count: {
-      work: 0,
-      like: 0,
+      works: 0,
+      likes: 0,
       follower: 0
     },
     info: {
       list: [],
       hasMore: true,
       hasRefesh: true,
-      page: 0,
+      isLogin: true,
+      page: 1,
       count: 10,
       total: 0,
       hidden: true
@@ -41,41 +42,117 @@ Page({
   toLike: function(e){
     var uid = e.currentTarget.dataset.id;
     console.log('uid');
+    var that = this;
+    if(that.data.count.likes == 0){
+      //return false;
+    }
     wx.navigateTo({
       url: '../like/like?uid='+uid
     });
   },
-  lower: function (e) {
+  onPullDownRefresh:function(e){
+    var that = this;
+    wx.stopPullDownRefresh();
     console.log(e);
-    this.loadData();
+    that.initData();
+  },
+  onReachBottom: function (e) {   
+    var that = this;
+    if(!that.data.nodata){
+      that.loadData();
+    }
+    
+  },onShareAppMessage: function () {
+    var that = this;
+    id = that.data.card.id;
+    title = that.data.card.name;
+    return {
+      title: title,
+      path: '/pages/detail/detail?id='+id,
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
+  },
+  login: function(){
+    var that = this;
+    if (wx.getSetting){
+      wx.getSetting({
+        success(res) {
+          if (!res['authSetting']['scope.userInfo']) {
+            wx.openSetting({
+              success: (res) => {
+                console.log('authorize')
+                wx.authorize({
+                  scope: 'scope.userInfo',
+                  success() {
+                    app.authorize(function (user) {
+                      that.initData();
+                    })
+                  },
+                  fail() {
+                    console.log('authorize failed')
+                  }
+                })
+              }
+            })
+
+          }
+        }
+      })
+    }else{
+      app.login(function(user){
+        that.initData();
+      }, function (errMsg){
+        if (errMsg == 'getUserInfo:fail auth deny') {
+          wx.showModal({
+            title: '提示',
+            content: '在设置页面授权获取用户信息，再点刷新页面',
+            confirmText: '我知道了',
+            showCancel: false
+          })
+        }else{
+
+        }
+        
+      })
+
+    }
+    
+    
   },
   loadData: function () {
     var that = this;
     if (that.data.info.hasMore) {
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
-        var cpage = that.data.info.page;
-        var limit = that.data.info.count;
-        var skip = cpage * limit;
-        console.log('loadding skip:' + skip);
-        var query = new AV.Query(Card);
-        query.equalTo('username', app.globalData.user.username);
-        query.descending('createdAt');
-        query.limit(limit);
-        query.skip(skip);
-        query.find().then(function (results) {
-          that.setData({
-            'isLoading': false,
-            'info.list': that.data.info.list.concat(results),
-            'info.page': that.data.info.page + 1
-          })
-          if (that.data.info.total < that.data.info.page * limit) {
-            that.setData({ 'info.hasMore': false });
+        var param = { 'id': app.globalData.user.objectId, page: that.data.info.page};
+        AV.Cloud.run('works', param).then(function (result) {
+          console.log('加载第' + that.data.info.page+'页数据');
+          // 调用成功，得到成功的应答 data
+          console.log(result)
+          if (result.code == 200) {
+              that.setData({
+                'isLoading': false,
+                'loading.hidden': true,
+                'info.hasMore': result.hasMore,
+                'info.list': that.data.info.list.concat(result.data),
+                'info.hidden': false,
+                'info.page': that.data.info.page + 1
+              })
+
+          }else{
+            that.setData({ 'isLoading': false })
           }
-        }, function (error) {
+
+        }, function (err) {
+          // 处理调用失败
           that.setData({ 'isLoading': false })
-          console.log('get Card list failed!' + error);
         });
+        
       }
 
     } else {
@@ -84,82 +161,83 @@ Page({
   },
   initData: function () {
     var that = this;
-    that.setData({ userInfo: app.globalData.user })
+    var initParam = {
+      loading: {
+        hidden: false
+      },
+      count: {
+        works: 0,
+        likes: 0,
+        follower: 0
+      },
+      info: {
+        list: [],
+        hasMore: true,
+        hasRefesh: true,
+        isLogin: true,
+        page: 1,
+        hidden: true
+      },
+      nodata: false,
+      isLoading: false}
+      that.setData(initParam);
+      if (!app.globalData.user || !app.globalData.user.nickName){
+      console.log('还没有授权');
+      that.setData({
+        'info.isLogin':false,
+        'loading.hidden': true,
+        'info.hidden': false
+      })
+      return false;
+    }
     wx.setNavigationBarTitle({
       title: app.globalData.user.nickName
     });
-    //获取总数量
-    var queryL = new AV.Query('Like');
-    var userMap = AV.Object.createWithoutData('_User', app.globalData.user.objectId);
-    queryL.equalTo('user', userMap);
-    queryL.count().then(function (count) {
-      console.log('like count ' + count);
-      that.setData({ 'count.like': count });
-    });
-
-    var countQuery = new AV.Query(Card);
-    countQuery.equalTo('username', app.globalData.user.username);
-    console.log(countQuery);
-    countQuery.count().then(function (count) {
-      console.log(count);
-      that.setData({ 'count.work': count });
-      that.setData({ 'info.total': count });
-      //总数量小于每页数量
-      if (that.data.info.count > count) {
-        that.setData({ 'info.hasMore': false });
-      }
-      //加载第一页数据
-      if (count > 0) {
-        var cpage = that.data.info.page;
-        var limit = that.data.info.count;
-        var skip = cpage * limit;
-        var query = new AV.Query(Card);
-        console.log('loadding skip:' + skip);
-        query.equalTo('username', app.globalData.user.username);
-        query.descending('createdAt');
-        query.limit(limit);// 最多返回 10 条结果
-        query.skip(skip);// 跳过 20 条结果
-        query.find().then(function (results) {
-          that.setData({
-            'loading.hidden': true,
-            'info.list': that.data.info.list.concat(results),
-            'info.hidden': false,
-            'info.page': that.data.info.page + 1
-          })
-        }, function (error) {
-          console.log('get Card list failed!' + error);
-        });
-
-      } else {
-        console.log("work count:"+count)
-        //做没有数据时的处理
+    var param = { 'id': app.globalData.user.objectId};
+    AV.Cloud.run('profile', param).then(function (result) {
+      console.log('获取首页数据');
+      // 调用成功，得到成功的应答 data
+      console.log(result)
+      if (result.code == 200) {
         that.setData({
-          'loading.hidden': true,
-          'nodata':true,
-          'info.hasMore': true,
-          'info.hidden': false
+          'info.isLogin': true
         })
+        if(result.count.works == 0){
+          that.setData({
+            'userInfo':app.globalData.user,
+            'loading.hidden': true,
+            'nodata': true,
+            'count':result.count,
+            'info.hasMore': true,
+            'info.hidden': false
+          })
+        }else{
+          that.setData({
+            'userInfo': app.globalData.user,
+            'count': result.count,
+            'loading.hidden': true,
+            'nodata': false,
+            'count': result.count,
+            'info.list': that.data.info.list.concat(result.works.data),
+            'info.hidden': false,
+            'info.hasMore': result.works.hasMore,
+            'info.page': that.data.info.page + 1
+          }) 
+        }
+         
       }
 
-    }, function (error) {
-      console.log('get total count failed!' + error);
+    }, function (err) {
+      // 处理调用失败
     });
+    
 
   },
   onLoad: function () {
     console.log('生命周期:mine-load')
     var that = this;
-    if (app.globalData.user) {
-      console.log('login')
-      that.initData();
-    } else {
-      console.log('no login')
-      app.getUserInfo(function () {
-        that.initData();
-      });
-    }
     //数据加载
-    //this.initData();
+    this.initData();
   },
   onReady: function () {
     console.log('生命周期:mine-ready');

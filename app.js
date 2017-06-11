@@ -4,24 +4,18 @@ const Movie = require('./model/movie');
 App({
   onLaunch: function (data) {
     console.log(data)
-    
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
     AV.init({
       appId: '7C7MfP24LboNSLeOnbh112nT-gzGzoHsz',
       appKey: 'QAwTrD7mT1YVP60T8kdX8xwI',
     });
     var that = this;
-    that.getUserInfo();
-    if(data.scene.toLocaleString.length == 24){
+    that.login();
+    if (data && data.scene && data.scene.toLocaleString.length == 24) {
       wx.navigateTo({
         url: 'pages/detail/detail?id=' + data.scene.toLocaleString
       })
     }
-    //console.log(data.query.scene.length);
-    if (data.query.scene && data.query.scene.length == 24) {
+    if (data && data.query && data.query.scene && data.query.scene.length == 24) {
       wx.navigateTo({
         url: 'pages/detail/detail?id=' + data.query.scene
       })
@@ -38,35 +32,98 @@ App({
   onError: function (msg) {
     console.log(msg);
   },
-  getUserInfo: function (cb) {
+  authorize: function (sccuess_func, fail_func) {
+    //需要用户详细信息时调用
     var that = this
-    if (that.globalData.user) {
-      typeof cb == "function" && cb(that.globalData.user)
-    } else {
-      AV.User.loginWithWeapp().then(user => {
-        that.globalData.user = user.toJSON();
-        console.log('login in')
-        console.log(that.globalData.user);
-        // 获得当前登录用户
-        var user = AV.User.current();
-        // 调用小程序 API，得到用户信息
-        wx.getUserInfo({
-          success: ({userInfo}) => {
-            // 更新当前用户的信息
+    AV.User.loginWithWeapp().then(user => {
+      that.globalData.user = user.toJSON();
+      console.log('登录')
+      console.log(that.globalData.user);
+      // 获得当前登录用户
+      var user = AV.User.current();
+      // 调用小程序 API，得到用户信息
+      wx.getUserInfo({
+        success: ({userInfo}) => {
+          //没有授权过 更新当前用户的信息
+          if (!user.attributes.avatarUrl) {
             user.set(userInfo).save().then(user => {
               // 成功，此时可在控制台中看到更新后的用户信息
               that.globalData.user = user.toJSON();
-              typeof cb == "function" && cb(that.globalData.user)
-              console.log('get user info')
+              typeof sccuess_func == "function" && sccuess_func(that.globalData.user)
+              console.log('授权获取用户信息')
               console.log(that.globalData.user)
             }).catch(console.error);
-          },
-          fail:({data})=>{
-            typeof cb == "function" && cb(that.globalData.user)
           }
-        });
-      }).catch(console.error);
-    }
+
+        },
+        fail: ({errMsg}) => {
+          console.log("授权失败");
+          console.log(errMsg);
+          if (errMsg == 'getUserInfo:fail auth deny') {
+            console.log('获取用户信息权限未授权，重新发起授权');
+            wx.getSetting({
+              success(res) {
+                if (!res['authSetting']['scope.userInfo']) {
+                  wx.openSetting({
+                    success: (res) => {
+                      console.log('用户授权')
+                      wx.authorize({
+                        scope: 'scope.userInfo',
+                        success(res) {
+                          console.log(res);
+                          that.authorize(sccuess_func, fail_func);
+                        },
+                        fail(res) {
+                          typeof fail_func == "function" && fail_func(res);
+                          console.log('重新发起授权失败')
+                        }
+                      })
+                    }
+                  })
+
+                } else {
+                  that.authorize(sccuess_func, fail_func);
+                }
+              }
+            })
+          } else {
+            typeof fail_func == "function" && fail_func(errMsg);
+          }
+        }
+      });
+    }).catch(console.error);
+  },
+  login: function (sccuess_func, fail_func) {
+    //需要用户登录时调用
+    var that = this
+    AV.User.loginWithWeapp().then(user => {
+      that.globalData.user = user.toJSON();
+      console.log('登录')
+      console.log(that.globalData.user);
+      // 获得当前登录用户
+      var user = AV.User.current();
+      console.log('数据库中的user');
+      console.log(user);
+      // 调用小程序 API，得到用户信息
+      wx.getUserInfo({
+        success: ({userInfo}) => {
+          //没有授权过 更新当前用户的信息
+          if (!user.attributes.avatarUrl) {
+            user.set(userInfo).save().then(user => {
+              // 成功，此时可在控制台中看到更新后的用户信息
+              that.globalData.user = user.toJSON();            
+              console.log('授权获取用户信息')
+              console.log(that.globalData.user)
+            }).catch(console.error);
+          }
+          typeof sccuess_func == "function" && sccuess_func(that.globalData.user)
+        },
+        fail: ({errMsg}) => {
+          typeof fail_func == "function" && fail_func(errMsg)
+        }
+      });
+    }).catch(console.error);
+
   },
   globalData: {
     userInfo: null,

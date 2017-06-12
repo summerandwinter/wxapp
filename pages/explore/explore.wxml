@@ -1,4 +1,3 @@
-
 <!--explore.wxml-->
 <view class="container">
   <view class="nav" wx:if="{{cates.length > 0}}">
@@ -22,20 +21,20 @@
       </view>
     </view>
   </view>
-  <view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}"     bindscrolltolower="lower">
-    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
+  <view class="content{{cates.length > 0?' withNav':''}}">
+    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}" ouchstart="touchstart" hidden="{{info.hidden}}" bindtouchmove="touchmove" bindtouchcancel="touchcancel" bindtouchend="touchend" bindlongtap="longtap">
       <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
       <text class="item-title">{{item.name}}</text>
       <text class="item-word">{{item.content}}</text>
       <view class="item-meta">
-       <view class="meta-container">
-        <view class="userinfo">
-         <view>
-         <image class="avatar" src="{{item.user.avatarUrl}}"></image>
-         </view>
-         <view class="nickname">{{item.user.nickName}}</view>
-        </view>
-        <view class="time">{{item.time}}</view>
+        <view class="meta-container">
+          <view class="userinfo">
+            <view>
+              <image class="avatar" src="{{item.user.avatarUrl}}"></image>
+            </view>
+            <view class="nickname">{{item.user.nickName}}</view>
+          </view>
+          <view class="time">{{item.time}}</view>
         </view>
       </view>
     </view>

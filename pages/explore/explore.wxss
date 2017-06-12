@@ -48,9 +48,35 @@
   background: #eee;
 }
 
+.option{
+  position: absolute;
+  top:0;
+  left: 0;
+  width:100%;
+  height:100%;
+  display: flex;
+  background-color: rgba(0, 0, 0, .3);
+}
+.option-btns{
+  flex: 1;
+  width: 200rpx;
+  height: 80rpx;
+  margin: auto;
+  display: flex;
+  background-color: #fff;
+}
+.btn-del{
+ flex: 1;
+ background-color: #aaa;
+}
+.btn-review{
+ flex: 1;
+  background-color: #bbb;
+}
 .item {
   background-color: #fff;
   margin-bottom: 20rpx;
+  position: relative;
 }
 
 .item-photo {

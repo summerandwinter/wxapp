@@ -25,7 +25,7 @@ function showShareMenu(){
 function setClipboardData(content){
   if (wx.setClipboardData) {
     wx.setClipboardData({
-      data: that.data.card.content,
+      data: content,
       success: function (res) {
         wx.showToast({
           title: '复制成功',

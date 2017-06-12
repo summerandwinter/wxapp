@@ -37,6 +37,7 @@ Page({
     })
   },
   doMake: function (e) {
+    var that = this;
     var data = e.detail.value;
     var formId = e.detail.formId;
 

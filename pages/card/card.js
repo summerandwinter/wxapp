@@ -36,6 +36,7 @@ Page({
     });
     */
     AV.Cloud.run('templates').then(function(result){
+      console.log(result)
       if(result.code == 200){
         that.setData({
           'loading.hidden': true,
@@ -44,7 +45,9 @@ Page({
           'info.page': that.data.info.page + 1
         })
       }      
-    },function(err){});
+    },function(err){
+      console.log(err.code)
+    });
     
   },
   onLoad: function () {

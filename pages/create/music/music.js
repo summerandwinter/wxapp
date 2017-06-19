@@ -115,7 +115,7 @@ Page({
     that.setData({'covers':covers});
     console.log(covers);
     
-    util.getLyric(that.data.music.songid,function(data){
+    util.getLyric(that.data.music.songid, that.data.music.songmid,function(data){
       console.log(JSON.stringify(data));
       that.setData({'items':data,'lyric.hidden':false,'editor.hidden':true})
     },function(err){

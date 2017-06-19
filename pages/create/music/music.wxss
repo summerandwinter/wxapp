@@ -141,7 +141,6 @@ page {
 .lxCheckboxGroup text {
   font-size: 12px;
   margin-left: 24px;
-  height: 20px;
   line-height: 20px;
   display: block;
 }

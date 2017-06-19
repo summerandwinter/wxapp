@@ -1,3 +1,4 @@
+const AV = require('av-weapp-min.js');
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -15,14 +16,14 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
-function showShareMenu(){
-  if (wx.showShareMenu){
+function showShareMenu() {
+  if (wx.showShareMenu) {
     wx.showShareMenu({
       withShareTicket: true
     })
-  }  
+  }
 }
-function setClipboardData(content){
+function setClipboardData(content) {
   if (wx.setClipboardData) {
     wx.setClipboardData({
       data: content,
@@ -48,8 +49,8 @@ function setClipboardData(content){
     })
   }
 }
-function sayHello(name){
-  console.log('Hello '+name);
+function sayHello(name) {
+  console.log('Hello ' + name);
 }
 
 function fetch_photo(data, success_func, fail_func) {
@@ -336,7 +337,7 @@ function search_qq_music2(data, success_func, fail_func) {
 
 这个LRC有时会失效的
  */
-function getLyric(songid, success_func, fail_func) {
+function getLyric(songid, songmid, success_func, fail_func) {
   wx.request({
     url: 'http://music.qq.com/miniportal/static/lyric/' + (parseInt(songid) % 100) + '/' + songid + '.xml',
     data: {},
@@ -359,6 +360,33 @@ function getLyric(songid, success_func, fail_func) {
           //console.log(result);
           typeof success_func == "function" && success_func(result)
         }
+
+      } else {
+        console.log(res)
+        var params = { 'mid': songmid };
+        AV.Cloud.run('getlyric', params).then(function (result) {
+          console.log(result)
+          if (result.code == 200) {
+            var lyrics = result.data;
+            var lrcArr = [];
+            var index = 1;
+            for (var i = 0; i < lyrics.length; i++) {
+              var lyric = lyrics[i];
+              var data = {}
+              data.index = index;
+              data.text = lyric;
+              data.type = 'circle'
+              lrcArr.push(data);
+              index++;
+            }
+            typeof success_func == "function" && success_func(lrcArr)
+          } else {
+            console.log(result);
+            typeof fail_func == "function" && fail_func(result.message)
+          }
+        }, function (err) {
+          console.log(err)
+        });
 
       }
 

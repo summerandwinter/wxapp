@@ -1,0 +1,39 @@
+/**card.wxss**/
+
+.container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  white-space: nowrap;
+}
+
+.cates{
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cate{
+  width: 640rpx;
+  padding: 40rpx 0;
+}
+.title{
+   font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 40rpx;
+  color: #000;
+  text-align: center;
+}
+.description{
+  font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 30rpx;
+  color: #8a8a8a;
+  padding-top: 10rpx;
+   text-align: center;
+}

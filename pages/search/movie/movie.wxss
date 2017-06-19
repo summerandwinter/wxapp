@@ -1,0 +1,109 @@
+/**explore.wxss**/
+page {
+  background-color: #eee;
+}
+
+.container {
+  padding: 0;
+  background-color: #eee;
+  box-sizing: border-box;
+  min-height: 100%;
+  font-size: 32rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+
+.content {
+  width:750rpx;
+  margin:0 auto;
+  height: 100%;
+  background: #eee;
+  display: flex;
+  flex-direction: row; /*决定主轴的方向（即项目的排列方向）。 水平方向*/
+  flex-wrap: wrap;  /*定义，如果一条轴线排不下，如何换行*/
+  justify-content:  flex-start; /* 定义了项目在主轴上的对齐方式 */
+  align-items: baseline; /* 项目在交叉轴上如何对齐 */
+  align-content: flex-start; /* 多根轴线的对齐方式 */
+}
+
+.item {
+  background-color: #fff;
+  width: 230rpx;
+  margin-bottom: 15rpx;
+  margin-left: 15rpx;
+}
+
+.item-photo {
+  width: 230rpx;
+  height: 328rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.item-title{
+  font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+   color: #888;
+  font-size: 36rpx;
+  text-align: center;
+  width: 210rpx;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  
+}
+.item-word {
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  font-size: 36rpx;
+  line-height: 50rpx;
+  text-align: center;
+  color: #888;
+  word-wrap: break-word;
+  width: 640rpx;
+  padding-bottom: 60rpx;
+}
+.item-meta{
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 640rpx;
+}
+.meta-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 40rpx; 
+}
+.userinfo{
+  height: 40rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.avatar{
+  width:40rpx;
+  height:40rpx;
+  flex: 1;
+}
+.avatar image{
+  width:40rpx;
+  height:40rpx;
+}
+.nickname{
+  flex: 1;
+  width:100rpx;
+  color: #aaa;
+  padding-left: 20rpx;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 40rpx;
+}
+.time{
+  flex: 1;
+  text-align: right;
+  color: #aaa;
+}

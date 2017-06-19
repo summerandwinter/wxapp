@@ -1,0 +1,76 @@
+<!--selection.wxml-->
+<view class="container">
+  <view class="nav" wx:if="{{cates.length > 0}}">
+    <view class="nav-item" wx:for="{{cates}}" wx:key="id">
+      <block wx:if="{{index == 0}}">
+        <view class="tab selected">{{item.name}}</view>
+      </block>
+      <block wx:else>
+        <view class="tab">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+      <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>
+  </view>
+  <view class="creater" hidden="{{creater.hidden}}">
+    <form bindsubmit="formSubmit" report-submit="true">
+      <view class="page-section">
+        <view class="uploader-box" hidden="{{uploader.hidden}}" bindtap="chooseImage">
+          <view class="uploader-input"></view>
+          <view class="uploader-tips">添加图片</view>
+        </view>
+        <view class="image-preview" hidden="{{preview.hidden}}" bindtap="listPhotos">
+          <image src="{{photo}}" class="image" mode="aspectFill"></image>
+          <view class="photo-logo iconfont icon-image"></view>
+        </view>
+      </view>
+      <view class="page-section">
+        <text class="item-title">{{name}}</text>
+      </view>
+      <view class="page-section">
+        <textarea name="content" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" />
+      </view>
+       <view class="page-section">
+        <view class="tips">Tips:点击图片可以选择更多图片</view>
+       </view>
+      <view class="toolbar">
+     <view class="toolbar-item" bindtap="preview">
+        <view class="iconfont icon-preview"></view>
+        <view class="option-tip">预览</view>
+      </view>
+   <view class="toolbar-item" bindtap="publish">
+        <view class="iconfont icon-submit"></view>
+        <view class="option-tip">投稿</view>
+      </view>
+      <view class="toolbar-item" bindtap="save">
+        <view class="iconfont icon-save"></view>
+        <view class="option-tip">保存</view>
+      </view>
+    </view>
+    </form>
+  </view>
+  <view class="photos" hidden="{{photos.hidden}}">
+    <view class="item"><text class="camera iconfont icon-camera"></text>
+    </view>
+    <view class="item" wx:for="{{photos.list}}" wx:key="{{id}}" bindtap="choosePhoto" data-id="{{item.id}}" data-url="{{item.imgurl}}">
+      <image class="item-photo" src="{{item.imgurl}}" background-size="cover"></image>
+    </view>
+    <view class="loadmore" hidden="{{!isLoading}}">
+      <view class="loadmore-loading" style=""></view>
+      <view class="loadmore-tips">正在加载</view>
+    </view>
+    <view class="nomore nomore-line" hidden="{{photos.hasMore}}">
+      <view class="nomore-tips">已经到底了</view>
+    </view>
+  </view>
+  <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
+</view>

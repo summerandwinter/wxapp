@@ -1,0 +1,22 @@
+<!--card.wxml-->
+<view class="container">
+  <view class="cates">
+    <view class="cate" bindtap="toMovie">
+      <view class="title">「 电影 」</view>
+      <view class="description">光影之间 品味感动</view>
+    </view>
+    <view class="cate" bindtap="toMusic">
+      <view class="title">「 音乐 」</view>
+      <view class="description">旋律背后的文字最能打动人心</view>
+    </view>
+    <view class="cate" bindtap="toBook">
+      <view class="title">「 读书 」</view>
+      <view class="description">于墨香之中宁静心神</view>
+    </view>
+    <view class="cate" bindtap="toWord">
+      <view class="title">「 独白 」</view>
+      <view class="description">总有那么一句话让你念念不忘</view>
+    </view>
+  </view>
+  <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
+</view>

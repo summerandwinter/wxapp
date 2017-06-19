@@ -1,0 +1,134 @@
+/**explore.wxss**/
+
+page {
+  background-color: #fff;
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.iconfont {
+  display: inline-block;
+  position: relative;
+  font-size: 40rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.container {
+  padding: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  font-size: 32rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+.banner {
+  width: 750rpx;
+  margin: 0 auto;
+  height: 405rpx;
+  background: #000;
+}
+
+.cover-container {
+  position: absolute;
+  left: 275rpx;
+  top: 180rpx;
+  width: 210rpx;
+  height: 308rpx;
+}
+
+.cover {
+  width: 210rpx;
+  height: 308rpx;
+}
+
+.creater {
+  width: 750rpx;
+  margin: 0 auto;
+  min-height: 100%;
+  background: #fff;
+}
+
+.info-conainter {
+  width: 480rpx;
+  margin: 240rpx auto 20rpx;
+}
+
+.block {
+  background-color: #888;
+  width: 51rpx;
+  height: 21rpx;
+}
+
+.division {
+  font-size: 35rpx;
+  padding: 10rpx 0;
+}
+
+.title {
+  display: block;
+  color: #000;
+  font-size: 50rpx;
+  text-align: left;
+  line-height: 60rpx;
+  padding-top: 30rpx;
+}
+
+.author {
+  display: block;
+  text-align: left;
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: #8a8a8a;
+}
+
+.text {
+  display: block;
+  font-size: 30rpx;
+  text-align: left;
+  color: #8a8a8a;
+  word-wrap: break-word;
+  width: 480rpx;
+}
+
+.tips {
+  color: #bfbfbf;
+  text-align: center;
+}
+
+.toolbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: flex-start;
+}
+
+.photo-logo {
+  color: #fff;
+  position: absolute;
+  font-size: 80rpx;
+  right: 0;
+  bottom: 0;
+}
+
+.toolbar-item {
+  width: 250rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: flex-start;
+  color: #8a8a8a;
+}
+
+.option-tip {
+  padding-left: 15rpx;
+}

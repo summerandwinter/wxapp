@@ -1,5 +1,12 @@
 {
   "pages": [   
+    "pages/search/index/index",
+    "pages/search/book/book",
+    "pages/search/music/music",
+    "pages/search/movie/movie",
+    "pages/create/book/book",
+    "pages/create/music/music",
+    "pages/create/movie/movie",
     "pages/selection/selection",
     "pages/explore/explore",
     "pages/card/card",

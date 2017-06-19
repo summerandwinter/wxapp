@@ -1,0 +1,74 @@
+<!--selection.wxml-->
+<view class="container">
+  <view class="nav" wx:if="{{cates.length > 0}}">
+    <view class="nav-item" wx:for="{{cates}}" wx:key="id">
+      <block wx:if="{{index == 0}}">
+        <view class="tab selected">{{item.name}}</view>
+      </block>
+      <block wx:else>
+        <view class="tab">{{item.name}}</view>
+      </block>
+    </view>
+  </view>
+  <view class="data-loading" hidden="{{loading.hidden}}">
+    <view class="loading-container">
+      <view class="sk-wave">
+        <view class="sk-rect sk-rect1"></view>
+        <view class="sk-rect sk-rect2"></view>
+        <view class="sk-rect sk-rect3"></view>
+        <view class="sk-rect sk-rect4"></view>
+        <view class="sk-rect sk-rect5"></view>
+      </view>
+    </view>
+  </view>
+  <view class="creater" hidden="{{creater.hidden}}">
+    <form bindsubmit="formSubmit" report-submit="true">
+      <view class="banner" bindtap="changeCover">
+        <view class="banner-inner" style="background-image: url({{cover}});"></view>
+        <view class="title">{{music.songname}}</view>
+      </view>
+
+      <view class="content-body">
+        <view class="author">
+        <block wx:for="{{music.singer}}" wx:for-index="idx" wx:for-item="singer" wx:key="{{id}}">
+          <text>{{singer.name}}</text>
+          <text wx:if="{{idx < music.singer.length-1}}">/</text>
+        </block>
+        </view>
+        <view class="info-container">
+          <view class="editor" hidden="{{editor.hidden}}">
+            <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="在这里填入你喜欢歌词" style="height:400rpx;"/>
+          </view>
+          <view class="lyric-contaner" hidden="{{lyric.hidden}}">
+            <view class="lxCheckboxGroup">
+              <view wx:for="{{items}}" data-index="{{index}}" size="20" bindtap="bindCheckbox">
+                <icon type="{{item.type}}" size="18" />
+                <text class="{{item.type}}">{{item.text}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+
+      </view>
+      <view class="cover-container">
+        <image class="cover" src="{{cover}}" mode="aspectFill" />
+      </view>
+
+      <view class="toolbar">
+        <view class="toolbar-item" bindtap="preview">
+          <view class="iconfont icon-preview"></view>
+          <view class="option-tip">预览</view>
+        </view>
+        <view class="toolbar-item" bindtap="publish">
+          <view class="iconfont icon-submit"></view>
+          <view class="option-tip">投稿</view>
+        </view>
+        <view class="toolbar-item" bindtap="save">
+          <view class="iconfont icon-save"></view>
+          <view class="option-tip">保存</view>
+        </view>
+      </view>
+    </form>
+  </view>
+  <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
+</view>

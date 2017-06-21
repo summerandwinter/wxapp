@@ -90,8 +90,11 @@ function parseLyric(lrc) {
   for (var i = 0; i < lyrics.length; i++) {
     var lyric = decodeURIComponent(lyrics[i]);
     var timeReg = /\[\d*:\d*((\.|\:)\d*)*\]/g;
+    var ignoreReg = /.*[：|-].*/g;
+    var ignoreExpArr = lyric.match(ignoreReg);
+    //console.log(ignoreExpArr);
     var timeRegExpArr = lyric.match(timeReg);
-    if (!timeRegExpArr) continue;
+    if (!timeRegExpArr || ignoreExpArr) continue;
     var clause = lyric.replace(timeReg, '');
     if (clause.length > 0) {
       var data = {}

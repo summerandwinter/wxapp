@@ -6,7 +6,7 @@
       <form class="search-bar__form">
         <view class="search-bar__box">
           <icon type="search" size="15" class="icon-search" />
-          <input class="search-bar__input" value="{{query}}" confirm-type="search" type="text" bindconfirm="search" placeholder="搜索歌曲/歌手/专辑名称" bindconfirm="search" />
+          <input class="search-bar__input" value="{{query}}" confirm-type="search" type="text" bindconfirm="search" placeholder="搜索歌曲/歌手/专辑名称" bindconfirm="search" focus="{{search.focus}}"/>
           <icon type="clear" size="15" class="icon-clear" bindtap="clear" />
         </view>
         <view class="search-bar__label" hidden="{{search.focus}}" bindtap="focus">

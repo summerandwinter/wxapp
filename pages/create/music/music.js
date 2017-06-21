@@ -1,5 +1,6 @@
 //explore.js
 var util = require('../../../utils/util.js')
+var Base64 = require('../../../utils/base64.js')
 var app = getApp()
 Page({
   data: {
@@ -77,6 +78,32 @@ Page({
     
     that.setData({ 'cover': covers[that.data.currentCover]});
 
+  },
+  preview: function(e){
+     var that = this;
+     var data = {};
+     var songname = that.data.music.songname;
+     var songmid = that.data.music.songmid;
+     var songid = that.data.music.songid;
+     var url = that.data.cover;
+
+     var content = that.data.content;
+     var singers = [];
+     for (var i in that.data.music.singer) {
+       singers.push(that.data.music.singer[i].name);
+     }
+     data['url'] = url;
+     data['author'] = singers.join('/');
+     data['content'] = content;
+     data['title'] = songname;
+     var stringfy = JSON.stringify(data);
+     console.log(stringfy)
+     var base64 = Base64.encode(stringfy);
+     console.log(base64);
+     var link = "https://timesand.leanapp.cn/music/preview/" + base64
+     wx.previewImage({
+       urls: [link]
+     })
   },
   touchstart: function (e) {
 

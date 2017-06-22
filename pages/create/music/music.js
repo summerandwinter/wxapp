@@ -1,6 +1,7 @@
 //explore.js
 var util = require('../../../utils/util.js')
 var Base64 = require('../../../utils/base64.js')
+const AV = require('../../../utils/av-weapp-min.js');
 var app = getApp()
 Page({
   data: {
@@ -104,6 +105,67 @@ Page({
      wx.previewImage({
        urls: [link]
      })
+  },doMake: function(e){
+    var isPublish = false;
+    if (e.detail.target.id == 'publish') {
+      isPublish = true
+    }
+    var that = this;
+    var data = e.detail.value;
+    var formId = e.detail.formId;
+
+    if (that.data.content.length < 1) {
+      wx.showModal({ title: '提示', content: '内容不能为空' })
+      return;
+    }
+    wx.showLoading({
+      title: '制作中',
+    })
+
+    var singers = [];
+    for (var i in that.data.music.singer) {
+      singers.push(that.data.music.singer[i].name);
+    }
+    var songname = that.data.music.songname;
+    var atuhor = singers.join('/');
+    var card = {}
+    card.public = isPublish;
+    card.userid = app.globalData.user.objectId;
+    card.formId = formId;
+    card.author = atuhor;
+    card.name = songname;
+    card.content = that.data.content;
+    card.img_url = that.data.cover;
+    card.db_num = that.data.music.songid;
+    card.extraData = JSON.stringify(that.data.music);
+    console.log(JSON.stringify(card));
+    AV.Cloud.run('makeMusic', card).then(function (data) {
+      // 调用成功，得到成功的应答 data
+      console.log(data)
+      if (data.code == 200) {
+        wx.redirectTo({
+          url: '/pages/detail/detail?id=' + data.data
+        })
+      }
+
+    }, function (err) {
+      // 处理调用失败
+    });
+  },
+  formSubmit:function(e){
+    console.log(e);
+    var that = this;
+    if (app.globalData.user && app.globalData.user.nickName) {
+      console.log('直接保存')
+      that.doMake(e);
+    } else {
+      console.log('需要授权')
+      app.authorize(function (user) {
+        that.doMake(e);
+      }, function (res) {
+        console.log(res);
+      })
+    }
   },
   touchstart: function (e) {
 

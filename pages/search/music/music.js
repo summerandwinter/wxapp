@@ -167,7 +167,7 @@ Page({
   },
   initData: function () {
     var that = this;
-    var data = {}
+    var data = {'topid':26,'begin':0,'num':100}
     util.get_toplist_music(data, function (data) {
       console.log(data);
       that.setData({

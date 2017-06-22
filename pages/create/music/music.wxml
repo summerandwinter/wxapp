@@ -59,13 +59,15 @@
           <view class="iconfont icon-preview"></view>
           <view class="option-tip">预览</view>
         </view>
-        <view class="toolbar-item" bindtap="publish">
-          <view class="iconfont icon-submit"></view>
-          <view class="option-tip">投稿</view>
+        <view class="toolbar-item">
+        <button class="iconfont icon-submit" form-type="submit" id="publish">
+          <text class="option-tip">投稿</text>
+        </button>
         </view>
-        <view class="toolbar-item" bindtap="save">
-          <view class="iconfont icon-save"></view>
-          <view class="option-tip">保存</view>
+        <view class="toolbar-item">
+        <button class="iconfont icon-save" form-type="submit" id="save">
+          <text class="option-tip">保存</text>
+        </button>
         </view>
       </view>
     </form>

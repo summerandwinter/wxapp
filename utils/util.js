@@ -197,7 +197,7 @@ function search_qq_music(data, success_func, fail_func) {
 
 
 function get_toplist_music(data, success_func, fail_func) {
-  var url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?g_tk=5381&uin=0&format=json&inCharset=utf-8&outCharset=utf-8&notice=0&platform=h5&needNewCode=1&tpl=3&page=detail&type=top&topid=26&_=1497851834328';
+  var url = 'https://c.y.qq.com/v8/fcg-bin/fcg_v8_toplist_cp.fcg?tpl=3&page=detail&type=top&loginUin=0&hostUin=0&format=json&inCharset=utf8&outCharset=utf-8&notice=0&platform=yqq&needNewCode=0&topid='+data.topid+'&song_begin='+data.begin+'&song_num='+data.num;
   console.log(url);
   wx.request({
     url: url,

@@ -28,14 +28,19 @@ page {
 
 .item {
   background-color: #fff;
-  width: 360rpx;
+  width: 370rpx;
   margin-bottom: 10rpx;
+
+}
+.item:nth-child(odd){
+  margin-left: 0rpx;
+}
+.item:nth-child(even){
   margin-left: 10rpx;
 }
-
 .item-photo {
-  width: 360rpx;
-  height: 360rpx;
+  width: 370rpx;
+  height: 370rpx;
   margin: 0;
   padding: 0;
   border: 0;

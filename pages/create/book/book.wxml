@@ -31,24 +31,26 @@
         <view class="block"></view>
         <view class="title">{{name}}</view>
         <view class="division">╱</view>
-        <view class="author">作者：今何在</view>
+        <view class="author">作者：{{author}}</view>
         <view class="editor">
-          <textarea name="content" value="我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" />
+          <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" />
         </view>
       </view>
 
       <view class="toolbar">
-        <view class="toolbar-item" bindtap="preview">
+         <view class="toolbar-item" bindtap="preview">
           <view class="iconfont icon-preview"></view>
           <view class="option-tip">预览</view>
         </view>
-        <view class="toolbar-item" bindtap="publish">
-          <view class="iconfont icon-submit"></view>
-          <view class="option-tip">投稿</view>
+        <view class="toolbar-item">
+        <button class="iconfont icon-submit" form-type="submit" id="publish">
+          <text class="option-tip">投稿</text>
+        </button>
         </view>
-        <view class="toolbar-item" bindtap="save">
-          <view class="iconfont icon-save"></view>
-          <view class="option-tip">保存</view>
+        <view class="toolbar-item">
+        <button class="iconfont icon-save" form-type="submit" id="save">
+          <text class="option-tip">保存</text>
+        </button>
         </view>
       </view>
     </form>

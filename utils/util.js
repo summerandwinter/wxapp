@@ -408,7 +408,7 @@ function dbSearch(data, success_func, fail_func) {
       'content-type': 'application/json'
     },
     success: function (res) {
-      //console.log(res)
+      console.log(res)
       var result = {}
       if (res.statusCode == 200) {
         var count = res.data.count;

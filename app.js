@@ -53,6 +53,8 @@ App({
               console.log('授权获取用户信息')
               console.log(that.globalData.user)
             }).catch(console.error);
+          }else{
+            typeof sccuess_func == "function" && sccuess_func(that.globalData.user)
           }
 
         },

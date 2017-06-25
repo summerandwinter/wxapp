@@ -15,7 +15,7 @@ page {
 
 .content {
   width:750rpx;
-  margin:0 auto;
+  margin:46px auto 0;
   height: 100%;
   background: #eee;
   display: flex;

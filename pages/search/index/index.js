@@ -40,13 +40,6 @@ Page({
     console.log('生命周期:card-load')
     var that = this;
     util.showShareMenu();
-    wx.request({
-      url: 'https://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg?nobase64=1&musicid=202773258&songtype=0&callback=jsonp1',
-      success: function (data) { console.log(data) },
-      fail: function (res) {
-        console.log(res);
-      }
-    })
   },
   onReady: function () {
     console.log('生命周期:card-ready');

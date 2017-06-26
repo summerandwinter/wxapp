@@ -68,6 +68,10 @@ function fetch_photo(data, success_func, fail_func) {
           var idreg = /photo\/(.*?)\?type/
           //console.log(idreg.exec(res.data.photos[i]['url']))
           res.data.photos[i].id = idreg.exec(res.data.photos[i]['url'])[1];
+          res.data.photos[i].thumb = res.data.photos[i]['imgurl'].replace('lthumb','thumb');
+          res.data.photos[i].photo = res.data.photos[i]['imgurl'].replace('lthumb', 'photo');
+          res.data.photos[i].large = res.data.photos[i]['imgurl'].replace('lthumb', 'large');
+          res.data.photos[i].raw = res.data.photos[i]['imgurl'].replace('lthumb', 'raw');
         }
         typeof success_func == "function" && success_func(res.data)
       } else {

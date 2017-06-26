@@ -1,15 +1,24 @@
 <!--selection.wxml-->
 <view class="container">
-  <view class="nav" wx:if="{{cates.length > 0}}">
-    <view class="nav-item" wx:for="{{cates}}" wx:key="id">
-      <block wx:if="{{index == 0}}">
-        <view class="tab selected">{{item.name}}</view>
-      </block>
-      <block wx:else>
-        <view class="tab">{{item.name}}</view>
-      </block>
+  <!-- seearch bar start-->
+  <view class="search-container">
+    <view class="search-bar">
+      <form class="search-bar__form">
+        <view class="search-bar__box">
+          <icon type="search" size="15" class="icon-search" />
+          <input class="search-bar__input" value="{{query}}" confirm-type="search" type="text" bindconfirm="search" placeholder="搜索书名/作者" bindconfirm="search" focus="{{search.focus}}" />
+          <icon type="clear" size="15" class="icon-clear" bindtap="clear" />
+        </view>
+        <view class="search-bar__label" hidden="{{search.focus}}" bindtap="focus">
+          <icon type="search" size="15" class="icon-search" />
+          <text>搜索</text>
+        </view>
+      </form>
+      <view class="search-bar__cancel-btn" hidden="{{!search.focus}}" bindtap="blur">取消</view>
     </view>
   </view>
+  <!-- seearch bar end-->
+  <!-- loadding start -->
   <view class="data-loading" hidden="{{loading.hidden}}">
     <view class="loading-container">
       <view class="sk-wave">
@@ -21,18 +30,29 @@
       </view>
     </view>
   </view>
+  <!-- loadding end -->
+  <!-- search content start -->
   <view class="content" hidden="{{info.hidden}}">
-    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
-      <image class="item-photo" src="{{item.img}}" background-size="cover"></image>
-      <text class="item-title">{{item.name}}</text>
+    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tapSearch" data-index="{{index}}"  data-id="{{item.id}}">
+      <image class="item-photo" src="{{item.images.large}}" background-size="cover"></image>
+      <text class="item-title">{{item.title}}</text>
+    </view>
+  </view>
+  <!-- search content end -->
+  <!-- collections content start -->
+  <view class="content" hidden="{{collections.hidden}}">
+    <view class="item" wx:for="{{collections.list}}" wx:key="{{id}}" bindtap="tapCollections" data-index="{{index}}" data-id="{{item.id}}">
+      <image class="item-photo" src="{{item.images.large}}" background-size="cover"></image>
+      <text class="item-title">{{item.title}}</text>
     </view>
 
   </view>
+  <!-- collections content end -->
   <view class="loadmore" hidden="{{!isLoading}}">
     <view class="loadmore-loading" style=""></view>
     <view class="loadmore-tips">正在加载</view>
   </view>
-  <view class="loadmore loadmore-line" hidden="{{info.hasMore}}">
+  <view class="loadmore loadmore-line" hidden="{{hasMore}}">
     <view class="loadmore-tips">已经到底了</view>
   </view>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>

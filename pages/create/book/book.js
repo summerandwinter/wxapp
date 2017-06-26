@@ -1,6 +1,7 @@
 //explore.js
 var util = require('../../../utils/util.js')
 var Base64 = require('../../../utils/base64.js')
+const AV = require('../../../utils/av-weapp-min.js');
 var app = getApp()
 Page({
   data: {
@@ -27,7 +28,7 @@ Page({
     var that = this;
     var data = {};
     var title = app.book.title;
-    var url = app.book.image;
+    var url = app.book.images.large;
 
     var content = that.data.content;
     var author = app.book.author.join('/');
@@ -44,6 +45,67 @@ Page({
     wx.previewImage({
       urls: [link]
     })
+  }, doMake: function (e) {
+    var isPublish = false;
+    if (e.detail.target.id == 'publish') {
+      isPublish = true
+    }
+    var that = this;
+    var data = e.detail.value;
+    var formId = e.detail.formId;
+
+    if (that.data.content.length < 1) {
+      wx.showModal({ title: '提示', content: '内容不能为空' })
+      return;
+    }
+    wx.showLoading({
+      title: '制作中',
+    })
+
+    var title = app.book.title;
+    var url = app.book.images.large;
+
+    var content = that.data.content;
+    var author = app.book.author.join('/');
+
+    var card = {}
+    card.public = isPublish;
+    card.userid = app.globalData.user.objectId;
+    card.formId = formId;
+    card.author = author;
+    card.name = title;
+    card.content = that.data.content;
+    card.img_url = url;
+    card.db_num = app.book.id;
+    card.extraData = JSON.stringify(app.book);
+    console.log(JSON.stringify(card));
+    AV.Cloud.run('makeBook', card).then(function (data) {
+      // 调用成功，得到成功的应答 data
+      console.log(data)
+      if (data.code == 200) {
+        wx.redirectTo({
+          url: '/pages/detail/detail?id=' + data.data
+        })
+      }
+
+    }, function (err) {
+      // 处理调用失败
+    });
+  },
+  formSubmit: function (e) {
+    console.log(e);
+    var that = this;
+    if (app.globalData.user && app.globalData.user.nickName) {
+      console.log('直接保存')
+      that.doMake(e);
+    } else {
+      console.log('需要授权')
+      app.authorize(function (user) {
+        that.doMake(e);
+      }, function (res) {
+        console.log(res);
+      })
+    }
   },
   touchstart: function (e) {
 
@@ -73,7 +135,7 @@ Page({
     console.log(app.book)
     var author = app.book.author.join('/');
     that.setData({'loading.hidden':true,'creater.hidden':false});
-    that.setData({'cover':app.book.image,'name':app.book.title,'author':author})
+    that.setData({'cover':app.book.images.large,'name':app.book.title,'author':author})
 
   },
   onLoad: function () {

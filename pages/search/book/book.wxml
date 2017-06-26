@@ -34,7 +34,7 @@
   <!-- search content start -->
   <view class="content" hidden="{{info.hidden}}">
     <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tapSearch" data-index="{{index}}"  data-id="{{item.id}}">
-      <image class="item-photo" src="{{item.image}}" background-size="cover"></image>
+      <image class="item-photo" src="{{item.images.large}}" background-size="cover"></image>
       <text class="item-title">{{item.title}}</text>
     </view>
   </view>
@@ -42,7 +42,7 @@
   <!-- collections content start -->
   <view class="content" hidden="{{collections.hidden}}">
     <view class="item" wx:for="{{collections.list}}" wx:key="{{book_id}}" bindtap="tapCollections" data-index="{{index}}" data-id="{{item.book_id}}">
-      <image class="item-photo" src="{{item.book.image}}" background-size="cover"></image>
+      <image class="item-photo" src="{{item.book.images.large}}" background-size="cover"></image>
       <text class="item-title">{{item.book.title}}</text>
     </view>
 

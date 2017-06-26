@@ -98,6 +98,7 @@ page {
 
 .toolbar {
   position: fixed;
+  background: #fff;
   left: 0;
   bottom: 0;
   width: 100%;

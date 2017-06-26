@@ -110,12 +110,6 @@ Page({
       })
     }
   },
-  onPullDownRefresh: function (e) {
-    console.log(e);
-    var that = this;
-    wx.stopPullDownRefresh();
-    that.initData();
-  },
   onReachBottom: function (e) {
     var that = this;
     console.log('加载..');

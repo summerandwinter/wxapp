@@ -5,6 +5,7 @@ page {
 
 .container {
   padding: 0;
+  margin:0;
   background-color: #eee;
   box-sizing: border-box;
   min-height: 100%;

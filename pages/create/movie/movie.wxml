@@ -1,15 +1,5 @@
 <!--selection.wxml-->
 <view class="container">
-  <view class="nav" wx:if="{{cates.length > 0}}">
-    <view class="nav-item" wx:for="{{cates}}" wx:key="id">
-      <block wx:if="{{index == 0}}">
-        <view class="tab selected">{{item.name}}</view>
-      </block>
-      <block wx:else>
-        <view class="tab">{{item.name}}</view>
-      </block>
-    </view>
-  </view>
   <view class="data-loading" hidden="{{loading.hidden}}">
     <view class="loading-container">
       <view class="sk-wave">
@@ -37,7 +27,7 @@
         <text class="item-title">{{name}}</text>
       </view>
       <view class="page-section">
-        <textarea name="content" value="我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" bindinput="input"/>
+        <textarea name="content" value="我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" style="height:360rpx;" bindinput="input"/>
       </view>
        <view class="page-section">
         <view class="tips">Tips:点击图片可以选择更多图片</view>

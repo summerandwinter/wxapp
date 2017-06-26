@@ -45,7 +45,8 @@ Page({
     wx.previewImage({
       urls: [link]
     })
-  }, doMake: function (e) {
+  }, 
+  doMake: function (e) {
     var isPublish = false;
     if (e.detail.target.id == 'publish') {
       isPublish = true
@@ -106,29 +107,6 @@ Page({
         console.log(res);
       })
     }
-  },
-  touchstart: function (e) {
-
-  },
-  touchmove: function (e) {
-
-  },
-  touchcancel: function (e) {
-
-  },
-  touchend: function (e) {
-
-  },
-  onPullDownRefresh: function (e) {
-    console.log(e);
-    var that = this;
-    wx.stopPullDownRefresh();
-  },
-  onReachBottom: function (e) {
-    var that = this;
-  },
-  scroll: function (e) {
-    //console.log(e)
   },
   initData: function () {
     var that = this;

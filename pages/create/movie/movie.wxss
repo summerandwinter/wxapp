@@ -1,8 +1,8 @@
-/**explore.wxss**/
-
 page {
   background-color: #fff;
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
+
 .iconfont {
   display: inline-block;
   position: relative;
@@ -10,6 +10,7 @@ page {
   height: 80rpx;
   line-height: 80rpx;
 }
+
 .container {
   padding: 0;
   background-color: #fff;
@@ -89,8 +90,9 @@ page {
 .creater {
   width: 750rpx;
   margin: 0 auto;
-  min-height: 100%;
+  height: 100%;
   background: #fff;
+  
 }
 
 .uploader-box {
@@ -125,15 +127,14 @@ page {
 }
 
 .image-preview {
-  margin-top: 40rpx;
   width: 100%;
-  height: 420rpx;
+  height: 500rpx;
   position: relative;
 }
 
 .image {
   width: 100%;
-  height: 420rpx;
+  height: 500rpx;
 }
 
 .item-title {
@@ -151,15 +152,11 @@ page {
 .text {
   font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
-  font-size: 36rpx;
-  line-height: 50rpx;
   text-align: center;
   color: #888;
   word-wrap: break-word;
   width: 640rpx;
   margin: 0 auto;
-  padding-bottom: 60rpx;
-  min-height: 360rpx;
 }
 .tips{
   color: #bfbfbf;
@@ -167,6 +164,7 @@ page {
 }
 .toolbar {
   position: fixed;
+  background: #fff;
   left: 0;
   bottom: 0;
   width: 100%;

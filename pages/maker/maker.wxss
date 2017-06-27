@@ -77,8 +77,97 @@ page{
   min-height: 360rpx;
 }
 
-button[type="default"] {
-  width: 60%;
-  margin: 40px auto 0;
+.toolbar {
+  position: fixed;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: flex-start;
+}
+
+.photo-logo {
+  color: #fff;
+  position: absolute;
+  font-size: 80rpx;
+  right: 0;
+  bottom: 0;
+}
+
+.toolbar-item {
+  width: 250rpx;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: flex-start;
   color: #8a8a8a;
+}
+
+.option-tip {
+  padding-left: 15rpx;
+  font-size: 30rpx;
+}
+
+button::selection {
+  background-color: transparent;
+  color: #8a8a8a;
+}
+
+button::-moz-selection {
+  background-color: transparent;
+  color: #8a8a8a;
+}
+
+button::-webkit-selection {
+  background-color: transparent;
+  color: #8a8a8a;
+}
+
+button:hover {
+  background-color: transparent;
+  color: #8a8a8a;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  box-sizing: border-box;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  overflow: visible;
+  color: #8a8a8a;
+}
+
+button::after {
+  content: " ";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 0px solid rgba(0, 0, 0, 0.2);
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  box-sizing: border-box;
+  border-radius: 10px;
 }

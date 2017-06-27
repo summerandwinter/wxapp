@@ -32,6 +32,13 @@ Page({
       url: '/pages/search/music/music'
     })
   },
+  toWord: function (e) {
+    console.log("word")
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/card/card'
+    })
+  },
   initData: function () {
     var that = this;
 

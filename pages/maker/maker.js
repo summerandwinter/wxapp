@@ -40,7 +40,10 @@ Page({
     var that = this;
     var data = e.detail.value;
     var formId = e.detail.formId;
-
+    var isPublish = false;
+    if (e.detail.target.id == 'publish') {
+      isPublish = true
+    }
     console.log('form发生了submit事件，携带数据为：', e)
     if (data.img_url.length < 1) {
       wx.showModal({ title: '提示', content: '需要选择一张图片' })
@@ -60,10 +63,10 @@ Page({
       title: '制作中',
     })
     var card = {}
+    card.public = isPublish;
     card.name = data.name;
     card.content = data.content;
     card.userid = app.globalData.user.objectId;
-    card.username = app.globalData.user.username;
     card.formId = formId;
     card.template = parseInt(that.data.tid);
     console.log(card)

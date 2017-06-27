@@ -140,12 +140,12 @@ page {
 .item-title {
   font-family: PingFangSC-Regular, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
-  color: #000;
-  font-size: 46rpx;
-  text-align: center;
-  line-height: 60rpx;
+  color: #888;
+  font-size: 26rpx;
+  text-align: right;
+  line-height: 26rpx;
   width: 598rpx;
-  margin: 76rpx auto 20rpx;
+  margin: 0 auto;
   padding-bottom: 20rpx;
 }
 
@@ -156,11 +156,13 @@ page {
   color: #888;
   word-wrap: break-word;
   width: 640rpx;
-  margin: 0 auto;
+  margin: 76rpx  auto 20rpx;
 }
 .tips{
   color: #bfbfbf;
+  font-size: 24rpx;
   text-align: center;
+  margin-top: 40rpx;
 }
 .toolbar {
   position: fixed;

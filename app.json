@@ -44,7 +44,7 @@
         "text": "发现"
       },
       {
-        "pagePath": "pages/card/card",
+        "pagePath": "pages/search/index/index",
         "iconPath": "image/make.png",
         "selectedIconPath": "image/make_hl.png",
         "text": "词卡"

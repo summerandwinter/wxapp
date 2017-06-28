@@ -1,6 +1,5 @@
 //explore.js
-var util = require('../../../utils/util.js')
-var Base64 = require('../../../utils/base64.js')
+var Base64 = require('../../../utils/base64.js');
 const AV = require('../../../utils/av-weapp-min.js');
 var app = getApp()
 Page({

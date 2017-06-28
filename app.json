@@ -1,5 +1,6 @@
 {
   "pages": [   
+    "pages/index/index",
     "pages/search/index/index",
     "pages/search/book/book",
     "pages/search/music/music",
@@ -32,7 +33,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/selection/selection",
+        "pagePath": "pages/index/index",
         "iconPath": "image/star.png",
         "selectedIconPath": "image/star_hl.png",
         "text": "精选"

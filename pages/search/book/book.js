@@ -18,12 +18,12 @@ Page({
     info: {
       list: [],
       start: 0,
-      count: 20,
+      count: 21,
       hidden: true
     },
     collections: {
       start: 0,
-      count: 20,      
+      count: 21,      
       list: [],
       hidden: true
     },

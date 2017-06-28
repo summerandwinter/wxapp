@@ -20,7 +20,11 @@ App({
         url: 'pages/detail/detail?id=' + data.query.scene
       })
     }
-
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+      }
+    })
   },
   onShow: function (options) {
     console.log("app show");

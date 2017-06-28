@@ -1,5 +1,5 @@
 //explore.js
-var util = require('../../../utils/util.js')
+var Movie = require('../../../service/movie.js')
 var Base64 = require('../../../utils/base64.js')
 const AV = require('../../../utils/av-weapp-min.js');
 var app = getApp()
@@ -139,7 +139,7 @@ Page({
     
     var start = that.data.photos.start, type = 'S', mid = that.data.id;
     var data = { start: start, type: type, mid: mid }
-    util.fetch_photo(data, function (data) {
+    Movie.fetch_photo(data, function (data) {
       console.log(data);
       var total = data.total;
       var limit = that.data.photos.limit;
@@ -163,13 +163,13 @@ Page({
     var start = that.data.photos.start, type = 'S', mid = that.data.id;
     var data = { start: start, type: type, mid: mid }
    
-    util.fetch_photo(data, function (data) {
+    Movie.fetch_photo(data, function (data) {
       console.log(data);
       var total = data.total;
       var limit = that.data.photos.limit;
       var hasMore = total > limit + start
       if (data.photos.length >0 ){
-        that.setData({ 'preview.hidden': false, 'uploader.hidden': true, 'creater.hidden': false, 'photo':data.photos[0].photo});
+        that.setData({ 'preview.hidden': false, 'uploader.hidden': true, 'creater.hidden': false, 'photo':data.photos[0].large});
       }else{
         that.setData({ 'preview.hidden': true, 'uploader.hidden': false, 'creater.hidden': false });
       }

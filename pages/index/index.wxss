@@ -1,0 +1,139 @@
+/**explore.wxss**/
+
+page {
+  background-color: #fff;
+}
+
+.container {
+  padding: 0;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+  justify-content: space-between;
+  font-size: 32rpx;
+  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+}
+
+
+
+.content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.item {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.item-cover {
+  width: 750rpx;
+  height: 500rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item-cover image {
+  width: 100%;
+  height: 500rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.item-content {
+  width: 640rpx;
+}
+
+.item-title {
+  font-family: PingFangSC-Regular, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  color: #000;
+  font-size: 19px;
+  text-align: center;
+  line-height: 25px;
+  max-height: 120rpx;
+  width: 640rpx;
+    word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 75rpx;
+  margin-bottom: 20rpx;
+}
+
+.item-word {
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 20px;
+  max-height: 350rpx;
+  text-align: center;
+  color: #888;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  width: 640rpx;
+  overflow: hidden;
+}
+
+.item-meta {
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  width: 640rpx;
+  position: absolute;
+  left: 55rpx;
+  bottom: 0;
+}
+
+.meta-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  padding-bottom: 16px;
+}
+
+.userinfo {
+  height: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.avatar {
+  width: 16px;
+  height: 16px;
+}
+
+.avatar image {
+  width: 16px;
+  height: 16px;
+}
+
+.nickname {
+  width: 100rpx;
+  color: #aaa;
+  padding-left: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 16px;
+}
+
+.time {
+  flex: 1;
+  text-align: right;
+  color: #aaa;
+}

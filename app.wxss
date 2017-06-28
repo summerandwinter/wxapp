@@ -28,7 +28,7 @@
 .icon-play:before { content: "\e653"; }
 .icon-stop:before { content: "\e62f"; }
 page {
-  background-color: #eee;
+  background-color: #fff;
 }
 
 .container {

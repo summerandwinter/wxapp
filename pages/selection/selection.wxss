@@ -55,7 +55,7 @@
 
 .item-photo {
   width: 100%;
-  height: 410rpx;
+  height: 450rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -64,9 +64,9 @@
   font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
   color: #000;
-  font-size: 46rpx;
+  font-size: 19px;
   text-align: center;
-  line-height: 60rpx;
+  line-height: 25px;
   width: 598rpx;
   margin: 76rpx auto 20rpx;
   padding-bottom: 20rpx;
@@ -74,8 +74,8 @@
 .item-word {
   font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
-  font-size: 36rpx;
-  line-height: 50rpx;
+  font-size: 15px;
+  line-height: 20px;
   text-align: center;
   color: #888;
   word-wrap: break-word;
@@ -86,36 +86,37 @@
 .item-meta{
   font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   width: 640rpx;
+  font-size: 12px;
   margin: 0 auto;
 }
 .meta-container{
   width: 100%;
   display: flex;
-  padding-bottom: 40rpx; 
+  padding-bottom: 16px; 
 }
 .userinfo{
-  height: 40rpx;
+  height: 16px;
   flex: 1;
   display: flex;
 }
 .avatar{
-  width:40rpx;
-  height:40rpx;
+  width:16px;
+  height:16px;
   flex: 1;
 }
 .avatar image{
-  width:40rpx;
-  height:40rpx;
+  width:16px;
+  height:16px;
 }
 .nickname{
   flex: 1;
   width:100rpx;
   color: #aaa;
-  padding-left: 20rpx;
+  padding-left: 12px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  line-height: 40rpx;
+  line-height: 16px;
 }
 .time{
   flex: 1;

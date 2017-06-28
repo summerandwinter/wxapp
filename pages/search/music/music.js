@@ -1,5 +1,5 @@
 //explore.js
-var util = require('../../../utils/util.js')
+var Music = require('../../../service/music.js')
 var app = getApp()
 Page({
   data: {
@@ -50,18 +50,6 @@ Page({
       url: '/pages/create/music/music'
     })
   },
-  touchstart: function (e) {
-
-  },
-  touchmove: function (e) {
-
-  },
-  touchcancel: function (e) {
-
-  },
-  touchend: function (e) {
-
-  },
   focus: function(e){
     var that = this;
     that.setData({
@@ -96,7 +84,7 @@ Page({
     if(q.length == 0)
       return;
     var data = { q: q, l: limit, p: p }
-    util.search_qq_music(data, function (data) {
+    Music.search_qq_music(data, function (data) {
       console.log(data);
       if(data.list.length>0){
         var count = data.totalnum;
@@ -136,9 +124,7 @@ Page({
     console.log('加载..');
     that.loadMore();
   },
-  scroll: function (e) {
-    //console.log(e)
-  },loadMore:function(){
+  loadMore:function(){
     var that = this;
     if(!that.data.info.hasMore)
       return;
@@ -147,7 +133,7 @@ Page({
       return;
     var data = { q: q, l: limit, p: p }
     that.setData({'isLoading':true});
-    util.search_qq_music(data, function (data) {
+    Music.search_qq_music(data, function (data) {
       console.log(data);
       var count = data.totalnum;
       var hasMore = count > limit * (p + 1);
@@ -168,7 +154,7 @@ Page({
   initData: function () {
     var that = this;
     var data = {'topid':26,'begin':0,'num':100}
-    util.get_toplist_music(data, function (data) {
+    Music.get_toplist_music(data, function (data) {
       console.log(data);
       that.setData({
         'toplist.list': data,
@@ -178,14 +164,11 @@ Page({
     }, function (err) {
       console.log(err);
     });
-    
 
   },
   onLoad: function () {
     console.log('生命周期:explore-load')
     var that = this;
-
-
     that.initData();
 
   },

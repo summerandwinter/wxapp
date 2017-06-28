@@ -25,23 +25,30 @@
     <form bindsubmit="formSubmit" report-submit="true">
       <view class="banner" bindtap="changeCover">
         <view class="banner-inner" style="background-image: url({{cover}});"></view>
+        <view class="banner-mask"></view>
         <view class="title">{{music.songname}}</view>
+        <view class="music-wave" hidden="{{controller.hidden}}">
+          <view class="wave-1 {{controller.wave}}"></view>
+          <view class="wave-2 {{controller.wave}}"></view>
+          <view class="wave-3 {{controller.wave}}"></view>
+          <view class="wave-4 {{controller.wave}}"></view>
+        </view>
       </view>
 
       <view class="content-body">
         <view class="author">
-        <block wx:for="{{music.singer}}" wx:for-index="idx" wx:for-item="singer" wx:key="{{id}}">
-          <text>{{singer.name}}</text>
-          <text wx:if="{{idx < music.singer.length-1}}">/</text>
-        </block>
+          <block wx:for="{{music.singer}}" wx:for-index="idx" wx:for-item="singer" wx:key="{{id}}">
+            <text>{{singer.name}}</text>
+            <text wx:if="{{idx < music.singer.length-1}}">/</text>
+          </block>
         </view>
         <view class="info-container">
           <view class="editor" hidden="{{editor.hidden}}">
-            <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="在这里填入你喜欢歌词" style="height:400rpx;"/>
+            <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="在这里填入你喜欢歌词" style="height:400rpx;" />
           </view>
           <view class="lyric-contaner" hidden="{{lyric.hidden}}">
             <view class="lxCheckboxGroup">
-              <view wx:for="{{items}}" data-index="{{index}}" size="20" bindtap="bindCheckbox">
+              <view wx:for="{{items}}" wx:key="{{index}}" data-index="{{index}}" size="20" bindtap="bindCheckbox">
                 <icon type="{{item.type}}" size="18" />
                 <text class="{{item.type}}">{{item.text}}</text>
               </view>
@@ -52,6 +59,7 @@
       </view>
       <view class="cover-container">
         <image class="cover" src="{{cover}}" mode="aspectFill" />
+        <view class="iconfont {{controller.class}}" hidden="{{controller.hidden}}" data-style="{{controller.class}}" bindtap="play"></view>
       </view>
 
       <view class="toolbar">
@@ -60,14 +68,14 @@
           <view class="option-tip">预览</view>
         </view>
         <view class="toolbar-item">
-        <button class="iconfont icon-submit" form-type="submit" id="publish">
-          <text class="option-tip">投稿</text>
-        </button>
+          <button class="iconfont icon-submit" form-type="submit" id="publish">
+            <text class="option-tip">投稿</text>
+          </button>
         </view>
         <view class="toolbar-item">
-        <button class="iconfont icon-save" form-type="submit" id="save">
-          <text class="option-tip">保存</text>
-        </button>
+          <button class="iconfont icon-save" form-type="submit" id="save">
+            <text class="option-tip">保存</text>
+          </button>
         </view>
       </view>
     </form>

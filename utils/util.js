@@ -346,7 +346,7 @@ function search_qq_music2(data, success_func, fail_func) {
  */
 function getLyric(songid, songmid, success_func, fail_func) {
   wx.request({
-    url: 'http://music.qq.com/miniportal/static/lyric/' + (parseInt(songid) % 100) + '/' + songid + '.xml',
+    url: 'https://music.qq.com/miniportal/static/lyric/' + (parseInt(songid) % 100) + '/' + songid + '.xml',
     data: {},
     header: {
       'content-type': 'application/json'

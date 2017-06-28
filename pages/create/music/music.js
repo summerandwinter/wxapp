@@ -1,6 +1,6 @@
 //explore.js
-var util = require('../../../utils/util.js')
-var Base64 = require('../../../utils/base64.js')
+var Music = require('../../../service/music.js');
+var Base64 = require('../../../utils/base64.js');
 const AV = require('../../../utils/av-weapp-min.js');
 var app = getApp()
 Page({
@@ -17,6 +17,11 @@ Page({
     },
     creater: {
       hidden: false,
+    },
+    controller:{
+      'class':'icon-play',
+      'hidden':true,
+      'wave':''
     },
     editor:{hidden:false},
     lyric:{hidden:true},
@@ -79,6 +84,18 @@ Page({
     
     that.setData({ 'cover': covers[that.data.currentCover]});
 
+  }, 
+  play:function(e){
+    console.log(e);
+    var that = this;
+    var style = e.currentTarget.dataset.style;
+    if(style == 'icon-play'){
+      wx.playBackgroundAudio(that.data.playData);
+      that.setData({ 'controller.class': 'icon-stop', 'controller.wave': 'move'});
+    }else{
+      wx.pauseBackgroundAudio();
+      that.setData({ 'controller.class': 'icon-play','controller.wave':'' });
+    }
   },
   preview: function(e){
      var that = this;
@@ -105,7 +122,8 @@ Page({
      wx.previewImage({
        urls: [link]
      })
-  },doMake: function(e){
+  },
+  doMake: function(e){
     var isPublish = false;
     if (e.detail.target.id == 'publish') {
       isPublish = true
@@ -167,18 +185,6 @@ Page({
       })
     }
   },
-  touchstart: function (e) {
-
-  },
-  touchmove: function (e) {
-
-  },
-  touchcancel: function (e) {
-
-  },
-  touchend: function (e) {
-
-  },
   onPullDownRefresh: function (e) {
     console.log(e);
     var that = this;
@@ -204,14 +210,53 @@ Page({
     that.setData({'covers':covers});
     console.log(covers);
     
-    util.getLyric(that.data.music.songid, that.data.music.songmid,function(data){
+    Music.getLyric(that.data.music.songid, that.data.music.songmid,function(data){
       console.log(JSON.stringify(data));
       that.setData({'items':data,'lyric.hidden':false,'editor.hidden':true})
     },function(err){
       console.log(err)
       that.setData({ 'lyric.hidden': true, 'editor.hidden': false })
     });
-
+    Music.getMusic(that.data.music.songmid,function(data){
+      console.log(data)
+      var playData = {
+        dataUrl: data,
+        title: that.data.music.songname,
+        coverImgUrl: that.data.music.cover.thumb
+      }
+      that.setData({ playData: playData, 'controller.hidden': false });
+      /*
+      wx.playBackgroundAudio({
+        dataUrl: data,
+        title: that.data.music.songname,
+        coverImgUrl: that.data.music.cover.thumb,
+        success:function(e){
+          console.log('成功');
+          console.log(e);
+        }, fail: function (e) {
+          console.log('失败');
+          console.log(e);
+        }, complete: function (e) {
+          console.log('完成');
+          //wx.pauseBackgroundAudio();
+          console.log(e);
+          wx.getBackgroundAudioPlayerState({
+            success: function (res) {
+              console.log(res)
+              var status = res.status
+              if(status != 2){
+                that.setData({  'controller.hidden': false });
+              }
+ 
+            }
+          })
+        }
+        
+      });
+      */
+    },function(err){
+      console.log(err)
+    });
   },
   change: function(e){
     console.log(e.detail.value);

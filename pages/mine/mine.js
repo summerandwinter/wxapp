@@ -2,7 +2,6 @@
 //获取应用实例
 var util = require('../../utils/util.js');
 const AV = require('../../utils/av-weapp-min.js');
-const Template = require('../../model/template');
 const Card = require('../../model/card');
 const user = AV.User.current();
 var app = getApp()
@@ -28,7 +27,7 @@ Page({
       total: 0,
       hidden: true
     },
-    nodata:false,
+    nodata: false,
     isLoading: false
   },
   tap: function (e) {
@@ -39,49 +38,38 @@ Page({
     })
 
   },
-  toLike: function(e){
+  toLike: function (e) {
     var uid = e.currentTarget.dataset.id;
     console.log('uid');
     var that = this;
-    if(that.data.count.likes == 0){
+    if (that.data.count.likes == 0) {
       //return false;
     }
     wx.navigateTo({
-      url: '../like/like?uid='+uid
+      url: '../like/like?uid=' + uid
     });
   },
-  onPullDownRefresh:function(e){
+  onPullDownRefresh: function (e) {
     var that = this;
     wx.stopPullDownRefresh();
     console.log(e);
     that.initData();
   },
-  onReachBottom: function (e) {   
+  onReachBottom: function (e) {
     var that = this;
-    if(!that.data.nodata){
+    if (!that.data.nodata) {
       that.loadData();
     }
-    
-  },onShareAppMessage: function () {
-    var that = this;
-    id = that.data.card.id;
-    title = that.data.card.name;
-    return {
-      title: title,
-      path: '/pages/detail/detail?id='+id,
-      success: function (res) {
-        // 转发成功
-      },
-      fail: function (res) {
-        // 转发失败
-      }
-    }
+
   },
-  login: function(){
+  login: function () {
     var that = this;
-    if (wx.getSetting){
+    console.log('登录')
+    if (wx.getSetting) {
+      console.log('getSetting')
       wx.getSetting({
         success(res) {
+          console.log(res)
           if (!res['authSetting']['scope.userInfo']) {
             wx.openSetting({
               success: (res) => {
@@ -90,6 +78,7 @@ Page({
                   scope: 'scope.userInfo',
                   success() {
                     app.authorize(function (user) {
+                      console.log(user);
                       that.initData();
                     })
                   },
@@ -100,13 +89,32 @@ Page({
               }
             })
 
+          }else{
+            app.login(function (user) {
+              console.log(user);
+              that.initData();
+            }, function (errMsg) {
+              if (errMsg == 'getUserInfo:fail auth deny') {
+                wx.showModal({
+                  title: '提示',
+                  content: '在设置页面授权获取用户信息，再点刷新页面',
+                  confirmText: '我知道了',
+                  showCancel: false
+                })
+              } else {
+                console.log(errMsg)
+              }
+
+            })
           }
         }
       })
-    }else{
-      app.login(function(user){
+    } else {
+      console.log('login')
+      app.login(function (user) {
+        console.log(user);
         that.initData();
-      }, function (errMsg){
+      }, function (errMsg) {
         if (errMsg == 'getUserInfo:fail auth deny') {
           wx.showModal({
             title: '提示',
@@ -114,37 +122,37 @@ Page({
             confirmText: '我知道了',
             showCancel: false
           })
-        }else{
-
+        } else {
+          console.log(errMsg)
         }
-        
+
       })
 
     }
-    
-    
+
+
   },
   loadData: function () {
     var that = this;
     if (that.data.info.hasMore) {
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
-        var param = { 'id': app.globalData.user.objectId, page: that.data.info.page};
+        var param = { 'id': app.globalData.user.objectId, page: that.data.info.page };
         AV.Cloud.run('works', param).then(function (result) {
-          console.log('加载第' + that.data.info.page+'页数据');
+          console.log('加载第' + that.data.info.page + '页数据');
           // 调用成功，得到成功的应答 data
           console.log(result)
           if (result.code == 200) {
-              that.setData({
-                'isLoading': false,
-                'loading.hidden': true,
-                'info.hasMore': result.hasMore,
-                'info.list': that.data.info.list.concat(result.data),
-                'info.hidden': false,
-                'info.page': that.data.info.page + 1
-              })
+            that.setData({
+              'isLoading': false,
+              'loading.hidden': true,
+              'info.hasMore': result.hasMore,
+              'info.list': that.data.info.list.concat(result.data),
+              'info.hidden': false,
+              'info.page': that.data.info.page + 1
+            })
 
-          }else{
+          } else {
             that.setData({ 'isLoading': false })
           }
 
@@ -152,7 +160,7 @@ Page({
           // 处理调用失败
           that.setData({ 'isLoading': false })
         });
-        
+
       }
 
     } else {
@@ -179,12 +187,13 @@ Page({
         hidden: true
       },
       nodata: false,
-      isLoading: false}
-      that.setData(initParam);
-      if (!app.globalData.user || !app.globalData.user.nickName){
+      isLoading: false
+    }
+    that.setData(initParam);
+    if (!app.globalData.user || !app.globalData.user.nickName) {
       console.log('还没有授权');
       that.setData({
-        'info.isLogin':false,
+        'info.isLogin': false,
         'loading.hidden': true,
         'info.hidden': false
       })
@@ -193,7 +202,7 @@ Page({
     wx.setNavigationBarTitle({
       title: app.globalData.user.nickName
     });
-    var param = { 'id': app.globalData.user.objectId};
+    var param = { 'id': app.globalData.user.objectId };
     AV.Cloud.run('profile', param).then(function (result) {
       console.log('获取首页数据');
       // 调用成功，得到成功的应答 data
@@ -202,16 +211,16 @@ Page({
         that.setData({
           'info.isLogin': true
         })
-        if(result.count.works == 0){
+        if (result.count.works == 0) {
           that.setData({
-            'userInfo':app.globalData.user,
+            'userInfo': app.globalData.user,
             'loading.hidden': true,
             'nodata': true,
-            'count':result.count,
+            'count': result.count,
             'info.hasMore': true,
             'info.hidden': false
           })
-        }else{
+        } else {
           that.setData({
             'userInfo': app.globalData.user,
             'count': result.count,
@@ -222,15 +231,15 @@ Page({
             'info.hidden': false,
             'info.hasMore': result.works.hasMore,
             'info.page': that.data.info.page + 1
-          }) 
+          })
         }
-         
+
       }
 
     }, function (err) {
       // 处理调用失败
     });
-    
+
 
   },
   onLoad: function () {

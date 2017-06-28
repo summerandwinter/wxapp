@@ -6,7 +6,7 @@ function collections(data,success_func,fail_func){
       'Content-Type': 'json'
     },
     success: function (res) {
-      console.log(res.data)
+      //console.log(res.data)
       if(res.statusCode == 200){
         typeof success_func == "function" && success_func(res.data)
       }else{
@@ -29,7 +29,7 @@ function search(data, success_func, fail_func) {
       'Content-Type': 'json'
     },
     success: function (res) {
-      console.log(res.data)
+      //console.log(res.data)
       if (res.statusCode == 200) {
         typeof success_func == "function" && success_func(res.data)
       } else {
@@ -51,7 +51,7 @@ function searchV1(data, success_func, fail_func) {
       'content-type': 'application/json'
     },
     success: function (res) {
-      console.log(res)
+      //console.log(res)
       var result = {}
       if (res.statusCode == 200) {
         var count = res.data.count;
@@ -59,12 +59,12 @@ function searchV1(data, success_func, fail_func) {
         var html = res.data.html;
         html = html.replace(/<!--[\s\S]*?-->/g, '');  //去除html注释
         html = html.replace(/>\s+([^\s<]*)\s+</g, '>$1<').trim();  //去除html标签间的多余空白
-        console.log(html);
+        //console.log(html);
         var reg = /<li>(.*?)<\/li>/g;
         var items;
         var list = []
         while ((items = reg.exec(html))) {
-          console.log(items);
+         // console.log(items);
           var li = items[1];
           var idreg = /href=".*\/subject\/(.*?)\/"/
           var imgreg = /<img src="(.*?)"/

@@ -2,6 +2,6 @@
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "精选",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark"
 }

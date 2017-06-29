@@ -41,9 +41,10 @@ page {
 }
 
 .slogan {
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   position: fixed;
   font-size: 8pt;
-  color: #a8a8a8;
+  color: #ccc;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -133,7 +134,7 @@ page {
 /**加载动画**/
 
 .data-loading {
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;

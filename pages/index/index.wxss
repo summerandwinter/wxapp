@@ -2,27 +2,90 @@
 
 page {
   background-color: #fff;
+    width: 100%;
+  height: 100%;
 }
 
 .container {
   padding: 0;
   background-color: #fff;
   box-sizing: border-box;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
   justify-content: space-between;
   font-size: 32rpx;
   font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
 }
 
 .content {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
   background: #fff;
 }
 
+/** word **/
+.word {
+  height: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.word.no-image{
+    justify-content: space-around;
+}
+.word .item-cover {
+  width: 750rpx;
+  height: 500rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.word .item-cover image {
+  width: 100%;
+  height: 500rpx;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.word .item-content {
+  width: 640rpx;
+}
+
+.word .item-title {
+   font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  color: #000;
+  font-size: 19px;
+  text-align: center;
+  line-height: 25px;
+  width: 598rpx;
+  margin: 76rpx auto 20rpx;
+  padding-bottom: 20rpx;
+}
+
+.word .item-word {
+ font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  margin: 0rpx  auto 20rpx;
+  font-size: 15px;
+  line-height: 25px;
+  max-height: 150px;
+  text-align: left;
+  color: #8a8a8a;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 6;
+  width: 640rpx;
+  overflow: hidden;
+}
+
+
+/** movie **/
 .movie {
   background-color: #fff;
   display: flex;
@@ -52,33 +115,29 @@ page {
 }
 
 .movie .item-title {
-  font-family: PingFangSC-Regular, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-  color: #000;
-  font-size: 19px;
-  text-align: center;
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  color: #8a8a8a;
+  font-size: 15px;
+  text-align: right;
   line-height: 25px;
-  max-height: 120rpx;
-  width: 640rpx;
-  word-wrap: break-word;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-  margin-top: 75rpx;
-  margin-bottom: 20rpx;
+  width: 598rpx;
+  margin: 50rpx auto 0;
 }
 
 .movie .item-word {
-  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+ font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  margin: 76rpx  auto 20rpx;
   font-size: 15px;
-  line-height: 20px;
-  max-height: 350rpx;
-  text-align: center;
-  color: #888;
+  line-height: 25px;
+  max-height: 150px;
+  text-align: left;
+  color: #8a8a8a;
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 6;
   width: 640rpx;
   overflow: hidden;
 }
@@ -150,7 +209,7 @@ page {
 
 .book .info-conainter {
   width: 480rpx;
-  margin: 180rpx auto 20rpx;
+  margin: 160rpx auto 20rpx;
 }
 .book .cover-container {
   position: absolute;
@@ -207,8 +266,8 @@ page {
   font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
   font-size: 15px;
-  line-height: 20px;
-  max-height: 80px;
+  line-height: 25px;
+  max-height: 100px;
   overflow: hidden;
   text-align: left;
   color: #8a8a8a;
@@ -267,6 +326,7 @@ page {
   position: absolute;
   bottom: 5rpx;
   left: 450rpx;
+  width: 280rpx;
   display: block;
   color: #fff;
   font-size: 50rpx;
@@ -279,6 +339,7 @@ page {
   position: absolute;
   left: 450rpx;
   top: 5rpx;
+  width: 280rpx;
   display: block;
   text-align: left;
   font-size: 30rpx;
@@ -318,13 +379,13 @@ page {
   display: block;
   font-size: 15px;
   line-height: 25px;
-  max-height: 200px;
+  max-height: 175px;
   text-align: left;
   color: #8a8a8a;
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 8;
+  -webkit-line-clamp: 7;
 }
 
 .music .editor {

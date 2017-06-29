@@ -31,7 +31,7 @@
   text-align: center;
 }
 .description{
-  font-family: PingFangSC-Regular,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-family: PingFangSC-Thin,-apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   font-size: 12px;
   color: #8a8a8a;
   padding-top: 10rpx;

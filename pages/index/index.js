@@ -26,29 +26,25 @@ Page({
   tap: function (e) {
     var id = e.currentTarget.dataset.id;
     console.log('点击卡片' + id);
-
+    wx.navigateTo({
+      url: '../detail/detail?id=' + id
+    })
   },
   onPullDownRefresh: function (e) {
-    console.log(e);
+    console.log('init')
     var that = this;
     wx.stopPullDownRefresh();
-    that.initData();
+    //that.initData();
   },
-  onReachBottom: function (e) {
-    var that = this;
-    console.log('加载..')
-  },
-  scroll: function (e) {
-    //console.log(e)
-  },initData:function(){
+  initData:function(){
     var that = this;
     var data = [
       {
-        "name": "背影",
-        "time": "1小时前",
+        "name": "大话西游之大圣娶亲",
+        "time": "17小时前",
         "shares": 0,
-        "content": "这时我看见他的背影，我的泪很快地流下来了。我赶紧拭干了泪，怕他看见，也怕别人看见。",
-        "img_url": "https://img3.doubanio.com/lpic/s1006056.jpg",
+        "content": "我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！",
+        "img_url": "https://img3.doubanio.com/view/photo/photo/public/p2002649154.jpg",
         "user": {
           "nickName": "一言",
           "gender": 1,
@@ -57,14 +53,13 @@ Page({
           "city": "Nanjing",
           "id": "5948f60f8d6d81cc72ffa9d8"
         },
-        "type": "book",
+        "type": "word",
         "likes": 0,
-        "author": "朱自清",
-        "views": 1,
+        "author": null,
+        "views": 4,
         "downloads": 0,
-        "id": "595460458d6d810057302356"
-      },
-      {
+        "id": "595385045c497d005cee9727"
+      },{
         "name": "告白气球",
         "time": "1小时前",
         "shares": 0,
@@ -84,7 +79,48 @@ Page({
         "views": 1,
         "downloads": 0,
         "id": "59545ece5c497d005cf54c51"
+      },{
+        "name": "背影",
+        "time": "1小时前",
+        "shares": 0,
+        "content": "这时我看见他的背影，我的泪很快地流下来了。我赶紧拭干了泪，怕他看见，也怕别人看见。",
+        "img_url": "https://img3.doubanio.com/lpic/s1006056.jpg",
+        "user": {
+          "nickName": "一言",
+          "gender": 1,
+          "province": "Jiangsu",
+          "avatarUrl": "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6ra6icibeicqZcnZTtxhWRd2SlgeDzYCfJoXvhveRDq2RsTia0wfBxicYQ5ZaS4r2WYAKxDYmVvn7nNA/0",
+          "city": "Nanjing",
+          "id": "5948f60f8d6d81cc72ffa9d8"
+        },
+        "type": "book",
+        "likes": 0,
+        "author": "朱自清",
+        "views": 1,
+        "downloads": 0,
+        "id": "595460458d6d810057302356"
+      },{
+        "name": "小王子",
+        "time": "1小时前",
+        "shares": 0,
+        "content": "如果你说你在下午四点来，从三点钟开始，我就开始感觉很快乐，时间越临近，我就越来越感到快乐。到了四点钟的时候，我就会坐立不安，我发现了幸福的价值，但是如果你随便什么时候来，我就不知道在什么时候准备好迎接你的心情了",
+        "img_url": "https://img1.doubanio.com/view/photo/large/public/p2218744059.jpg",
+        "user": {
+          "nickName": "一言",
+          "gender": 1,
+          "province": "Jiangsu",
+          "avatarUrl": "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6ra6icibeicqZcnZTtxhWRd2SlgeDzYCfJoXvhveRDq2RsTia0wfBxicYQ5ZaS4r2WYAKxDYmVvn7nNA/0",
+          "city": "Nanjing",
+          "id": "5948f60f8d6d81cc72ffa9d8"
+        },
+        "type": "movie",
+        "likes": 0,
+        "author": null,
+        "views": 1,
+        "downloads": 0,
+        "id": "59545de70ce4630057973219"
       },
+      
       {
         "name": "和平饭店",
         "time": "1小时前",
@@ -106,27 +142,7 @@ Page({
         "downloads": 0,
         "id": "59545e1d5c497d005cf5458b"
       },
-      {
-        "name": "小王子",
-        "time": "1小时前",
-        "shares": 0,
-        "content": "如果你说你在下午四点来，从三点钟开始，我就开始感觉很快乐，时间越临近，我就越来越感到快乐。到了四点钟的时候，我就会坐立不安，我发现了幸福的价值，但是如果你随便什么时候来，我就不知道在什么时候准备好迎接你的心情了",
-        "img_url": "https://img1.doubanio.com/view/photo/large/public/p2218744059.jpg",
-        "user": {
-          "nickName": "一言",
-          "gender": 1,
-          "province": "Jiangsu",
-          "avatarUrl": "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6ra6icibeicqZcnZTtxhWRd2SlgeDzYCfJoXvhveRDq2RsTia0wfBxicYQ5ZaS4r2WYAKxDYmVvn7nNA/0",
-          "city": "Nanjing",
-          "id": "5948f60f8d6d81cc72ffa9d8"
-        },
-        "type": "movie",
-        "likes": 0,
-        "author": null,
-        "views": 1,
-        "downloads": 0,
-        "id": "59545de70ce4630057973219"
-      },
+      
       {
         "name": "这个杀手不太冷",
         "time": "4小时前",
@@ -295,27 +311,7 @@ Page({
         "downloads": 0,
         "id": "5953a3ee0ce4630057924368"
       },
-      {
-        "name": "大话西游之大圣娶亲",
-        "time": "17小时前",
-        "shares": 0,
-        "content": "我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！",
-        "img_url": "https://img3.doubanio.com/view/photo/photo/public/p2002649154.jpg",
-        "user": {
-          "nickName": "一言",
-          "gender": 1,
-          "province": "Jiangsu",
-          "avatarUrl": "http://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTI6ra6icibeicqZcnZTtxhWRd2SlgeDzYCfJoXvhveRDq2RsTia0wfBxicYQ5ZaS4r2WYAKxDYmVvn7nNA/0",
-          "city": "Nanjing",
-          "id": "5948f60f8d6d81cc72ffa9d8"
-        },
-        "type": "movie",
-        "likes": 0,
-        "author": null,
-        "views": 4,
-        "downloads": 0,
-        "id": "595385045c497d005cee9727"
-      },
+      
       {
         "name": "未来告白",
         "time": "17小时前",

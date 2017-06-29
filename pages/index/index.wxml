@@ -23,9 +23,9 @@
   </view>
   <swiper vertical="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="lower">
     <swiper-item class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
-
-      <view class="movie" wx:if="{{item.type == 'movie'}}">
-        <view class="item-cover">
+      <block wx:if="{{item.type == 'word'}}">
+      <view class="word" wx:if="{{item.img_url}}">
+        <view class="item-cover" wx:if="{{item.img_url}}">
           <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
         </view>
         <view class="item-content">
@@ -35,16 +35,33 @@
           <view class="item-word">
             <text>{{item.content}}</text>
           </view>
+
         </view>
-        <view class="item-meta">
-          <view class="meta-container">
-            <view class="userinfo">
-              <view class="avatar">
-                <image src="{{item.user.avatarUrl}}"></image>
-              </view>
-              <view class="nickname">{{item.user.nickName}}</view>
-            </view>
-            <view class="time">{{item.time}}</view>
+      </view>
+      <view class="word no-image" wx:if="{{!item.img_url}}">
+        <view class="item-content">
+          <view class="item-title">
+            <text>{{item.name}}</text>
+          </view>
+          <view class="item-word">
+            <text>{{item.content}}</text>
+          </view>
+
+        </view>
+      </view>
+      </block>
+
+      <view class="movie" wx:if="{{item.type == 'movie'}}">
+        <view class="item-cover">
+          <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
+        </view>
+        <view class="item-content">
+
+          <view class="item-word">
+            <text>{{item.content}}</text>
+          </view>
+          <view class="item-title">
+            <text>——《{{item.name}}》</text>
           </view>
         </view>
       </view>
@@ -54,38 +71,37 @@
         <view class="cover-container">
           <image class="cover" src="{{item.img_url}}" mode="aspectFill" />
         </view>
-        <view class="book-content">
+
         <view class="info-conainter">
           <view class="block"></view>
           <view class="title">{{item.name}}</view>
           <view class="division">╱</view>
           <view class="author">作者：{{item.author}}</view>
-          <view class="text">{{item.content}}{{item.content}}</view>
-        </view>
+          <view class="text">{{item.content}}</view>
         </view>
       </view>
 
       <view class="music" wx:elif="{{item.type == 'music'}}">
         <view class="banner">
-        <view class="banner-inner" style="background-image: url({{item.img_url}});"></view>
-        <view class="banner-mask"></view>
-        <view class="title">{{item.name}}</view>
-      </view>
-
-      <view class="content-body">
-        <view class="author">
-          <text>{{item.author}}</text>
+          <view class="banner-inner" style="background-image: url({{item.img_url}});"></view>
+          <view class="banner-mask"></view>
+          <view class="title">{{item.name}}</view>
         </view>
-        <view class="info-container">
-          <view class="lyric-contaner" >
-           <text class="line">{{item.content}}{{item.content}}</text>
+
+        <view class="content-body">
+          <view class="author">
+            <text>{{item.author}}</text>
           </view>
-        </view>
+          <view class="info-container">
+            <view class="lyric-contaner">
+              <text class="line">{{item.content}}</text>
+            </view>
+          </view>
 
-      </view>
-      <view class="cover-container">
-        <image class="cover" src="{{item.img_url}}" mode="aspectFill" />
-      </view>
+        </view>
+        <view class="cover-container">
+          <image class="cover" src="{{item.img_url}}" mode="aspectFill" />
+        </view>
       </view>
 
     </swiper-item>

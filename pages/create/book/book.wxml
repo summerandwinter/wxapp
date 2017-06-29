@@ -33,7 +33,7 @@
         <view class="division">╱</view>
         <view class="author">作者：{{author}}</view>
         <view class="editor">
-          <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" />
+          <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" auto-height="true" bindinput="input"/>
         </view>
       </view>
 

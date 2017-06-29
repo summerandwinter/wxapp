@@ -23,6 +23,10 @@ Page({
     uploader:{hidden:false},
     preview:{hidden:true}
   },
+  input: function (e) {
+    var that = this;
+    that.setData({ "content": e.detail.value });
+  },
   preview: function (e) {
     var that = this;
     var data = {};
@@ -76,7 +80,7 @@ Page({
     card.name = title;
     card.content = that.data.content;
     card.img_url = url;
-    card.db_num = app.book.id;
+    card.db_num = parseInt(app.book.id);
     card.extraData = JSON.stringify(app.book);
     console.log(JSON.stringify(card));
     AV.Cloud.run('makeBook', card).then(function (data) {

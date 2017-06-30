@@ -1,16 +1,8 @@
-<!--card.wxml-->
+<import src="/template.wxml"/>
+<!-- loadding start -->
+<template is="loader" data="{{loading}}"/>
+<!-- loadding end -->
 <view class="container">
-  <view class="data-loading" hidden="{{loading.hidden}}">
-    <view class="loading-container">
-      <view class="sk-wave">
-        <view class="sk-rect sk-rect1"></view>
-        <view class="sk-rect sk-rect2"></view>
-        <view class="sk-rect sk-rect3"></view>
-        <view class="sk-rect sk-rect4"></view>
-        <view class="sk-rect sk-rect5"></view>
-      </view>
-    </view>
-  </view>
   <view class="notfound notfound-line" hidden="{{notfound.hidden}}">
     <view class="notfound-tips">{{notfound.tips}}</view>
   </view>

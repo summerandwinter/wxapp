@@ -1,4 +1,7 @@
-<!--selection.wxml-->
+<import src="/template.wxml"/>
+<!-- loadding start -->
+<template is="loader" data="{{loading}}"/>
+<!-- loadding end -->
 <view class="container">
   <!-- seearch bar start-->
   <view class="search-container">
@@ -18,19 +21,6 @@
     </view>
   </view>
   <!-- seearch bar end-->
-  <!-- loadding start -->
-  <view class="data-loading" hidden="{{loading.hidden}}">
-    <view class="loading-container">
-      <view class="sk-wave">
-        <view class="sk-rect sk-rect1"></view>
-        <view class="sk-rect sk-rect2"></view>
-        <view class="sk-rect sk-rect3"></view>
-        <view class="sk-rect sk-rect4"></view>
-        <view class="sk-rect sk-rect5"></view>
-      </view>
-    </view>
-  </view>
-  <!-- loadding end -->
   <!-- search content start -->
   <view class="content" hidden="{{info.hidden}}">
     <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tapSearch" data-index="{{index}}"  data-id="{{item.id}}">

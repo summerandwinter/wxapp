@@ -3,15 +3,6 @@ page {
   background-color: #fff;
 }
 
-.container {
-  padding: 0;
-  margin:0;
-  background-color: #fff;
-  box-sizing: border-box;
-  min-height: 100%;
-  font-size: 32rpx;
-  font-family: -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
-}
 
 
 .content {

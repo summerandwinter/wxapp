@@ -1,16 +1,8 @@
-<!--selection.wxml-->
+<import src="/template.wxml"/>
+<!-- loadding start -->
+<template is="loader" data="{{loading}}"/>
+<!-- loadding end -->
 <view class="container">
-  <view class="data-loading" hidden="{{loading.hidden}}">
-    <view class="loading-container">
-      <view class="sk-wave">
-        <view class="sk-rect sk-rect1"></view>
-        <view class="sk-rect sk-rect2"></view>
-        <view class="sk-rect sk-rect3"></view>
-        <view class="sk-rect sk-rect4"></view>
-        <view class="sk-rect sk-rect5"></view>
-      </view>
-    </view>
-  </view>
   <view class="creater" hidden="{{creater.hidden}}">
     <form bindsubmit="formSubmit" report-submit="true">
       <view class="page-section">

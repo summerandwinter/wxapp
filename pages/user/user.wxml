@@ -1,17 +1,8 @@
-
-<!--user.wxml-->
+<import src="/template.wxml"/>
+<!-- loadding start -->
+<template is="loader" data="{{loading}}"/>
+<!-- loadding end -->
 <view class="container">
-  <view class="data-loading" hidden="{{loading.hidden}}">
-    <view class="loading-container">
-      <view class="sk-wave">
-        <view class="sk-rect sk-rect1"></view>
-        <view class="sk-rect sk-rect2"></view>
-        <view class="sk-rect sk-rect3"></view>
-        <view class="sk-rect sk-rect4"></view>
-        <view class="sk-rect sk-rect5"></view>
-      </view>
-    </view>
-  </view>
   <scroll-view scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltolower="upper" bindscrolltolower="lower">
     <view class="info">
       <view class="userinfo">

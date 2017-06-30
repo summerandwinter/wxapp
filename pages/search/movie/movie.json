@@ -1,7 +1,5 @@
 {
   "navigationBarBackgroundColor": "#ffffff",
   "navigationBarTextStyle": "black",
-  "navigationBarTitleText": "选择电影",
-  "backgroundColor": "#eeeeee",
-  "backgroundTextStyle": "light"
+  "navigationBarTitleText": "选择电影"
 }

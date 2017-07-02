@@ -7,6 +7,7 @@ var app = getApp()
 Page({
   data: {
     id: null,
+    style:"",
     slogan: app.globalData.slogan,
     shareBtn: wx.canIUse && wx.canIUse('button.open-type.share'),
     loading: {
@@ -30,7 +31,42 @@ Page({
       urls: [that.data.card.preview]
     })
   }
-  ,
+  ,loaded: function(e){
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res);
+        var img_w = e.detail.width;
+        var img_h = e.detail.height;
+        var win_w = res.windowWidth;
+        var win_h = res.windowHeight;
+        var box_w = win_w*0.8;
+        var box_h = win_h*0.8;
+        var width = win_w;
+        var height = win_h;
+        var left = 0;
+        var top = 0;
+        if (box_w / box_h>img_w/img_h){
+          console.log("height fixed");
+          width = img_w * (box_h/img_h)
+          height = box_h;
+          left = (win_w-width)/2;
+          top = (win_h-height)/2;
+        }else{
+          console.log("width fixed");
+          height = img_h * (box_w/img_w);
+          width = box_w;
+          left = (win_w - width) / 2;
+          top = (win_h - height) / 2;
+        }
+        var style = "width:"+width+"px;height:"+height+"px;left:"+left+"px;top:"+top+"px;";
+        console.log(style);
+        that.setData({"style":style});
+        
+      }
+    })
+    console.log(e);
+  },
   doLike: function(){
     var that = this;
     var likes = that.data.card.likes;

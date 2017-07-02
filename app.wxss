@@ -1,11 +1,11 @@
 /**app.wxss**/
 @font-face {
   font-family: 'iconfont';  /* project id 295262 */
-  src: url('//at.alicdn.com/t/font_vw523l5tarjdobt9.eot');
-  src: url('//at.alicdn.com/t/font_vw523l5tarjdobt9.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_vw523l5tarjdobt9.woff') format('woff'),
-  url('//at.alicdn.com/t/font_vw523l5tarjdobt9.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_vw523l5tarjdobt9.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_3kap45epztwqaor.eot');
+  src: url('//at.alicdn.com/t/font_3kap45epztwqaor.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_3kap45epztwqaor.woff') format('woff'),
+  url('//at.alicdn.com/t/font_3kap45epztwqaor.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_3kap45epztwqaor.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family:"iconfont" !important;
@@ -27,6 +27,7 @@
 .icon-camera:before { content: "\e62a"; }
 .icon-play:before { content: "\e653"; }
 .icon-stop:before { content: "\e62f"; }
+.icon-delete:before { content: "\e617"; }
 page {
   background-color: #fff;
 }
@@ -234,6 +235,8 @@ page {
     opacity: 1;
   }
 }
+
+
 
 /** 搜索框 **/
 .search-container {

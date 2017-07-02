@@ -6,12 +6,12 @@
   top: 0;
   height: 100%;
   width: 100%;
-  background: #eee;
+  background: #fff;
   white-space: nowrap;
 }
 
 .item {
-  background-color: #efefef;
+  background-color: #fff;
   width: 100%;
   display: inline-block;
   height: 100%;
@@ -27,6 +27,7 @@
   margin: 0;
   padding: 0;
   border: 0;
+  box-shadow: 0px 0px 50px #ccc;
 }
 
 .toolbar {
@@ -41,9 +42,9 @@
 .iconfont {
   display: inline-block;
   position: relative;
-  font-size: 58rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  font-size: 25px;
+  height: 34px;
+  line-height: 34px;
 }
 
 button {
@@ -83,20 +84,20 @@ button::after {
 .like-nummber {
   position: absolute;
   top: 0rpx;
-  left: 60rpx;
-  font-size: 38rpx;
+  left: 28px;
+  font-size: 16px;
   display: inline-block;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 34px;
+  line-height: 34px;
 }
 .share-nummber {
   position: absolute;
   top: 0rpx;
-  left: 60rpx;
-  font-size: 38rpx;
+  left: 28px;
+  font-size: 16px;
   display: inline-block;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 34px;
+  line-height: 34px;
 }
 .toolbar-item {
   flex: 1;

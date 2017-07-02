@@ -30,18 +30,6 @@ Page({
       url: '../detail/detail?id=' + id
     })
   },
-  touchstart: function (e) {
-
-  },
-  touchmove: function (e) {
-    
-  },
-  touchcancel: function (e) {
-
-  },
-  touchend: function (e) {
-
-  },
   onPullDownRefresh: function (e) {
     console.log(e);
     var that = this;
@@ -53,13 +41,10 @@ Page({
     console.log('加载第' + that.data.info.page + '页')
     this.loadData();
   },
-  scroll: function (e) {
-    //console.log(e)
-  },
   loadData: function () {
     var that = this;
     if (that.data.info.hasMore) {
-      if (!that.data.isLoading) {
+      if (!that.data.isLoading && that.data.loading.hidden) {
         that.setData({ 'isLoading': true });
         var page = that.data.info.page;
         var data = { 'page': page }

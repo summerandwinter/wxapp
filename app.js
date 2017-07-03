@@ -9,7 +9,7 @@ App({
       appKey: 'QAwTrD7mT1YVP60T8kdX8xwI',
     });
     var that = this;
-    //that.login();
+    that.login();
     if (data && data.scene && data.scene.toLocaleString.length == 24) {
       wx.navigateTo({
         url: 'pages/detail/detail?id=' + data.scene.toLocaleString

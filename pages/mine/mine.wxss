@@ -2,7 +2,7 @@
 
 .content {
   height: 100%;
-  background: #efefef;
+  background: #f4f4f4;
 }
 
 .banner {
@@ -33,7 +33,7 @@
 }
 
 .work {
-  background-color: #efefef;
+  background-color: #f4f4f4;
 }
 
 .flex-wrp {
@@ -133,7 +133,21 @@
 .options {
   width: 30px;
 }
-
+.service-closed{
+  position: fixed;
+  background-color: #fff;
+  font-family: PingFangSC-Regular, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  color: #8a8a8a;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .delete {
   position: absolute;
   right: 10px;

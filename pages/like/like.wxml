@@ -1,6 +1,6 @@
-<import src="/template.wxml"/>
+<import src="/template.wxml" />
 <!-- loadding start -->
-<template is="loader" data="{{loading}}"/>
+<template is="loader" data="{{loading}}" />
 <!-- loadding end -->
 <view class="container">
   <view class="nav" wx:if="{{cates.length > 0}}">
@@ -14,25 +14,118 @@
     </view>
   </view>
   <view scroll-y="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltoupper="upper" bindscrolltolower="lower">
-    <view class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
-      <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
-      <text class="item-title">{{item.name}}</text>
-      <text class="item-word">{{item.content}}</text>
-      <view class="item-meta">
-       <view class="meta-container">
-        <view class="userinfo">
-         <view>
-         <image class="avatar" src="{{item.user.avatarUrl}}"></image>
-         </view>
-         <view class="nickname">{{item.user.nickName}}</view>
+    <view class="item {{item.deleteAnimation}}" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
+      <view class="user-meta">
+        <view class="user-container">
+          <view class="userinfo">
+            <view class="avatar">
+              <image src="{{item.user.avatarUrl}}"></image>
+            </view>
+            <view class="extra-info">
+              <view class="nickname">{{item.user.nickName}}</view>
+            </view>
+          </view>
+          <view class="time">{{item.time}}</view>
         </view>
-        <view class="time">{{item.time}}</view>
+      </view>
+      <view class="music" wx:if="{{item.type=='music'}}">
+        <view class="cover">
+          <image src="{{item.img_url}}" background-size="cover"></image>
         </view>
+        <view class="info">
+          <view class="meta-container">
+            <view class="meta">
+              <text class="title">{{item.name}}</text>
+              <text class="author">{{item.author}}</text>
+            </view>
+            <view class="options"></view>
+          </view>
+          <view class="info-content">
+            <text class="text">{{item.content}}</text>
+          </view>
+          <view class="delete" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">删除</view>
+        </view>
+      </view>
+
+      <view class="book" wx:if="{{item.type=='book'}}">
+        <view class="cover">
+          <image src="{{item.img_url}}" background-size="cover"></image>
+        </view>
+        <view class="info">
+          <view class="meta-container">
+            <view class="meta">
+              <text class="title">{{item.name}}</text>
+              <text class="author">作者：{{item.author}}</text>
+            </view>
+            <view class="options"></view>
+          </view>
+          <view class="info-content">
+            <text class="text">{{item.content}}</text>
+          </view>
+         <view class="delete" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">删除</view>
+        </view>
+      </view>
+
+
+      <view class="movie" wx:if="{{item.type=='movie'}}">
+        <view class="info">
+          <view class="meta-container">
+            <view class="meta">
+              <text class="title">{{item.name}}</text>
+            </view>
+            <view class="options"></view>
+          </view>
+          <view class="info-content">
+            <text class="text">{{item.content}}</text>
+          </view>
+          <view class="delete" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">删除</view>
+        </view>
+        <view class="cover">
+          <image src="{{item.img_url}}" background-size="cover"></image>
+        </view>
+      </view>
+
+
+      <view class="word" wx:if="{{item.type=='word'}}">
+        <block wx:if="{{item.img_url!=''}}">
+          <view class="info">
+            <view class="meta-container">
+              <view class="meta" wx:if="{{item.name}}">
+                <text class="title">{{item.name}}</text>
+              </view>
+              <view class="options"></view>
+            </view>
+            <view class="info-content">
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="delete" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">删除</view>
+          </view>
+          <view class="cover" wx:if="{{item.img_url!=''}}">
+            <image src="{{item.img_url}}" background-size="cover"></image>
+          </view>
+        </block>
+        <block wx:if="{{item.img_url==''}}">
+          <view class="info nopic">
+            <view class="meta-container">
+              <view class="meta" wx:if="{{item.name}}">
+                <text class="title">{{item.name}}</text>
+              </view>
+              <view class="options"></view>
+            </view>
+            <view class="info-content">
+              <text class="text">{{item.content}}</text>
+            </view>
+            <view class="delete" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">删除</view>
+          </view>
+          <view class="cover" wx:if="{{item.img_url!=''}}">
+            <image src="{{item.img_url}}" background-size="cover"></image>
+          </view>
+        </block>
       </view>
     </view>
     <view class="nodata nodata-line" hidden="{{!nodata}}">
-        <view class="nodata-tips">还没有喜欢的作品</view>
-      </view>
+      <view class="nodata-tips">还没有喜欢的作品</view>
+    </view>
     <view class="loadmore" hidden="{{!isLoading}}">
       <view class="loadmore-loading" style=""></view>
       <view class="loadmore-tips">正在加载</view>

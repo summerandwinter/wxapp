@@ -1,6 +1,10 @@
 <import src="/template.wxml" />
 <!-- loadding start -->
 <template is="loader" data="{{loading}}" />
+
+<view class="service-closed" hidden="{{closed.hidden}}">
+<view class="closed-message">打烊了</view>
+</view>
 <!-- loadding end -->
 <view class="container">
   <view scroll-y="true" class="content" hidden="{{info.hidden}}" bindscrolltoupper="upper" bindscrolltolower="lower">

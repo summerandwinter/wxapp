@@ -31,6 +31,52 @@ Page({
       url: '../detail/detail?id=' + id
     })
   },
+  delete: function (e) {
+    var id = e.currentTarget.dataset.id;
+    var index = e.currentTarget.dataset.index;
+    var that = this;
+    var list = that.data.info.list;
+
+    /*
+   list[index].deleteAnimation = "delete-animation";
+   that.setData({ "info.list": list })
+   setTimeout(function () {
+     list.splice(index, 1);
+     //that.setData({ "info.list": list })
+   }.bind(this), 1100)
+  */
+    var param = { 'cid': id, 'uid': app.globalData.user.objectId }
+    AV.Cloud.run('dislike', param).then(function (data) {
+      console.log(data)
+      if (data.code == 200) {
+        var animation = wx.createAnimation({
+          duration: 1000,
+          timingFunction: 'ease',
+        })
+
+        list[index].deleteAnimation = "delete-animation";
+        that.setData({ "info.list": list })
+        setTimeout(function () {
+          list.splice(index, 1);
+          that.setData({ "info.list": list })
+        }.bind(this), 1100)
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: data.message,
+        })
+      }
+    }, function (err) {
+      wx.showModal({
+        title: '提示',
+        content: '网络错误，请稍后重试',
+      })
+    });
+
+
+    console.log(id);
+    console.log(index);
+  },
   onPullDownRefresh: function (e) {
     console.log(e);
     var that = this;
@@ -51,7 +97,7 @@ Page({
       if (!that.data.isLoading) {
         that.setData({ 'isLoading': true });
         var page = that.data.info.page;
-        var data = { 'page': page, 'id':uid }
+        var data = { 'page': page, 'id': uid }
         AV.Cloud.run('likes', data).then(function (result) {
           // 调用成功，得到成功的应答 data
           console.log(result)
@@ -98,7 +144,7 @@ Page({
     }
     that.setData(initParam);
     var page = that.data.info.page;
-    var data = { 'page': page ,'id':uid}
+    var data = { 'page': page, 'id': uid }
     AV.Cloud.run('likes', data).then(function (result) {
       // 调用成功，得到成功的应答 data
       console.log(result)
@@ -134,7 +180,7 @@ Page({
     console.log(option.uid);
     var uid = option.uid;
     var that = this;
-    that.setData({'uid':uid})
+    that.setData({ 'uid': uid })
     //数据加载
     this.initData();
   },

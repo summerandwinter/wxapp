@@ -9,6 +9,9 @@ Page({
   data: {
     userInfo: null,
     slogan: app.globalData.slogan,
+    closed:{
+      hidden:true
+    },
     loading: {
       hidden: false
     },
@@ -29,23 +32,39 @@ Page({
     },
     nodata: false,
     isLoading: false
-  },delete: function(e){
+  },
+  delete: function(e){
     var id = e.currentTarget.dataset.id;
     var index = e.currentTarget.dataset.index;
     var that = this;
     var list = that.data.info.list;
+    var param = { 'cid': id, 'uid': app.globalData.user.objectId }
+    AV.Cloud.run('delete', param).then(function(data){
+      if(data.code == 200){
+        var animation = wx.createAnimation({
+          duration: 1000,
+          timingFunction: 'ease',
+        })
+
+        list[index].deleteAnimation = "delete-animation";
+        that.setData({ "info.list": list })
+        setTimeout(function () {
+          list.splice(index, 1);
+          that.setData({ "info.list": list })
+        }.bind(this), 1100)
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: data.message,
+        })
+      }
+    },function(err){
+      wx.showModal({
+        title: '提示',
+        content: '网络错误，请稍后重试',
+      })
+    });
     
-    var animation = wx.createAnimation({
-      duration: 1000,
-      timingFunction: 'ease',
-    })
-  
-    list[index].deleteAnimation = "delete-animation";
-    that.setData({ "info.list": list })
-    setTimeout(function () {
-      list.splice(index, 1);
-      that.setData({ "info.list": list })
-    }.bind(this), 1100)
     
     console.log(id);
     console.log(index);
@@ -187,7 +206,7 @@ Page({
       console.log('no more data');
     }
   },
-  initData: function () {
+  initData2: function () {
     var that = this;
     var initParam = {
       loading: {
@@ -245,7 +264,7 @@ Page({
 
 
   },
-  initData2: function () {
+  initData: function () {
     var that = this;
     var initParam = {
       loading: {
@@ -315,7 +334,13 @@ Page({
       }
 
     }, function (err) {
-      // 处理调用失败
+       // 处理调用失败
+      console.log(err.code);
+      if(err.code == -1){
+        console.log('closed');
+        that.setData({'closed.hidden':false})
+      }
+     
     });
 
 

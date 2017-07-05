@@ -21,6 +21,7 @@ Page({
       count: 1,
       success: function (res) {
         console.log(res)
+        console.log(res.tempFilePaths[0].split('//')[1])
         that.setData({
           imageUrl: res.tempFilePaths,
           'preview.hidden': false,
@@ -59,6 +60,7 @@ Page({
       wx.showModal({ title: '提示', content: '内容不能为空' })
       return;
     }
+   
     wx.showLoading({
       title: '制作中',
     })
@@ -70,7 +72,7 @@ Page({
     card.formId = formId;
     card.template = parseInt(that.data.tid);
     console.log(card)
-    new AV.File('file-name', {
+    new AV.File(data.img_url.split('//')[1].toLowerCase(), {
       blob: {
         uri: data.img_url,
       },
@@ -78,6 +80,7 @@ Page({
       console.log(file);
       card.img_url = file.url();
       card.file = file.id;
+      return;
       AV.Cloud.run('maker', card).then(function (data) {
         // 调用成功，得到成功的应答 data
         console.log(data)
@@ -114,6 +117,7 @@ Page({
     if (option.id) {
       that.setData({ tid: option.id })
     }
+    
   },
   onReady: function () {
     console.log('生命周期:maker-ready');

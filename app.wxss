@@ -30,6 +30,9 @@
 .icon-delete:before { content: "\e617"; }
 page {
   background-color: #fff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
 }
 
 .container {

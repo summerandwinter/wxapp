@@ -21,7 +21,7 @@ page {
   display: flex;
   flex-direction: row; /*决定主轴的方向（即项目的排列方向）。 水平方向*/
   flex-wrap: wrap; /*定义，如果一条轴线排不下，如何换行*/
-  justify-content: flex-start; /* 定义了项目在主轴上的对齐方式 */
+  justify-content: space-between; /* 定义了项目在主轴上的对齐方式 */
   align-items: baseline; /* 项目在交叉轴上如何对齐 */
   align-content: flex-start; /* 多根轴线的对齐方式 */
 }
@@ -32,12 +32,7 @@ page {
   margin-bottom: 10rpx;
 
 }
-.item:nth-child(odd){
-  margin-left: 0rpx;
-}
-.item:nth-child(even){
-  margin-left: 10rpx;
-}
+
 .item-photo {
   width: 370rpx;
   height: 370rpx;

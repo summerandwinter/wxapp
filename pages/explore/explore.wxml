@@ -98,11 +98,9 @@
         </view>
 
         <view class="info-conainter">
-          <view class="block"></view>
-          <view class="title">{{item.name}}</view>
-          <view class="division">╱</view>
-          <view class="author">作者：{{item.author}}</view>
+          
           <view class="text">{{item.content}}</view>
+          <view class="title">——{{item.author}}·{{item.name}}</view>
         </view>
         <view class="item-meta">
           <view class="meta-container">

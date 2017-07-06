@@ -112,7 +112,7 @@
 }
 .word .item-cover {
   width: 750rpx;
-  height: 500rpx;
+  height: 450rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -120,7 +120,7 @@
 
 .word .item-cover image {
   width: 100%;
-  height: 500rpx;
+  height: 450rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -145,16 +145,16 @@
 .word .item-word {
  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
   display: block;
-  margin: 0rpx  auto 20rpx;
+  margin: 0rpx  auto 60rpx;
   font-size: 15px;
   line-height: 25px;
-  max-height: 150px;
+  max-height: 100px;
   text-align: left;
   color: #8a8a8a;
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
+  -webkit-line-clamp: 4;
   width: 640rpx;
   overflow: hidden;
 }
@@ -171,7 +171,7 @@
 
 .movie .item-cover {
   width: 750rpx;
-  height: 500rpx;
+  height: 450rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -179,7 +179,7 @@
 
 .movie .item-cover image {
   width: 100%;
-  height: 500rpx;
+  height: 450rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -197,7 +197,7 @@
   font-size: 15px;
   text-align: right;
   line-height: 25px;
-  width: 598rpx;
+  width: 640rpx;
   margin: 50rpx auto 0;
 }
 
@@ -220,50 +220,6 @@
 
 
 
-.movie .meta-container {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  padding-bottom: 16px;
-}
-
-.movie .userinfo {
-  height: 16px;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.movie .avatar {
-  width: 16px;
-  height: 16px;
-}
-
-.movie .avatar image {
-  width: 16px;
-  height: 16px;
-}
-
-.movie .nickname {
-  width: 300rpx;
-  color: #aaa;
-  padding-left: 6px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  line-height: 16px;
-}
-
-.movie .time {
-  flex: 1;
-  text-align: right;
-  color: #aaa;
-}
 
 /**book**/
 .book{
@@ -278,7 +234,7 @@
 }
 
 .book .info-conainter {
-  width: 480rpx;
+  width: 640rpx;
   margin: 160rpx auto 40px;
 }
 .book .cover-container {
@@ -287,7 +243,6 @@
   top: 180rpx;
   width: 210rpx;
   height: 308rpx;
-  box-shadow: 2px 2px 5px #888;
 }
 
 .book .cover {
@@ -295,42 +250,9 @@
   height: 308rpx;
 }
 
-.book .creater {
-  width: 750rpx;
-  margin: 0 auto;
-  min-height: 100%;
-  background: #fff;
-}
 
 
 
-.book .block {
-  background-color: #888;
-  width: 51rpx;
-  height: 21rpx;
-}
-
-.book .division {
-  font-size: 35rpx;
-  padding: 10rpx 0;
-}
-
-.book .title {
-  display: block;
-  color: #000;
-  font-size: 21px;
-  text-align: left;
-  line-height: 25px;
-  padding-top: 12px;
-}
-
-.book .author {
-  display: block;
-  text-align: left;
-  font-size: 15px;
-  line-height: 25px;
-  color: #8a8a8a;
-}
 
 .book .text {
   font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
@@ -338,16 +260,26 @@
   font-size: 15px;
   line-height: 25px;
   max-height: 100px;
+  margin-bottom: 20px;
   overflow: hidden;
   text-align: left;
   color: #8a8a8a;
   word-wrap: break-word;
-  width: 480rpx;
+  width: 640rpx;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 4;
 }
-
+.book .title {
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  display: block;
+  color: #8a8a8a;
+  font-size: 15px;
+  text-align: right;
+  line-height: 25px;
+  width: 640rpx;
+  margin: 50rpx auto 0;
+}
 /** music ***/
 
 .music .banner {
@@ -375,7 +307,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .music .cover-container {
@@ -437,7 +369,7 @@
 }
 
 .music .lyric-contaner {
-  width: 550rpx;
+  width: 640rpx;
   margin: 0;
   padding: 0;
   border: 0;
@@ -449,13 +381,13 @@
   display: block;
   font-size: 15px;
   line-height: 25px;
-  max-height: 175px;
+  max-height: 100px;
   text-align: left;
   color: #8a8a8a;
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 7;
+  -webkit-line-clamp: 4;
 }
 
 .music .editor {

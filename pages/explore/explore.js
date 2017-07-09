@@ -72,7 +72,7 @@ Page({
       console.log('no more data');
     }
   },
-  initData:function(){
+  initData2:function(){
    var that = this;
    var data = [
 
@@ -563,7 +563,7 @@ Page({
      'info.hidden': false
    })
   },
-  initData3: function () {
+  initData: function () {
     var that = this;
     var initParam = {
       loading: {
@@ -601,7 +601,7 @@ Page({
       // 处理调用失败
     });
   },
-  initData2: function () {
+  initData3: function () {
     var that = this;
     var result = {
       "data": [

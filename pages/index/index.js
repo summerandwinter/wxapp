@@ -502,8 +502,14 @@ Page({
       // 处理调用失败
     });
   },
-  onLoad: function () {
+  onLoad: function (options) {
     console.log('生命周期:explore-load')
+    var scene = options.scene
+    console.log('options')
+    console.log(options)
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + scene
+    })
     var that = this;
     this.initData();
   },

@@ -3,6 +3,7 @@ const AV = require('./utils/av-weapp-min.js');
 const Movie = require('./model/movie');
 App({
   onLaunch: function (data) {
+    console.log('data')
     console.log(data)
     AV.init({
       appId: '7C7MfP24LboNSLeOnbh112nT-gzGzoHsz',
@@ -10,16 +11,6 @@ App({
     });
     var that = this;
     that.login();
-    if (data && data.scene && data.scene.toLocaleString.length == 24) {
-      wx.navigateTo({
-        url: 'pages/detail/detail?id=' + data.scene.toLocaleString
-      })
-    }
-    if (data && data.query && data.query.scene && data.query.scene.length == 24) {
-      wx.navigateTo({
-        url: 'pages/detail/detail?id=' + data.query.scene
-      })
-    }
     wx.getSystemInfo({
       success: function (res) {
         console.log(res);

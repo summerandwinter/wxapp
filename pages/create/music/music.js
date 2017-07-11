@@ -8,10 +8,10 @@ Page({
     slogan: 'solgan',
     id: 1003000,
     pid: 0,
-    cover: 'https://y.gtimg.cn/music/photo_new/T002R300x300M000003y8dsH2wBHlo.jpg',
+    cover: '',
     covers:[],
     currentCover: 0,
-    name: '绅士',
+    name: '',
     loading: {
       hidden: false
     },
@@ -25,7 +25,7 @@ Page({
     },
     editor:{hidden:false},
     lyric:{hidden:true},
-    music: { "albumid": 989994, "albummid": "003y8dsH2wBHlo", "albumname": "绅士", "albumname_hilight": "<span class=\"c_tx_highlight\">绅士</span>", "alertid": 11, "chinesesinger": 0, "docid": "10424675487990050362", "grp": [], "interval": 290, "isonly": 0, "lyric": "《是！尚先生》电视剧插曲", "lyric_hilight": "《是！尚先生》电视剧插曲", "msgid": 0, "nt": 597157036, "pay": { "payalbum": 0, "payalbumprice": 0, "paydownload": 0, "payinfo": 0, "payplay": 0, "paytrackmouth": 0, "paytrackprice": 0 }, "preview": { "trybegin": 61502, "tryend": 127959, "trysize": 1064541 }, "pubtime": 1433433600, "pure": 0, "singer": [{ "id": 5062, "mid": "002J4UUk29y8BY", "name": "薛之谦", "name_hilight": "薛之谦", "avatar": { "thumb": "https://y.gtimg.cn/music/photo_new/T001R68x68M000002J4UUk29y8BY.jpg", "medium": "https://y.gtimg.cn/music/photo_new/T001R300x300M000002J4UUk29y8BY.jpg", "high": "https://y.gtimg.cn/music/photo_new/T001R500x500M000002J4UUk29y8BY.jpg" } }], "size128": 4657091, "size320": 11642443, "sizeape": 30841687, "sizeflac": 31815508, "sizeogg": 6447358, "songid": 102425546, "songmid": "001CG3wA3QkuJS", "songname": "绅士", "songname_hilight": "<span class=\"c_tx_highlight\">绅士</span>", "stream": 4, "switch": 603959, "t": 1, "tag": 10, "type": 0, "ver": 0, "vid": "", "cover": { "thumb": "https://y.gtimg.cn/music/photo_new/T002R68x68M000003y8dsH2wBHlo.jpg", "medium": "https://y.gtimg.cn/music/photo_new/T002R300x300M000003y8dsH2wBHlo.jpg", "high": "https://y.gtimg.cn/music/photo_new/T002R500x500M000003y8dsH2wBHlo.jpg" } },
+    music: {  },
     items: [],
     content:'',
     userInfo: {},
@@ -34,9 +34,13 @@ Page({
     uploader: { hidden: false },
     preview: { hidden: true }
   },
+  input: function (e) {
+    var that = this;
+    that.setData({ "content": e.detail.value });
+  },
   bindCheckbox: function (e) {
     /*绑定点击事件，将checkbox样式改变为选中与非选中*/
-
+   
     //拿到下标值，以在items作遍历指示用
     var index = parseInt(e.currentTarget.dataset.index);
     //原始的icon状态
@@ -45,6 +49,16 @@ Page({
     if (type == 'circle') {
       //未选中时
       items[index].type = 'success_circle';
+      var checked = [];
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].type == 'success_circle') {
+          checked.push(items[i].text);
+        }
+      }
+      if (checked.length > 13) {
+        wx.showModal({ title: '提示', content: '最多选择13行歌词' })
+        return;
+      }
     } else {
       items[index].type = 'circle';
     }
@@ -60,6 +74,7 @@ Page({
         checkedValues.push(items[i].text);
       }
     }
+
     console.log(checkedValues);
     // 写回data，供提交到网络
     this.setData({
@@ -209,7 +224,7 @@ Page({
     }
     that.setData({'covers':covers});
     console.log(covers);
-    
+   
     Music.getLyric(that.data.music.songid, that.data.music.songmid,function(data){
       console.log(JSON.stringify(data));
       that.setData({'items':data,'lyric.hidden':false,'editor.hidden':true})
@@ -217,6 +232,7 @@ Page({
       console.log(err)
       that.setData({ 'lyric.hidden': true, 'editor.hidden': false })
     });
+    
     Music.getMusic(that.data.music.songmid,function(data){
       console.log(data)
       var playData = {

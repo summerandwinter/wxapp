@@ -507,9 +507,12 @@ Page({
     var scene = options.scene
     console.log('options')
     console.log(options)
-    wx.navigateTo({
-      url: '/pages/detail/detail?id=' + scene
-    })
+    if (scene && scene.length >0){
+      wx.navigateTo({
+        url: '/pages/detail/detail?id=' + scene
+      })
+    }
+    
     var that = this;
     this.initData();
   },

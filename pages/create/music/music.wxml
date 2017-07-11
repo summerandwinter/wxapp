@@ -36,7 +36,7 @@
         </view>
         <view class="info-container">
           <view class="editor" hidden="{{editor.hidden}}">
-            <textarea name="content" value="{{content}}" class="text" placeholder-class="text-placeholder" placeholder="在这里填入你喜欢歌词" style="height:400rpx;" />
+            <textarea name="content"  class="text" placeholder-class="text-placeholder" placeholder="在这里填入你喜欢歌词" style="height:400rpx;" bindinput="input" />
           </view>
           <view class="lyric-contaner" hidden="{{lyric.hidden}}">
             <view class="lxCheckboxGroup">

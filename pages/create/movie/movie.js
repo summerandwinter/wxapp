@@ -9,8 +9,8 @@ Page({
     id: 3364223,
     pid: 0,
     photo: '',
-    content:'我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！',
-    name:'神奇动物在哪里',
+    content:'',
+    name:'',
     loading: {
       hidden: false
     },
@@ -34,6 +34,60 @@ Page({
   input: function(e){
     var that = this;
     that.setData({"content":e.detail.value});
+  },
+  chooseImageFromList:function(){
+    var that = this
+    wx.chooseImage({
+      sourceType: ['album'],
+      sizeType: ['compressed'],
+      count: 1,
+      success: function (res) {
+        console.log(res)
+        console.log(res.tempFilePaths[0].split('//')[1])
+        new AV.File(res.tempFilePaths[0].split('//')[1].toLowerCase(), {
+          blob: {
+            uri: res.tempFilePaths[0],
+          },
+        }).save().then(function (file) {
+          console.log(file);
+          that.setData({
+            'photo': file.url(),
+            'fileId': file.id,
+            'creater.hidden': false, 'photos.hidden': true, 'preview.hidden': false,
+            'uploader.hidden': true
+          });
+        }).catch(function(err){
+          console.log(err)
+          wx.showModal({ title: '提示', content: '上传图片出错,请稍后重试'})
+        });
+        
+      }
+    })
+  },
+  chooseImage: function () {
+    var that = this
+    wx.chooseImage({
+      sourceType: ['album'],
+      sizeType: ['compressed'],
+      count: 1,
+      success: function (res) {
+        console.log(res)
+        console.log(res.tempFilePaths[0].split('//')[1])
+        new AV.File(res.tempFilePaths[0].split('//')[1].toLowerCase(), {
+          blob: {
+            uri: res.tempFilePaths[0],
+          },
+        }).save().then(function (file) {
+          console.log(file);
+          that.setData({
+            'photo': file.url(),
+            'fileId': file.id,
+            'preview.hidden': false,
+            'uploader.hidden': true
+          })
+        }).catch(console.error);
+      }
+    })
   },
   preview: function (e) {
     var that = this;
@@ -79,6 +133,7 @@ Page({
     card.name = app.movie.title;
     card.content = that.data.content;
     card.img_url = that.data.photo;
+    card.file = that.data.fileId;
     card.db_num = parseInt(app.movie.id);
     card.extraData = JSON.stringify(app.movie);
     console.log(JSON.stringify(card));

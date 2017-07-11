@@ -7,10 +7,10 @@ Page({
     slogan: 'solgan',
     id: 1003000,
     pid: 0,
-    cover: 'https://img3.doubanio.com/lpic/s9026255.jpg',
-    name:'悟空传',
-    author:'今何在',
-    content:'我要这天，再遮不住我眼，要这地，再埋不了我心，要这众生，都明白我意，要那诸佛，都烟消云散！',
+    cover: '',
+    name:'',
+    author:'',
+    content:'',
     loading: {
       hidden: false
     },

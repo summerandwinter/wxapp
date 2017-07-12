@@ -8,7 +8,7 @@
   </view>
   <view style="width: 100%" class="content" hidden="{{content.hidden}}">
     <view class="item" bindtap="tap" data-id="{{card.id}}">
-      <image class="item-photo" src="{{card.preview}}" mode="widthFix" bindload="loaded" style="{{style}}"></image>
+      <image class="item-photo" hidden="{{photo.hidden}}" src="{{card.preview}}" mode="widthFix" bindload="loaded" style="{{style}}"></image>
     </view>
     <view class="toolbar">
       <view class="toolbar-item like-container" bindtap="like">

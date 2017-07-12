@@ -14,6 +14,7 @@ Page({
       hidden: false
     },
     preview: null,
+    photo:{'hidden':true},
     userInfo: {},
     notfound: {
       hidden: true,
@@ -61,7 +62,7 @@ Page({
         }
         var style = "width:"+width+"px;height:"+height+"px;left:"+left+"px;top:"+top+"px;";
         console.log(style);
-        that.setData({"style":style});
+        that.setData({"style":style,'photo.hidden':false});
         
       }
     })

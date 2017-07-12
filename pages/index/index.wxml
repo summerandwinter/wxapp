@@ -1,6 +1,6 @@
-<import src="/template.wxml"/>
+<import src="/template.wxml" />
 <!-- loadding start -->
-<template is="loader" data="{{loading}}"/>
+<template is="loader" data="{{loading}}" />
 <!-- loadding end -->
 <view class="container">
   <view class="nav" wx:if="{{cates.length > 0}}">
@@ -13,34 +13,47 @@
       </block>
     </view>
   </view>
-  <swiper vertical="true" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="lower">
+  <swiper vertical="true" current="{{info.current}}" bindchange="change" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="lower">
+    <swiper-item class="item">
+      <view class="loader-container" hidden="{{!isLoading}}">
+        <view class="loader">
+          <text>L</text>
+          <text>O</text>
+          <text>A</text>
+          <text>D</text>
+          <text>I</text>
+          <text>N</text>
+          <text>G</text>
+        </view>
+      </view>
+    </swiper-item>
     <swiper-item class="item" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
       <block wx:if="{{item.type == 'word'}}">
-      <view class="word" wx:if="{{item.img_url}}">
-        <view class="item-cover" wx:if="{{item.img_url}}">
-          <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
-        </view>
-        <view class="item-content">
-          <view class="item-title">
-            <text>{{item.name}}</text>
+        <view class="word" wx:if="{{item.img_url}}">
+          <view class="item-cover" wx:if="{{item.img_url}}">
+            <image class="item-photo" src="{{item.img_url}}" background-size="cover"></image>
           </view>
-          <view class="item-word">
-            <text>{{item.content}}</text>
-          </view>
+          <view class="item-content">
+            <view class="item-title">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="item-word">
+              <text>{{item.content}}</text>
+            </view>
 
+          </view>
         </view>
-      </view>
-      <view class="word no-image" wx:if="{{!item.img_url}}">
-        <view class="item-content">
-          <view class="item-title">
-            <text>{{item.name}}</text>
-          </view>
-          <view class="item-word">
-            <text>{{item.content}}</text>
-          </view>
+        <view class="word no-image" wx:if="{{!item.img_url}}">
+          <view class="item-content">
+            <view class="item-title">
+              <text>{{item.name}}</text>
+            </view>
+            <view class="item-word">
+              <text>{{item.content}}</text>
+            </view>
 
+          </view>
         </view>
-      </view>
       </block>
 
       <view class="movie" wx:if="{{item.type == 'movie'}}">
@@ -97,14 +110,9 @@
       </view>
 
     </swiper-item>
-
+    <swiper-item class="item">
+      <view>最后一页</view>
+    </swiper-item>
   </swiper>
-  <view class="loadmore" hidden="{{!isLoading}}">
-    <view class="loadmore-loading" style=""></view>
-    <view class="loadmore-tips">正在加载</view>
-  </view>
-  <view class="loadmore loadmore-line" hidden="{{info.hasMore}}">
-    <view class="loadmore-tips">已经到底了</view>
-  </view>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>
 </view>

@@ -110,8 +110,13 @@
       </view>
 
     </swiper-item>
-    <swiper-item class="item">
-      <view>最后一页</view>
+    <swiper-item class="item" bindtap="more">
+      <view class="last-page">
+      <view class="tips">
+      <view class="title">推荐内容看完啦</view>
+      <view class="message">点击查看更多精选内容</view>
+      </view>
+      </view>
     </swiper-item>
   </swiper>
   <view class="slogan" hidden="{{slogan.hidden}}">{{slogan.word}}</view>

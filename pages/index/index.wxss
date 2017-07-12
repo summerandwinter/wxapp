@@ -398,3 +398,25 @@ page {
 .music .text {
   width: 90%;
 }
+
+.last-page{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+
+}
+.last-page .title{
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+.last-page .message{
+  font-family: PingFangSC-Thin, -apple-system-font, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 20px;
+}

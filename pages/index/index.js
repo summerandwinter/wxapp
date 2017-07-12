@@ -23,6 +23,11 @@ Page({
     },
     isLoading: false
   },
+  more: function(e){
+    wx.navigateTo({
+      url: '/pages/selection/selection'
+    })
+  },
   tap: function (e) {
     var id = e.currentTarget.dataset.id;
     console.log('点击卡片' + id);

@@ -52,13 +52,13 @@ Page({
           width = img_w * (box_h/img_h)
           height = box_h;
           left = (win_w-width)/2;
-          top = (win_h-height)/2;
+          top = (win_h-height)/2-17;
         }else{
           console.log("width fixed");
           height = img_h * (box_w/img_w);
           width = box_w;
           left = (win_w - width) / 2;
-          top = (win_h - height) / 2;
+          top = (win_h - height) / 2 -17;
         }
         var style = "width:"+width+"px;height:"+height+"px;left:"+left+"px;top:"+top+"px;";
         console.log(style);

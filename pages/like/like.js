@@ -32,6 +32,7 @@ Page({
     })
   },
   delete: function (e) {
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '确定删除这条信息？',
@@ -39,7 +40,6 @@ Page({
         if (res.confirm) {
           var id = e.currentTarget.dataset.id;
           var index = e.currentTarget.dataset.index;
-          var that = this;
           var list = that.data.info.list;
 
           /*

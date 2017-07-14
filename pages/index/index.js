@@ -45,20 +45,7 @@ Page({
     var that = this;
     console.log(e);
     if (e.detail.current == 0) {
-      var initParam = { loading: { hidden: false }, info: { list: [], hidden: true }, sLoading: false }
-      that.setData(initParam);
-      AV.Cloud.run('index', {}).then(function (result) {
-        // 调用成功，得到成功的应答 data
-        console.log(result)
-        if (result.code == 200) {
-          that.setData({ 'info.list': result.data })
-          setTimeout(() => {
-            that.setData({ 'info.current': 1, 'info.hidden': false, 'loading.hidden': true, 'isLoading': false });
-          }, 3000);
-        }
-      }, function (err) {
-        // 处理调用失败
-      });
+      that.initData()
     }
   },
   change2: function (e) {
@@ -80,6 +67,10 @@ Page({
       });
     }
   },
+  initData2: function () {
+    var that = this;
+    that.setData({ 'info.hidden': false, 'loading.hidden': true });
+  },
   initData: function () {
     var that = this;
     var initParam = { loading: { hidden: false }, info: { list: [], hidden: true }, sLoading: false }
@@ -90,7 +81,7 @@ Page({
       // 调用成功，得到成功的应答 data
       console.log(result)
       if (result.code == 200) {
-        that.setData({ 'info.list': result.data})
+        that.setData({ 'info.list': result.data })
         that.setData({ 'info.current': 1, });
         setTimeout(() => {
           that.setData({ 'info.hidden': false, 'loading.hidden': true });

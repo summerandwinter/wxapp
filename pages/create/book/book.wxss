@@ -89,6 +89,7 @@ page {
   font-size: 30rpx;
   text-align: left;
   color: #8a8a8a;
+  height: 100px;
   word-wrap: break-word;
   width: 480rpx;
 }

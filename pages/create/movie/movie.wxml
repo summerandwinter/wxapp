@@ -17,7 +17,7 @@
       </view>
       
       <view class="page-section">
-        <textarea name="content" value="" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟" style="height:320rpx;" bindinput="input"/>
+        <textarea name="content" value="" class="text" placeholder-class="text-placeholder" placeholder="可以填入你喜欢的电影台词或者是对电影的感悟"  bindinput="input"/>
       </view>
       <view class="page-section">
         <text class="item-title">——《{{name}}》</text>

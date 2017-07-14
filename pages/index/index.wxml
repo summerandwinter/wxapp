@@ -15,15 +15,10 @@
   </view>
   <swiper vertical="true" current="{{info.current}}" bindchange="change" class="content{{cates.length > 0?' withNav':''}}" hidden="{{info.hidden}}" bindscrolltolower="lower">
     <swiper-item class="item">
-      <view class="loader-container" hidden="{{!isLoading}}">
-        <view class="loader">
-          <text>L</text>
-          <text>O</text>
-          <text>A</text>
-          <text>D</text>
-          <text>I</text>
-          <text>N</text>
-          <text>G</text>
+      <view class="first-page">
+        <view class="pull-to-refresh">
+          <view class="tips">下滑刷新</view>
+          <view class="iconfont icon-pull-refresh"></view>
         </view>
       </view>
     </swiper-item>
@@ -112,10 +107,10 @@
     </swiper-item>
     <swiper-item class="item" bindtap="more">
       <view class="last-page">
-      <view class="tips">
-      <view class="title">推荐内容看完啦</view>
-      <view class="message">点击查看更多精选内容</view>
-      </view>
+        <view class="tips">
+          <view class="title">推荐内容看完啦</view>
+          <view class="message">点击查看更多精选内容</view>
+        </view>
       </view>
     </swiper-item>
   </swiper>

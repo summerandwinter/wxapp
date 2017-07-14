@@ -1,4 +1,3 @@
-
 <!--maker.wxml-->
 <view class="container">
   <view class="page-body">
@@ -6,33 +5,38 @@
       <view class="page-section">
         <view class="uploader-box" hidden="{{uploader.hidden}}" bindtap="chooseImage">
           <view class="uploader-input"></view>
-          <view class="uploader-tips">添加图片</view>
+          <view class="uploader-tips">添加图片（可为空）</view>
         </view>
         <view class="image-preview" hidden="{{preview.hidden}}" bindtap="chooseImage">
           <image src="{{imageUrl}}" class="image" mode="aspectFill"></image>
         </view>
       </view>
       <view class="page-section">
-        <input name="name" class="title" placeholder-class="title-placeholder" type="text" placeholder="输入标题（可为空）" />
-        <input name="img_url" type="text" hidden="true" value="{{imageUrl}}" />
+        <input name="name" class="title" placeholder-class="title-placeholder" type="text" placeholder="标题（可为空）" />
+        <input name="img_url" type="text" hidden="true" value="{{img_url}}" />
       </view>
       <view class="page-section">
-        <textarea name="content" class="text" placeholder-class="text-placeholder" placeholder="输入正文" auto-height="true" />
+        <textarea name="content" value="" class="text" placeholder-class="text-placeholder" placeholder="让你念念不忘的文字" style="height:320rpx;" />
+      </view>
+      <view class="page-section">
+        <input name="author" class="author" placeholder-class="author-placeholder" type="text" placeholder="作者/出处（可为空）" />
+
       </view>
       <view class="toolbar">
-         <view class="toolbar-item" bindtap="preview">
-          <view class="iconfont icon-preview"></view>
-          <view class="option-tip">预览</view>
+        <view class="toolbar-item" bindtap="preview">
+          <button class="iconfont icon-preview" form-type="submit" id="preview">
+          <text class="option-tip">预览</text>
+          </button>
         </view>
         <view class="toolbar-item">
-        <button class="iconfont icon-submit" form-type="submit" id="publish">
+          <button class="iconfont icon-submit" form-type="submit" id="publish">
           <text class="option-tip">投稿</text>
-        </button>
+          </button>
         </view>
         <view class="toolbar-item">
-        <button class="iconfont icon-save" form-type="submit" id="save">
+          <button class="iconfont icon-save" form-type="submit" id="save">
           <text class="option-tip">保存</text>
-        </button>
+          </button>
         </view>
       </view>
     </form>

@@ -1,6 +1,7 @@
 /**maker.wxss**/
 page{
   background-color: #fff;
+  
 }
 .page-section {
   margin: 0 40rpx;
@@ -12,7 +13,7 @@ page{
   width: 100%;
   height: 360rpx;
   border-radius: 10rpx;
-  background-color: #dedede;
+  background-color: #fbfbfb;
 }
 
 .uploader-input {
@@ -28,6 +29,7 @@ page{
 }
 
 .uploader-tips {
+  
   position: absolute;
   top: 58%;
   width: 100%;
@@ -49,6 +51,20 @@ page{
 }
 
 .title {
+
+  padding: 0 8rpx;
+  margin-top: 20px;
+  font-size: 20px;
+  color: #bfbfbf;
+  font-weight: 400;
+}
+.title-placeholder {
+  font-size: 24px;
+  color: #bfbfbf;
+  font-weight: 400;
+}
+.author {
+
   padding: 0 8rpx;
   margin-top: 40rpx;
   font-size: 56rpx;
@@ -56,23 +72,26 @@ page{
   font-weight: 400;
 }
 
-.title-placeholder {
-  font-size: 50rpx;
+.author-placeholder {
+  font-size: 12px;
+  text-align: center;
   color: #bfbfbf;
   font-weight: 400;
 }
 
+
+
 .text-placeholder {
-  font-size: 36rpx;
+  font-size: 14px;
   color: #bfbfbf;
   font-weight: 200;
 }
 
 .text {
   padding: 0;
-  width: 100%;
-  margin-top: 40rpx;
-  font-size: 36rpx;
+  width: 90%;
+  margin-top: 20px;
+  font-size: 14px;
   color: #bfbfbf;
   min-height: 360rpx;
 }

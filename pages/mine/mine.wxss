@@ -148,6 +148,15 @@
   justify-content: center;
   align-items: center;
 }
+
+.options{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 60px;
+  width: 60px;
+}
+
 .delete {
   position: absolute;
   right: 10px;

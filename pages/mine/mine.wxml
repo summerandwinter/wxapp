@@ -3,7 +3,7 @@
 <template is="loader" data="{{loading}}" />
 
 <view class="service-closed" hidden="{{closed.hidden}}">
-<view class="closed-message">打烊了</view>
+  <view class="closed-message">打烊了</view>
 </view>
 <!-- loadding end -->
 <view class="container">
@@ -30,7 +30,7 @@
         <view class="notlogin-tips">还没有登录</view>
         <button type="default" bindtap="login">点击登录</button>
       </view>
-      <view class="item {{item.deleteAnimation}}" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}" >
+      <view class="item {{item.deleteAnimation}}" wx:for="{{info.list}}" wx:key="{{id}}" bindtap="tap" data-id="{{item.id}}">
 
         <view class="music" wx:if="{{item.type=='music'}}">
           <view class="cover">
@@ -47,7 +47,9 @@
             <view class="info-content">
               <text class="text">{{item.content}}</text>
             </view>
-            <view class="iconfont icon-delete delete" data-id= "{{item.id}}" data-index="{{index}}" catchtap="delete"></view>
+            <view class="options" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">
+                <view class="iconfont icon-delete delete"></view>
+              </view>
           </view>
         </view>
 
@@ -66,7 +68,9 @@
             <view class="info-content">
               <text class="text">{{item.content}}</text>
             </view>
-            <view class="iconfont icon-delete delete" data-id= "{{item.id}}" data-index="{{index}}" catchtap="delete"></view>
+            <view class="options" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">
+                <view class="iconfont icon-delete delete"></view>
+              </view>
           </view>
         </view>
 
@@ -82,7 +86,9 @@
             <view class="info-content">
               <text class="text">{{item.content}}</text>
             </view>
-            <view class="iconfont icon-delete delete" data-id= "{{item.id}}" data-index="{{index}}" catchtap="delete"></view>
+            <view class="options" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">
+                <view class="iconfont icon-delete delete"></view>
+              </view>
           </view>
           <view class="cover">
             <image src="{{item.img_url}}" background-size="cover"></image>
@@ -102,7 +108,9 @@
               <view class="info-content">
                 <text class="text">{{item.content}}</text>
               </view>
-              <view class="iconfont icon-delete delete" data-id= "{{item.id}}" data-index="{{index}}" catchtap="delete"></view>
+              <view class="options" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">
+                <view class="iconfont icon-delete delete"></view>
+              </view>
             </view>
             <view class="cover" wx:if="{{item.img_url!=''}}">
               <image src="{{item.img_url}}" background-size="cover"></image>
@@ -119,7 +127,9 @@
               <view class="info-content">
                 <text class="text">{{item.content}}</text>
               </view>
-              <view class="iconfont icon-delete delete" data-id= "{{item.id}}" data-index="{{index}}" catchtap="delete"></view>
+              <view class="options" data-id="{{item.id}}" data-index="{{index}}" catchtap="delete">
+                <view class="iconfont icon-delete delete"></view>
+              </view>
             </view>
             <view class="cover" wx:if="{{item.img_url!=''}}">
               <image src="{{item.img_url}}" background-size="cover"></image>

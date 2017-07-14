@@ -34,40 +34,46 @@ Page({
     isLoading: false
   },
   delete: function(e){
-    var id = e.currentTarget.dataset.id;
-    var index = e.currentTarget.dataset.index;
-    var that = this;
-    var list = that.data.info.list;
-    var param = { 'cid': id, 'uid': app.globalData.user.objectId }
-    AV.Cloud.run('delete', param).then(function(data){
-      if(data.code == 200){
-        var animation = wx.createAnimation({
-          duration: 1000,
-          timingFunction: 'ease',
-        })
+    wx.showModal({
+      title: '提示',
+      content: '确定删除这条信息？',
+      success: function (res) {
+        if (res.confirm) {
+          var id = e.currentTarget.dataset.id;
+          var index = e.currentTarget.dataset.index;
+          var that = this;
+          var list = that.data.info.list;
+          var param = { 'cid': id, 'uid': app.globalData.user.objectId }
+          AV.Cloud.run('delete', param).then(function (data) {
+            if (data.code == 200) {
+              var animation = wx.createAnimation({
+                duration: 1000,
+                timingFunction: 'ease',
+              })
 
-        list[index].deleteAnimation = "delete-animation";
-        that.setData({ "info.list": list })
-        setTimeout(function () {
-          list.splice(index, 1);
-          that.setData({ "info.list": list })
-        }.bind(this), 1100)
-      }else{
-        wx.showModal({
-          title: '提示',
-          content: data.message,
-        })
+              list[index].deleteAnimation = "delete-animation";
+              that.setData({ "info.list": list })
+              setTimeout(function () {
+                list.splice(index, 1);
+                that.setData({ "info.list": list })
+              }.bind(this), 1100)
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: data.message,
+              })
+            }
+          }, function (err) {
+            wx.showModal({
+              title: '提示',
+              content: '网络错误，请稍后重试',
+            })
+          });
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
       }
-    },function(err){
-      wx.showModal({
-        title: '提示',
-        content: '网络错误，请稍后重试',
-      })
-    });
-    
-    
-    console.log(id);
-    console.log(index);
+    })
   },
   tap: function (e) {
     var id = e.currentTarget.dataset.id;

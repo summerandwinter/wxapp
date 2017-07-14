@@ -2,6 +2,7 @@
 //获取应用实例
 var util = require('../../utils/util.js');
 const AV = require('../../utils/av-weapp-min.js');
+var Base64 = require('../../utils/base64.js')
 const Card = require('../../model/card');
 
 var app = getApp()
@@ -21,20 +22,46 @@ Page({
       count: 1,
       success: function (res) {
         console.log(res)
-        console.log(res.tempFilePaths[0].split('//')[1])
         that.setData({
           imageUrl: res.tempFilePaths,
           'preview.hidden': false,
           'uploader.hidden': true
         })
+        new AV.File(res.tempFilePaths[0].split('//')[1].toLowerCase(), {
+          blob: {
+            uri: res.tempFilePaths[0],
+          },
+        }).save().then(function (file) {
+          console.log(file);
+          that.setData({ 'img_url': file.url(), 'file': file.id });
+        }).catch(function () {
+          console.log(err)
+          wx.showModal({ title: '提示', content: '上传图片出错,请稍后重试' })
+        });
       }
     })
   },
-  previewImage: function (e) {
-    var current = e.target.dataset.src
+  preview: function (res) {
+    var that = this;
+    var data = {};
+    var url = res.img_url;
+    var title = res.name;
+    var content = res.content;
+    var author = res.author;
+    var template = res.template;
+
+    data['url'] = url;
+    data['content'] = content;
+    data['title'] = title;
+    data['template'] = template;
+    data['author'] = author;
+    var stringfy = JSON.stringify(data);
+    console.log(stringfy)
+    var base64 = Base64.encode(stringfy);
+    console.log(base64);
+    var link = "https://timesand.leanapp.cn/word/preview/" + base64
     wx.previewImage({
-      current: current,
-      urls: this.data.imageList
+      urls: [link]
     })
   },
   doMake: function (e) {
@@ -45,11 +72,18 @@ Page({
     if (e.detail.target.id == 'publish') {
       isPublish = true
     }
+    var card = {}
+    card.public = isPublish;
+    card.name = data.name;
+    card.img_url = data.img_url;
+    card.file = that.data.file;
+    card.content = data.content;
+    card.author = data.author ? data.author : app.globalData.user.nickName
+    card.userid = app.globalData.user.objectId;
+    card.formId = formId;
+    card.template = parseInt(that.data.tid);
+    console.log(JSON.stringify(card));
     console.log('form发生了submit事件，携带数据为：', e)
-    if (data.img_url.length < 1) {
-      wx.showModal({ title: '提示', content: '需要选择一张图片' })
-      return;
-    }
 
     if (data.name.length > 15) {
       wx.showModal({ title: '提示', content: '标题不能超过15个字' })
@@ -60,40 +94,30 @@ Page({
       wx.showModal({ title: '提示', content: '内容不能为空' })
       return;
     }
-   
+    if (e.detail.target.id == 'preview') {
+      that.preview(card);
+      return;
+    }
+
+
     wx.showLoading({
       title: '制作中',
     })
-    var card = {}
-    card.public = isPublish;
-    card.name = data.name;
-    card.content = data.content;
-    card.userid = app.globalData.user.objectId;
-    card.formId = formId;
-    card.template = parseInt(that.data.tid);
-    console.log(card)
-    new AV.File(data.img_url.split('//')[1].toLowerCase(), {
-      blob: {
-        uri: data.img_url,
-      },
-    }).save().then(function (file) {
-      console.log(file);
-      card.img_url = file.url();
-      card.file = file.id;
-      return;
-      AV.Cloud.run('maker', card).then(function (data) {
-        // 调用成功，得到成功的应答 data
-        console.log(data)
-        if (data.code == 200) {
-          wx.redirectTo({
-            url: '../detail/detail?id=' + data.data
-          })
-        }
 
-      }, function (err) {
-        // 处理调用失败
-      });
-    }).catch(console.error);
+
+    AV.Cloud.run('makeWord', card).then(function (data) {
+      // 调用成功，得到成功的应答 data
+      console.log(data)
+      if (data.code == 200) {
+        wx.redirectTo({
+          url: '../detail/detail?id=' + data.data
+        })
+      }
+
+    }, function (err) {
+      // 处理调用失败
+    });
+
 
   },
   formSubmit: function (e) {
@@ -117,7 +141,7 @@ Page({
     if (option.id) {
       that.setData({ tid: option.id })
     }
-    
+
   },
   onReady: function () {
     console.log('生命周期:maker-ready');

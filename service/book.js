@@ -1,6 +1,6 @@
 function collections(data,success_func,fail_func){
   wx.request({
-    url: 'https://api.douban.com/v2/book/user/biaohub/collections',
+    url: 'https://douban.uieee.com/v2/book/user/biaohub/collections',
     data: data,
     header: {
       'Content-Type': 'json'
@@ -23,7 +23,7 @@ function collections(data,success_func,fail_func){
 
 function search(data, success_func, fail_func) {
   wx.request({
-    url: 'https://api.douban.com/v2/book/search',
+    url: 'https://douban.uieee.com/v2/book/search',
     data: data,
     header: {
       'Content-Type': 'json'
@@ -45,7 +45,7 @@ function search(data, success_func, fail_func) {
 }
 function searchV1(data, success_func, fail_func) {
   wx.request({
-    url: 'https://m.douban.com/j/search',
+    url: 'https://douban.uieee.com/j/search',
     data: data,
     header: {
       'content-type': 'application/json'

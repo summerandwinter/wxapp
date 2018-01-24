@@ -53,7 +53,7 @@ Page({
   },
   initData:function(){
     var that = this;
-    AV.Cloud.run('cates').then(function (result) {
+    AV.Cloud.run('cates_v2').then(function (result) {
       console.log(result)
       if (result.code == 200) {
         that.setData({

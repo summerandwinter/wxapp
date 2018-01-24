@@ -1,6 +1,6 @@
 function toplist(data, success_func, fail_func) {
   wx.request({
-    url: 'https://api.douban.com/v2/movie/top250',
+    url: 'https://douban.uieee.com/v2/movie/top250',
     data: data,
     header: {
       'Content-Type': 'json'
@@ -23,7 +23,7 @@ function toplist(data, success_func, fail_func) {
 
 function search(data, success_func, fail_func) {
   wx.request({
-    url: 'https://api.douban.com/v2/movie/search',
+    url: 'https://douban.uieee.com/v2/movie/search',
     data: data,
     header: {
       'Content-Type': 'json'
